@@ -1,4 +1,2 @@
-# hello-world
-My (not actually) first repository on GitHub.
-
-I love jazz!
+# CS 6010 Fall 2022
+Muyuan Zhang
