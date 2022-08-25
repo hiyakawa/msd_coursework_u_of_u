@@ -25,9 +25,15 @@ int main() {
     int nickle_to_cent = 5;
     
     int quarters = change / quarter_to_cent;
-    int dimes = (change % quarter_to_cent) / dime_to_cent;
-    int nickles = ((change % quarter_to_cent) % dime_to_cent) / nickle_to_cent;
-    int pennies = ((change % quarter_to_cent) % dime_to_cent) % nickle_to_cent;
+    change = change % quarter_to_cent;
+    
+    int dimes = change / dime_to_cent;
+    change = change % dime_to_cent;
+    
+    int nickles = change / nickle_to_cent;
+    change = change % nickle_to_cent;
+    
+    int pennies = change;
     
     cout << "  Quarters: " << quarters << endl;
     cout << "  Dimes: " << dimes << endl;
