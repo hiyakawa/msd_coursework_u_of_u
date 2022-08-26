@@ -1,5 +1,7 @@
-#CS 6010
+CS 6010 labs & assignments
 ================
-Muyuan (Laura) Zhang
+#### Fall 2022 @U of Utah
+
+#### Muyuan (Laura) Zhang
 
 u1430770@umail.utah.edu

@@ -3,7 +3,7 @@
 //  Palindromes
 //
 //  Created by Laura Zhang on 8/25/22.
-//  Group member: Laura Zhang, Levi Neely
+//  Group members: Laura Zhang, Levi Neely
 //
 
 #include <iostream>
