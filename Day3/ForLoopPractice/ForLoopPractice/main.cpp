@@ -3,7 +3,7 @@
 //  ForLoopPractice
 //
 //  Created by Laura Zhang on 8/24/22.
-//cout << "
+//
 
 #include <iostream>
 using namespace std;
