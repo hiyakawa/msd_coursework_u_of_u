@@ -7,8 +7,11 @@ The folder contains:
 Lab: Road Trip Calculator
 
 Group lab: Variables and Expressions (Collaborated with Reshma Raghavan)
-            + VolumeConvert
-            + Average
+
+            * VolumeConvert
+            
+            * Average
 
 Assignment: Vending Machine
-            + GiveChange
+
+            * GiveChange

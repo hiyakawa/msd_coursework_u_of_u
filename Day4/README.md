@@ -4,6 +4,8 @@ Muyuan Zhang
 
 This folder contains:
 
-Group lab: Strings + Loops (Collaborated with Levi Neely)
+Group lab: Strings
+
+            * Loops (Collaborated with Levi Neely)
 
 Assignment: Roman Numerals
