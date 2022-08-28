@@ -4,8 +4,12 @@ Muyuan Zhang
 
 This folder contains:
 
-Group lab: Strings
+Group lab: Strings + Loops (Collaborated with Levi Neely)
 
-            * Loops (Collaborated with Levi Neely)
+            * Palindromes
+            
+            * Date Formats
+            
+            * Magic Dates
 
 Assignment: Roman Numerals
