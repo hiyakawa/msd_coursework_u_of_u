@@ -63,7 +63,8 @@ int main() {
         }
         
         // "C" if the remaining number is >= 100
-        while (input_num >= c_to_int) {
+        while (input_num >= c_to_int)
+        {
             roman_numeral += "C";
             input_num -= c_to_int;
         }
