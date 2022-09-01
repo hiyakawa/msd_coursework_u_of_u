@@ -7,21 +7,22 @@
 
 /*
  1,000,000 times of shuffing:
-     Flush: 0.1981%
-     Straight: 0.3503%
-     Straight Flush: 0.0017%
-     Royal Flush: 0.0002%
-     Full House: 0.1461%
+ Flush:          0.1925%
+ Straight:       0.3555%
+ Straight Flush: 0.0014%
+ Royal Flush:    0.0001%
+ Full House:     0.144%
  */
 
 #include "Poker.h"
+
 #include <iostream>
 #include <cstdlib>
 
 using namespace std;
 
 // create a deck of cards
-vector<Card> createCardDeck() {
+vector<Card> createDeck() {
     vector<Card> card_deck;                                                 // create an empty vector to store the deck
     vector<string> suits = {"Hearts", "Spades", "Clubs", "Diamonds"};       // create a vector to store the suits
     
@@ -40,7 +41,7 @@ vector<Card> createCardDeck() {
 }
 
 // print the deck
-void deckPrinter(vector<Card> card_deck) {
+void printDeck(vector<Card> card_deck) {
     string ace = "A";
     string jack = "J";
     string queen = "Q";
@@ -77,7 +78,7 @@ void deckPrinter(vector<Card> card_deck) {
 // shuffle the deck of cards
 void shuffleDeck(vector<Card>& deck) {
     for (int i = (int) deck.size() - 1; i > 0; i--) {
-        int j = rand() % 51 + 0;
+        int j = rand() % i + 0;
         Card temp = deck[i];
         deck[i] = deck[j];
         deck[j] = temp;
@@ -110,7 +111,10 @@ bool isStraight(vector<Card> deck) {
     sort(ranks.begin(), ranks.end());
     
     for (int j = 0; j < 4; j++) {
-        if (ranks[j + 1] - ranks[j] != 1) {
+        // if the deck is not royal flush and not continuous, it is not straight
+        if (ranks[j + 1] - ranks[j] != 1 &&
+            !(ranks[0] == 1 && ranks[1] == 10 && ranks[2] == 11 &&
+            ranks[3] == 12 && ranks[4] == 13)) {
             return false;
         }
     }
@@ -131,7 +135,7 @@ bool isStraightFlush(vector<Card> deck) {
 bool isRoyalFlush(vector<Card> deck) {
     vector<int> ranks;
     
-    if (isFlush(deck)) {
+    if (isStraightFlush(deck)) {
         // push the ranks of the cards into the vector
         for (int i = 0; i < 5; i++) {
             int cur_rank = deck[i].rank;
@@ -141,8 +145,7 @@ bool isRoyalFlush(vector<Card> deck) {
         // sort the vector of the card ranks
         sort(ranks.begin(), ranks.end());
         
-        if (ranks[0] == 1 && ranks[1] == 10 && ranks[2] == 11 &&
-            ranks[3] == 12 && ranks[4] == 13) {
+        if (ranks[0] == 1 && ranks[1] == 10) {
             return true;
         }
     }
@@ -248,7 +251,10 @@ int main(int argc, const char * argv[]) {
     vector<Card> royalFlush = {card_1, card_6, card_7, card_8, card_9};
     vector<Card> straight = {card_11, card_12, card_3, card_4, card_5};
     
-    vector<Card> deck = createCardDeck();
+    // cout << isStraight(royalFlush) << endl;
+    
+    vector<Card> deck = createDeck();
+    // deckPrinter(deck);
     
     cout << "Enter the times to shuffle the card deck:" << endl;
     int times;
@@ -262,11 +268,11 @@ int main(int argc, const char * argv[]) {
 
     vector<int> shuffled_hand = shuffleAndCount(deck, times);
 
-    cout << "Flush: " << shuffled_hand[0] * 100.0 / times << "%" << endl;
-    cout << "Straight: " << shuffled_hand[1] * 100.0 / times << "%" << endl;
+    cout << "Flush:          " << shuffled_hand[0] * 100.0 / times << "%" << endl;
+    cout << "Straight:       " << shuffled_hand[1] * 100.0 / times << "%" << endl;
     cout << "Straight Flush: " << shuffled_hand[2] * 100.0 / times << "%" << endl;
-    cout << "Royal Flush: " << shuffled_hand[3] * 100.0 / times << "%" << endl;
-    cout << "Full House: " << shuffled_hand[4] * 100.0 / times << "%" << endl;
+    cout << "Royal Flush:    " << shuffled_hand[3] * 100.0 / times << "%" << endl;
+    cout << "Full House:     " << shuffled_hand[4] * 100.0 / times << "%" << endl;
     
     return 0;
 }

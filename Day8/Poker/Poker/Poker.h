@@ -16,9 +16,9 @@ struct Card {
     std::string suit;
 };
 
-std::vector<Card> createCardDeck();
+std::vector<Card> createDeck();
 
-void deckPrinter(std::vector<Card> card_deck);
+void printDeck(std::vector<Card> card_deck);
 
 void shuffleDeck(std::vector<Card>& deck);
 
