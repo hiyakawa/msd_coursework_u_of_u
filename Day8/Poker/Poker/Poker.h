@@ -20,7 +20,7 @@ std::vector<Card> createCardDeck();
 
 void deckPrinter(std::vector<Card> card_deck);
 
-void shuffleDeck(std::vector<Card>& deck);                              // sus
+void shuffleDeck(std::vector<Card>& deck);
 
 bool isFlush(std::vector<Card> deck);
 
@@ -34,6 +34,6 @@ bool isFullHouse(std::vector<Card> deck);
 
 std::vector<Card> pickFiveCards(std::vector<Card>& deck);
 
-std::vector<int> shuffleAndCount(std::vector<Card>& deck, int times);   // sus
+std::vector<int> shuffleAndCount(std::vector<Card>& deck, int times);
 
 #endif /* Poker_h */
