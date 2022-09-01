@@ -254,20 +254,19 @@ int main(int argc, const char * argv[]) {
     int times;
     cin >> times;
     
-    if (times > 1) {
-        vector<int> shuffled_hand = shuffleAndCount(deck, times);
-    
-        cout << "Flush: " << shuffled_hand[0] * 100.0 / times << "%" << endl;
-        cout << "Straight: " << shuffled_hand[1] * 100.0 / times << "%" << endl;
-        cout << "Straight Flush: " << shuffled_hand[2] * 100.0 / times << "%" << endl;
-        cout << "Royal Flush: " << shuffled_hand[3] * 100.0 / times << "%" << endl;
-        cout << "Full House: " << shuffled_hand[4] * 100.0 / times << "%" << endl;
-    }
-    
-    else {
+    while (times < 1) {
         cout << "Please enter a positive integer." << endl;
         cout << "Enter the times to shuffle the card deck:" << endl;
+        cin >> times;
     }
+
+    vector<int> shuffled_hand = shuffleAndCount(deck, times);
+
+    cout << "Flush: " << shuffled_hand[0] * 100.0 / times << "%" << endl;
+    cout << "Straight: " << shuffled_hand[1] * 100.0 / times << "%" << endl;
+    cout << "Straight Flush: " << shuffled_hand[2] * 100.0 / times << "%" << endl;
+    cout << "Royal Flush: " << shuffled_hand[3] * 100.0 / times << "%" << endl;
+    cout << "Full House: " << shuffled_hand[4] * 100.0 / times << "%" << endl;
     
     return 0;
 }
