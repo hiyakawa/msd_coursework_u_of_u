@@ -7,11 +7,11 @@
 
 /*
  1,000,000 times of shuffing:
- Flush:          0.1925%
- Straight:       0.3555%
- Straight Flush: 0.0014%
- Royal Flush:    0.0001%
- Full House:     0.144%
+ Flush:          0.1904%
+ Straight:       0.4026%
+ Straight Flush: 0.0013%
+ Royal Flush:    0.0002%
+ Full House:     0.1455%
  */
 
 #include "Poker.h"
@@ -78,7 +78,11 @@ void printDeck(vector<Card> card_deck) {
 // shuffle the deck of cards
 void shuffleDeck(vector<Card>& deck) {
     for (int i = (int) deck.size() - 1; i > 0; i--) {
+        // randomly generate an int between 0 and i
+        // Reference: https://cplusplus.com/reference/cstdlib/rand/
         int j = rand() % i + 0;
+        
+        // swap the two cards
         Card temp = deck[i];
         deck[i] = deck[j];
         deck[j] = temp;
@@ -99,7 +103,6 @@ bool isFlush(vector<Card> deck) {
 }
 
 // check if all 5 cards are in numerical order
-// is 10, J, Q, K, A a straight?
 bool isStraight(vector<Card> deck) {
     vector<int> ranks;
     
@@ -111,7 +114,7 @@ bool isStraight(vector<Card> deck) {
     sort(ranks.begin(), ranks.end());
     
     for (int j = 0; j < 4; j++) {
-        // if the deck is not royal flush and not continuous, it is not straight
+        // if the deck is neither a royal flush nor continuous, it's not straight
         if (ranks[j + 1] - ranks[j] != 1 &&
             !(ranks[0] == 1 && ranks[1] == 10 && ranks[2] == 11 &&
             ranks[3] == 12 && ranks[4] == 13)) {
@@ -175,6 +178,7 @@ bool isFullHouse(vector<Card> deck) {
 // extract five cards from the deck
 // reference: https://stackoverflow.com/questions/421573/best-way-to-extract-a-subvector-from-a-vector
 vector<Card> pickFiveCards(vector<Card>& deck) {
+    // pick the first 5 cards from the deck
     vector<Card>::const_iterator first = deck.begin() + 0;
     vector<Card>::const_iterator last = deck.begin() + 5;
     vector<Card> hand(first, last);
@@ -186,6 +190,7 @@ vector<Card> pickFiveCards(vector<Card>& deck) {
 // then check if it is one of the hands you test for above,
 // and keep track of the total numbers
 vector<int> shuffleAndCount(vector<Card>& deck, int times) {
+    // create a vector to store all the counters for specific hands
     vector<int> counters;
 
     int flush_counter = 0;
@@ -195,10 +200,13 @@ vector<int> shuffleAndCount(vector<Card>& deck, int times) {
     int full_house_counter = 0;
     
     for (int i = 0; i < times; i++) {
+        // shuffle the deck
         shuffleDeck(deck);
         
+        // pick the first five cards from the shuffled deck
         vector<Card> five_cards = pickFiveCards(deck);
         
+        // check and count
         if (isFlush(five_cards)) {
             flush_counter++;
         }

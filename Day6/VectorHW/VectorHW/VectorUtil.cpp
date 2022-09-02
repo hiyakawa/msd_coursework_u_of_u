@@ -56,9 +56,9 @@ int FindMin( vector<int> input )
     if (!input.empty()) {
         min_element = input[0];
         
-        for (int i : input) {
-            if (i < min_element) {
-                min_element = i;
+        for (int i = 1; i < input.size(); i++) {
+            if (input[i] < min_element) {
+                min_element = input[i];
             }
         }
     }
@@ -85,9 +85,9 @@ int FindMax( vector<int> input )
     if (!input.empty()) {
         max_element = input[0];
         
-        for (int i : input) {
-            if (i > max_element) {
-                max_element = i;
+        for (int i = 1; i < input.size(); i++) {
+            if (input[i] > max_element) {
+                max_element = input[i];
             }
         }
     }
@@ -150,6 +150,9 @@ bool IsSorted( vector<int> input )
 {
     // TODO: Fill in implementation. Do not always return false.
     bool is_sorted = std::is_sorted(input.begin(), input.end());
+    
+    // for (int i = 0; i < (input.size() - 1); i++) {
+    
 
     return is_sorted;
 }
