@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		ED8E209C28C1468100E5E6D2 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ED8E209B28C1468100E5E6D2 /* main.cpp */; };
+		EDE8224828C591D000C17B0C /* BookAnalyzer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EDE8224728C591D000C17B0C /* BookAnalyzer.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +26,8 @@
 /* Begin PBXFileReference section */
 		ED8E209828C1468100E5E6D2 /* BookAnalyzer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = BookAnalyzer; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED8E209B28C1468100E5E6D2 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		EDE8224628C5918C00C17B0C /* BookAnalyzer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BookAnalyzer.h; sourceTree = "<group>"; };
+		EDE8224728C591D000C17B0C /* BookAnalyzer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BookAnalyzer.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +61,8 @@
 			isa = PBXGroup;
 			children = (
 				ED8E209B28C1468100E5E6D2 /* main.cpp */,
+				EDE8224628C5918C00C17B0C /* BookAnalyzer.h */,
+				EDE8224728C591D000C17B0C /* BookAnalyzer.cpp */,
 			);
 			path = BookAnalyzer;
 			sourceTree = "<group>";
@@ -119,6 +124,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EDE8224828C591D000C17B0C /* BookAnalyzer.cpp in Sources */,
 				ED8E209C28C1468100E5E6D2 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

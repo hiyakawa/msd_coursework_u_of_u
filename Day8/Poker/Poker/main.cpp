@@ -148,6 +148,8 @@ bool isRoyalFlush(vector<Card> deck) {
         // sort the vector of the card ranks
         sort(ranks.begin(), ranks.end());
         
+        // a straight flush is a royal flush with its smallest rank being 1
+        // and second smallest card being 10
         if (ranks[0] == 1 && ranks[1] == 10) {
             return true;
         }
@@ -156,17 +158,21 @@ bool isRoyalFlush(vector<Card> deck) {
     return false;
 }
 
-// check if there are 3 of one rank, and 2 of another
+// check if there are 3 cards of one rank, and 2 of another
 bool isFullHouse(vector<Card> deck) {
     vector<int> ranks;
     
+    // push the ranks of the cards into the vector
     for (int i = 0; i < 5; i++) {
         int cur_rank = deck[i].rank;
         ranks.push_back(cur_rank);
     }
     
+    // sort the vector of the card ranks
     sort(ranks.begin(), ranks.end());
     
+    // two circumstances: 1. three smaller ranks are equal, and two larger are equal
+    // 2. two smaller ranks are equal, and three larger are equal
     if ((ranks[0] == ranks[1] && ranks[0] == ranks[2] && ranks[3] == ranks[4]) ||
         (ranks[0] == ranks[1] && ranks[2] == ranks[3] && ranks[3] == ranks[4])) {
         return true;
@@ -199,6 +205,7 @@ vector<int> shuffleAndCount(vector<Card>& deck, int times) {
     int royal_flush_counter = 0;
     int full_house_counter = 0;
     
+    // loop for user input times
     for (int i = 0; i < times; i++) {
         // shuffle the deck
         shuffleDeck(deck);
@@ -253,13 +260,15 @@ int main(int argc, const char * argv[]) {
     Card card_13 = {3, "Hearts"};
     Card card_14 = {3, "Diamonds"};
     
-    vector<Card> spades = {card_1, card_2, card_3, card_4, card_5};
-    vector<Card> spadesStraight = {card_5, card_4, card_3, card_2, card_1};
-    vector<Card> fullHouse = {card_2, card_12, card_3, card_13, card_14};
-    vector<Card> royalFlush = {card_1, card_6, card_7, card_8, card_9};
-    vector<Card> straight = {card_11, card_12, card_3, card_4, card_5};
+    vector<Card> straightFlush = {card_5, card_4, card_3, card_2, card_1};
+    vector<Card> fullHouse = {card_2, card_3, card_12, card_13, card_14};
+    vector<Card> royalFlush = {card_6, card_7, card_8, card_9, card_1};
+    vector<Card> straight = {card_3, card_4, card_5, card_11, card_12};
+    vector<Card> flush = {card_2, card_3, card_4, card_5, card_6};
     
-    // cout << isStraight(royalFlush) << endl;
+    // cout << isStraightFlush(straightFlush) << isFullHouse(fullHouse) << isStraight(royalFlush);
+    // cout << isRoyalFlush(royalFlush) << isStraight(straight) << isFlush(flush) << endl;
+    // expecting "111111"
     
     vector<Card> deck = createDeck();
     // deckPrinter(deck);
@@ -269,6 +278,7 @@ int main(int argc, const char * argv[]) {
     cin >> times;
     
     while (times < 1) {
+        // print error message if shuffling time is less than 1
         cout << "Please enter a positive integer." << endl;
         cout << "Enter the times to shuffle the card deck:" << endl;
         cin >> times;
