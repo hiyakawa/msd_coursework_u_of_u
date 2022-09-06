@@ -12,7 +12,6 @@ Usage message:
 No input file is given!
 
 Program ended with exit code: 252
-
 ```
 
 ```
@@ -70,7 +69,7 @@ The word "fox" appears 1 times:
 
 Usage message:
 
-Too many arguments entered!!
+Too many arguments entered!
 
 Program ended with exit code: 251
 ```
