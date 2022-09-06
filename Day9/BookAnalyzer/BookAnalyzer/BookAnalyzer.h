@@ -15,6 +15,9 @@ enum ParseResult {
     Success = 0,
     WrongFileName = -1,
     OpenFailed = -2,
+    NoKeyWord = -3,
+    NoInputFile = -4,
+    TooManyArguments = -5,
 };
 
 int parseFile(const char* file_name, std::string lookup_word);

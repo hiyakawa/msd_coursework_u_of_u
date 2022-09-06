@@ -42,28 +42,28 @@ int parseFile(const char* file_name, string key_word) {
     int short_word_index = -1;                                      // stores the index of the shortest word
     int long_word_index = -1;                                       // stores the index of the longest word
     
+    int title_index = -1;                                           // stores the index of "Title:"
+    int author_index = -1;                                          // stores the index of "Author:"
+    int release_date_index = -1;                                    // stores the index of "Release:"
+    
     string title = "Title:";
     string author = "Author:";
     string release_date = "Release";
-    
-    int title_index = -1;
-    int author_index = -1;
-    int release_date_index = -1;
     
     while (myStream >> word) {                                      // read the file and extract words
         words.push_back(word);                                      // push each non-empty string into the vector
         int word_len = (int) word.length();                         // store the length of the word
         
-        if (word_counter < 200) {
-            if (word == title) {
-                title_index = word_counter;
+        if (word_counter < 100) {                                   // search within the first 100 words
+            if (word == title) {                                    // search for "Title:"
+                title_index = word_counter;                         // store the index of "Title:"
             }
             
-            else if (word == author) {
+            else if (word == author) {                              // search for "Author:"
                 author_index = word_counter;
             }
             
-            else if (word == release_date) {
+            else if (word == release_date) {                        // search for "Release:"
                 release_date_index = word_counter;
             }
         }
@@ -96,28 +96,28 @@ int parseFile(const char* file_name, string key_word) {
     title = "";
     author = "";
     
-    if (title_index > -1 && author_index > title_index) {
+    if (title_index > -1 && author_index > title_index) {           // if "Title:" and "Author:" are found within the first 100 words
         for (int i = title_index + 1; i < author_index; i++) {
-            title += words[i];
-            title += " ";
+            title += words[i];                                      // add words between "Title:" and "Author:" to title
+            title += " ";                                           // add spaces
         }
         
-        if (release_date_index > author_index) {
+        if (release_date_index > author_index) {                    // if "Release:" is also found within the first 100 words
             for (int j = author_index + 1; j < release_date_index; j++) {
-                author += words[j];
-                author += " ";
+                author += words[j];                                 // add words between "Author:" and "Release:" to author
+                author += " ";                                      // add spaces
             }
             
-            author.pop_back();
+            author.pop_back();                                      // remove the last space from author
         }
         
-        else {
-            author = "unknown";
+        else {                                                      // if "Release:" is never found within the first 100 words
+            author = "unknown";                                     // then author is unknown
         }
     }
     
-    else {
-        title = "unknown ";
+    else {                                                          // if "Title:" or "Author:" are not found within the first 100 words
+        title = "unknown ";                                         // then title and author are unknown
         author = "unknown";
     }
     
@@ -145,7 +145,7 @@ int parseFile(const char* file_name, string key_word) {
         }
     }
     
-    else {                                                          // if the key word is never found
+    else {                                                          // if the key word is never found, print the result
         cout << "The word \"" << key_word << "\" appears 0 times." << endl;
     }
     
@@ -154,6 +154,6 @@ int parseFile(const char* file_name, string key_word) {
 
 // print an error message indicating the problem and return the enumeration label
 int error_message(const char* file_name, string err_message, int err_type) {
-    cerr << "Usage: " << file_name << endl << err_message << endl;
+    cerr << "Usage message: " << file_name << endl << err_message << endl;
     exit(err_type);
 }
