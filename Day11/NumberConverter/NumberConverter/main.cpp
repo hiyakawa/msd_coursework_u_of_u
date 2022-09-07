@@ -13,7 +13,7 @@
 using namespace std;
 
 int main(int argc, const char * argv[]) {
-    cout << intToHexadecimalString(-254) << endl;
+    cout << intToDecimalString(0) << endl;
     
     return 0;
 }

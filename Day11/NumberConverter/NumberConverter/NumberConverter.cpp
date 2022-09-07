@@ -15,7 +15,7 @@
 using namespace std;
 
 int stringToInt(const string num, int base) {
-    int begin_digit = int (num[0] == '-');                      // if the input number is negative, skip the dash mark when execute the loop and begin with the 1st digit instead the 0th
+    int begin_digit = int (num[0] == '-');                      // if the input number is negative, skip the dash mark when execute the loop and begin with the 1st digit instead of the 0th
     int result_num = 0;                                         // stores the converted result as a decimal number
     
     for (int i = begin_digit; i < (int) num.length(); i++) {    // for each digit in the input number
@@ -27,12 +27,12 @@ int stringToInt(const string num, int base) {
         }
         
         else if (isValidLetter(cur_char)) {
-            cur_char = tolower(cur_char);                       // make all the letter into lower case
+            cur_char = tolower(cur_char);                       // make all the letter into lower-case
             numeric_value = cur_char - 'a' + 10;                // convert the current char to integer
         }
         
-        else {                                                  // if the char is not a number of a valid letter
-            cerr << "Invalid input: " << cur_char << endl;      // print the current char
+        else {                                                  // if the char is not a number or a valid letter
+            cerr << "Invalid input: " << cur_char << endl;      // print the current char and an error message
             exit(invalid_input);                                // exit the program
         }
         
@@ -58,7 +58,7 @@ bool isNumeric(char c) {                                        // check if a ch
 }
 
 bool isValidLetter(char c) {                                    // check if a char is a letter between 'a' and 'f'
-    if ((c > 64 && c < 71) || (c > 96 && c < 103)) {            // both lower and uppercase are considered valid
+    if ((c > 64 && c < 71) || (c > 96 && c < 103)) {            // both lower and upper-case are considered valid
         return true;
     }
     
