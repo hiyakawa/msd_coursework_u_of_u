@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		ED967E1A28C7B82A001781DA /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ED967E1928C7B82A001781DA /* main.cpp */; };
+		ED967E2228C7B989001781DA /* NumberConverter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ED967E2028C7B989001781DA /* NumberConverter.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +26,8 @@
 /* Begin PBXFileReference section */
 		ED967E1628C7B82A001781DA /* NumberConverter */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = NumberConverter; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED967E1928C7B82A001781DA /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		ED967E2028C7B989001781DA /* NumberConverter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NumberConverter.cpp; sourceTree = "<group>"; };
+		ED967E2128C7B989001781DA /* NumberConverter.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = NumberConverter.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +61,8 @@
 			isa = PBXGroup;
 			children = (
 				ED967E1928C7B82A001781DA /* main.cpp */,
+				ED967E2028C7B989001781DA /* NumberConverter.cpp */,
+				ED967E2128C7B989001781DA /* NumberConverter.hpp */,
 			);
 			path = NumberConverter;
 			sourceTree = "<group>";
@@ -120,6 +125,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ED967E1A28C7B82A001781DA /* main.cpp in Sources */,
+				ED967E2228C7B989001781DA /* NumberConverter.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

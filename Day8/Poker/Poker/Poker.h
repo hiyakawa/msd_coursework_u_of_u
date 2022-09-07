@@ -1,7 +1,7 @@
 //
 //  Poker.h
 //  Poker
-//
+//  Group members: Muyuan Zhang, Thomas Ford
 //  Created by Laura Zhang on 8/31/22.
 //
 

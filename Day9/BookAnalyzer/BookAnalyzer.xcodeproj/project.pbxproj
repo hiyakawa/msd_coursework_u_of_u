@@ -26,6 +26,7 @@
 /* Begin PBXFileReference section */
 		ED8E209828C1468100E5E6D2 /* BookAnalyzer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = BookAnalyzer; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED8E209B28C1468100E5E6D2 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		ED9A354428C7CC7C00BF50D5 /* test.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test.txt; sourceTree = "<group>"; };
 		EDE8224628C5918C00C17B0C /* BookAnalyzer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BookAnalyzer.h; sourceTree = "<group>"; };
 		EDE8224728C591D000C17B0C /* BookAnalyzer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BookAnalyzer.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -60,6 +61,7 @@
 		ED8E209A28C1468100E5E6D2 /* BookAnalyzer */ = {
 			isa = PBXGroup;
 			children = (
+				ED9A354428C7CC7C00BF50D5 /* test.txt */,
 				ED8E209B28C1468100E5E6D2 /* main.cpp */,
 				EDE8224628C5918C00C17B0C /* BookAnalyzer.h */,
 				EDE8224728C591D000C17B0C /* BookAnalyzer.cpp */,

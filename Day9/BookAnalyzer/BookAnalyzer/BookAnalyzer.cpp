@@ -18,12 +18,10 @@ int parseFile(const char* file_name, string key_word) {
     ifstream myStream(file_name);
     
     if (! filesystem::exists(file_name)) {                          // if the file does not exist
-        system("PAUSE");
         return WrongFileName;                                       // return -1
     }
     
     if (myStream.fail()) {                                          // if we fail to open the file
-        system("PAUSE");
         return OpenFailed;                                          // return -2
     }
     

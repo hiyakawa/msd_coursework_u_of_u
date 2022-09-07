@@ -2,30 +2,33 @@
 
 #### Muyuan Zhang
 
+## Commands
+
+```
+$ clang++ -std=c++17 -c *.cpp
+$ clang++ -o BookAnalyzer *.o
+```
+
 ## Input & Output Example
 
 ```
- > ./BookAnalyzer
- 
+$ ./BookAnalyzer
+
 Usage message:
 
 No input file is given!
-
-Program ended with exit code: 252
 ```
 
 ```
- > ./BookAnalyzer mobydick.txt
+$ ./BookAnalyzer mobydick.txt
 
 Usage message:
 
 No key word is given!
-
-Program ended with exit code: 253
 ```
 
 ```
- > ./BookAnalyzer mobydick.txt weltering
+$ ./BookAnalyzer mobydick.txt weltering
 
 Statistics for Moby-Dick; or The Whale by unknown:
 
@@ -47,7 +50,7 @@ The word "weltering" appears 3 times:
 ```
 
 ```
- > ./BookAnalyzer test.txt fox
+$ ./BookAnalyzer test.txt fox
  
 Statistics for unknown by unknown:
 
@@ -65,11 +68,17 @@ The word "fox" appears 1 times:
 ```
 
 ```
- > ./BookAnalyzer test.txt fox something else
+$ ./BookAnalyzer nosuchfile.txt weltering
+
+Usage message: nosuchfile.txt
+
+This file does not exist!
+```
+
+```
+$ ./BookAnalyzer test.txt fox and something else
 
 Usage message:
 
 Too many arguments entered!
-
-Program ended with exit code: 251
 ```

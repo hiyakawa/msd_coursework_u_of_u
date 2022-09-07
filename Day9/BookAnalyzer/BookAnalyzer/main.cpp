@@ -22,10 +22,10 @@ int main(int argc, const char * argv[]) {
     
     const char* file_name = argv[1];
     
-    // if only 2 argument is passed, which are the program and the input file
+    // if only 2 argument is passed, which are the program and the input file name
     if (argc == 2) {
         err_message = "No key word is given!";
-        return error_message("", err_message, NoKeyWord);
+        return error_message(file_name, err_message, NoKeyWord);
     }
     
     // if the number of arguments is correct
