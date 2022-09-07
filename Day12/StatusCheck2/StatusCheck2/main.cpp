@@ -14,12 +14,20 @@ using namespace std;
 
 int main(int argc, const char * argv[]) {
     // Part 2
+    // A: Show how you would compile them (on the command line) to create myProg:
+    // my_lib.h, my_lib.cpp
+    // main.cpp
+    // Q:
+    // $ clang++ -c my_lib.cpp
+    // $ clang++ -c main.cpp
+    // $ clang++ -o myProg main.o my_lib.o
+    // $ ./myProg
     
     // Part 3 a
     // Q: What is the difference between an array and a structure?
-    // A: Stuctures hold member variables.
+    // A: Stuctures can hold different types of data. Arrays contain data in the same type.
     // Q: What is the difference between an array and a vector?
-    // A: Vectors have member functions like push_back().
+    // A: Vectors do not have indexes but arrays have.
     
     // Part 3 b
     Dog my_dog = {"Milou", 5, false};

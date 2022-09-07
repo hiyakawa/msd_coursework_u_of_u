@@ -8,7 +8,6 @@
 #include "StatusCheck2.hpp"
 
 #include <cstdlib>
-#include <iostream>
 #include <fstream>
 #include <vector>
 
@@ -47,7 +46,7 @@ int parseFile(const char* file_name) {
 bool isVowel(char c) {
     c = tolower(c);
     
-    if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u' || c == 'y') {
+    if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u') {
         return true;
     }
     
