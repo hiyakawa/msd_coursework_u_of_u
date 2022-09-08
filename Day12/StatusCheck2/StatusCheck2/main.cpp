@@ -13,6 +13,27 @@
 using namespace std;
 
 int main(int argc, const char * argv[]) {
+    // Part 1
+    int sum = 0;
+    
+    for (int i = 0; i < 4; i++) {
+        cout << "Enter a number:" << endl;
+        int input_num = 0;
+        cin >> input_num;
+        
+        if (input_num > 0 && input_num < 11) {
+            sum += input_num;
+        }
+        
+        // If the number is -99, quit the program
+        else if (input_num == -99) {
+            cout << "Goodbye! The sum is: " << sum << endl;
+            exit(0);
+        }
+    }
+    
+    cout << "The sum is: " << sum << endl;;
+    
     // Part 2
     // A: Show how you would compile them (on the command line) to create myProg:
     // my_lib.h, my_lib.cpp
@@ -36,7 +57,7 @@ int main(int argc, const char * argv[]) {
     vector<Dog> dogs = {};
     
     // Part 4
-    cout << parseFile("/Users/laurazhang/myLocalGithubRepo/Day12/star_wars.txt") << endl;
+    cout << parseFile("star_wars.txt") << endl;
     
     return 0;
 }

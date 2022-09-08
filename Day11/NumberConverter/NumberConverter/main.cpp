@@ -13,7 +13,7 @@
 using namespace std;
 
 int main(int argc, const char * argv[]) {
-    cout << intToDecimalString(0) << endl;
+    assert(intToDecimalString(0) == "0");
     
     return 0;
 }

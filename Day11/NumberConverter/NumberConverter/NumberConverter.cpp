@@ -91,7 +91,7 @@ string intToDecimalString(int num) {                            // convert decim
 
 string intToBinaryString(int num) {
     int base = 2;                                               // same as intToDecimalString() except for the base
-    string decimal_string = "";
+    string binary_string = "";
     bool is_negative = (num < 0);
     
     if (is_negative) {
@@ -100,22 +100,22 @@ string intToBinaryString(int num) {
     
     while (num / base > 0) {
         string remainder = to_string(num % base);
-        decimal_string = remainder + decimal_string;
+        binary_string = remainder + binary_string;
         num /= base;
     }
     
-    decimal_string = to_string(num) + decimal_string;
+    binary_string = to_string(num) + binary_string;
     
     if (is_negative) {
-        decimal_string = "-" + decimal_string;
+        binary_string = "-" + binary_string;
     }
     
-    return decimal_string;
+    return binary_string;
 }
 
 string intToHexadecimalString(int num) {
     int base = 16;
-    string decimal_string = "";
+    string hexadecimal_string = "";
     bool is_negative = (num < 0);
     
     if (is_negative) {
@@ -125,17 +125,17 @@ string intToHexadecimalString(int num) {
     while (num / base > 0) {
         int remainder = num % base;
         char char_remainder = hexitDigitConverter(remainder);   // call the function to convert ints between 10 and 15 into A to F
-        decimal_string = char_remainder + decimal_string;
+        hexadecimal_string = char_remainder + hexadecimal_string;
         num /= base;
     }
     
-    decimal_string = hexitDigitConverter(num) + decimal_string; // same here
+    hexadecimal_string = hexitDigitConverter(num) + hexadecimal_string; // same here
     
     if (is_negative) {
-        decimal_string = "-" + decimal_string;
+        hexadecimal_string = "-" + hexadecimal_string;
     }
     
-    return decimal_string;
+    return hexadecimal_string;
 }
 
 char hexitDigitConverter(int digit) {                           // convert ints who are between 10 and 15 into A to F
