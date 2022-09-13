@@ -122,6 +122,7 @@ int binaryStringToInt(const string num) {
         result_num += cur_digit_to_decimal;
     }
     
+    // 32 bits negative integer's first digit (2^31) is beyond the max value of int
     if ((int) num.length() == 32 && num[0] == '1') {
         result_num -= 1;
     }
@@ -295,9 +296,12 @@ int Negate(int input) {
 int Increment(uint32_t x) {
     string input_binary = uint32ToBinary(x);
     
+    // get the max index of the binary number
     int i = (int) input_binary.length() - 1;
     
+    // keep flipping all the digits from right to left until there's a digit
     while (input_binary[i] != '0' && i >= 0) {
+        // flip the current digit
         if (input_binary[i] == '1') {
             input_binary[i] = '0';
         }
@@ -306,9 +310,11 @@ int Increment(uint32_t x) {
             input_binary[i] = '1';
         }
         
+        // move left
         i--;
     }
     
+    // flip the current 0 digit as 1
     input_binary[i] = '1';
            
     return binaryStringToInt(input_binary);
@@ -439,6 +445,6 @@ int main()
     Test32Bit( Increment( -1 ), 0, "Increment2" );
     Test32Bit( Increment( 10000 ), 10001, "Increment3" );
     Test32Bit( Increment( -999 ), -998, "Increment4" );
-
+    
     return 0;
 }
