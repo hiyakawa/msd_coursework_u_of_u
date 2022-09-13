@@ -30,7 +30,7 @@ int main(int argc, const char * argv[]) {
     assert(stringToInt("F00D", 16) == 61453);
     assert(stringToInt("ff", 16) == 255);           // should handle lower-case letters
     
-    // cout << stringToInt("1*846", 10);            // should handle invalid symbols
+    cout << stringToInt("1*846", 10);               // should handle invalid symbols
     
     // Part 2 unit tests
     assert(intToDecimalString(10) == "10");
