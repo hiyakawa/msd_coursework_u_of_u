@@ -9,39 +9,82 @@
 
 #include <iostream>
 
-// Part 1: As a struct
+// default constructor
+MyVector::MyVector() {
+    _size = 0;
+    _capacity = 1;
+    _data = new int [_capacity];
+}
+
+// default constructor
 // return a vector with the given capacity and a size of 0
-MyVector MyVector::makeVector(int initialCapacity) {
-    MyVector myVector;
-    myVector.data = new int [0];
-    myVector.size = 0;
-    myVector.capacity = initialCapacity;
-    
-    return myVector;
-}
-
-// deallocate any heap memory used by the MyVector object
-void MyVector::freeVector(MyVector MyVec) {
-    
-}
-
-void MyVector::pushBack(MyVector myVector, int new_element) {
-    
-}
-
-void MyVector::popBack(MyVector myVector) {
-    
+MyVector::MyVector(size_t initialCapacity) {
+    _size = 0;
+    _capacity = initialCapacity;
+    _data = new int [0];
 }
 
 // return the appropriate value in the vector
-int MyVector::get(const MyVector& myVec, std::size_t index) {
+int MyVector::get(std::size_t index) const {
+    if (index < _size) {
+        return _data[index];
+    }
     
+    else {
+        std::cerr << "Index is beyond range!" << std::endl;
+        return IndexBeyondRange;
+    }
 }
 
-void MyVector::set(MyVector myVec, std::size_t index, int newValue) {
-    
+void MyVector::set(std::size_t index, int newValue) {
+    _data[index] = newValue;
 }
 
-void MyVector::growVector(MyVector myVec) {
+void MyVector::pushBack(const int& newElement) {
+    // make sure the capacity is enough for inserting an element
+    growVector();
     
+    // insert the new element
+    _data[_size] = newElement;
+    _size ++;
+}
+
+void MyVector::popBack() {
+    _size --;
+}
+
+void MyVector::growVector() {
+    // allocate memory for a temporary array with twice the size
+    if (_size >= _capacity) {
+        int* temp_array = new int [_size * 2];
+        
+        // copy the contents to this temp array
+        for (int i = 0; i < _size; i++) {
+            temp_array[i] = _data[i];
+        }
+
+        _capacity *= 2;
+
+        // free up the old chunk of memory
+        delete [] _data;
+
+        _data = temp_array;
+
+        // set the pointer to the temp array to nullptr
+        temp_array = nullptr;
+    }
+}
+
+// deallocate any heap memory used by the MyVector object
+void MyVector::freeVector() {
+    delete [] _data;
+    _data = nullptr;
+}
+
+size_t MyVector::getSize() {
+    return _size;
+}
+
+size_t MyVector::getCapacity() {
+    return _capacity;
 }

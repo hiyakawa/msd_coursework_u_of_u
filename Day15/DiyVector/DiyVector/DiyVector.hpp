@@ -10,20 +10,30 @@
 
 #include <cstddef>
 
-// Part 1: As a struct
-struct MyVector {
+class MyVector {
 private:
-    int* data;
-    int capacity, size;
+    int* _data;
+    size_t _capacity, _size;
     
 public:
-    MyVector makeVector(int initialCapacity);
-    void freeVector(MyVector myVector);
-    void pushBack(MyVector myVector, int new_element);
-    void popBack(MyVector myVector);
-    int get(MyVector myVector, std::size_t index) const;
-    void set(MyVector myVector, std::size_t index, int newValue);
-    void growVector(MyVector myVector);
+    MyVector();
+    MyVector(size_t initialCapacity);
+    
+    int get(size_t index) const;
+    void set(size_t index, int newValue);
+    
+    void pushBack(const int& newElement);
+    void popBack();
+    
+    void growVector();
+    void freeVector();
+    
+    size_t getSize();
+    size_t getCapacity();
+};
+
+enum Cases {
+    IndexBeyondRange = -1,
 };
 
 #endif /* DiyVector_hpp */

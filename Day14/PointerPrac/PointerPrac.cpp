@@ -38,13 +38,14 @@ void growMyVector(MyVector& someVar) {
             temp_array[i] = -1.0;
         }
 
-        // set someVar.data = the pointer to the temp array
+        // double the size and the capacity
         someVar.size *= 2;
         someVar.capacity = someVar.size;
 
         // call delete[] on someVar.data to free up the old chunk of memory
         delete [] someVar.data;
 
+        // set someVar.data = the pointer to the temp array
         someVar.data = & temp_array[0];
 
         // set the pointer to the temp array to nullptr
