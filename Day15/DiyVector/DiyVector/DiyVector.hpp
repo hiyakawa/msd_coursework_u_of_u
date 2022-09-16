@@ -17,10 +17,10 @@ private:
     
 public:
     MyVector();
-    MyVector(size_t initialCapacity);
+    MyVector(const size_t& initialCapacity);
     
-    int get(size_t index) const;
-    void set(size_t index, int newValue);
+    int get(const size_t& index) const;
+    void set(const size_t& index, const int& newValue);
     
     void pushBack(const int& newElement);
     void popBack();
@@ -28,8 +28,8 @@ public:
     void growVector();
     void freeVector();
     
-    size_t getSize();
-    size_t getCapacity();
+    size_t getSize() const;
+    size_t getCapacity() const;
 };
 
 enum Cases {

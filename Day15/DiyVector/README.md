@@ -69,5 +69,5 @@ The 3rd element is modified to 100
 
 ==============tests for freeVector()==============
 
-The vector is deleted!
+The vector is deleted! myVec2's size is 0, capacity is 0
 ```

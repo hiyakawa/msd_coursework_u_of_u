@@ -53,7 +53,8 @@ int main(int argc, const char * argv[]) {
     cout << endl << "==============tests for freeVector()==============" << endl;
     
     myVec2.freeVector();
-    cout << "The vector is deleted!" << endl;
+    cout << "The vector is deleted! myVec2's size is " << myVec2.getSize();
+    cout << ", capacity is " << myVec2.getCapacity() << endl;
     
     return 0;
 }

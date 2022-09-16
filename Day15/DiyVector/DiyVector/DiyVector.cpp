@@ -16,16 +16,15 @@ MyVector::MyVector() {
     _data = new int [_capacity];
 }
 
-// default constructor
-// return a vector with the given capacity and a size of 0
-MyVector::MyVector(size_t initialCapacity) {
+// generate a vector with the given capacity and a size of 0
+MyVector::MyVector(const size_t& initialCapacity) {
     _size = 0;
     _capacity = initialCapacity;
     _data = new int [0];
 }
 
 // return the appropriate value in the vector
-int MyVector::get(std::size_t index) const {
+int MyVector::get(const size_t& index) const {
     if (index < _size) {
         return _data[index];
     }
@@ -36,7 +35,7 @@ int MyVector::get(std::size_t index) const {
     }
 }
 
-void MyVector::set(std::size_t index, int newValue) {
+void MyVector::set(const size_t& index, const int& newValue) {
     _data[index] = newValue;
 }
 
@@ -63,7 +62,7 @@ void MyVector::growVector() {
             temp_array[i] = _data[i];
         }
 
-        _capacity *= 2;
+        _capacity = _size * 2;
 
         // free up the old chunk of memory
         delete [] _data;
@@ -79,12 +78,14 @@ void MyVector::growVector() {
 void MyVector::freeVector() {
     delete [] _data;
     _data = nullptr;
+    _size = 0;
+    _capacity = 0;
 }
 
-size_t MyVector::getSize() {
+size_t MyVector::getSize() const {
     return _size;
 }
 
-size_t MyVector::getCapacity() {
+size_t MyVector::getCapacity() const {
     return _capacity;
 }

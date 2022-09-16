@@ -33,11 +33,6 @@ void growMyVector(MyVector& someVar) {
             temp_array[i] = someVar.data[i];
         }
 
-        // fill the empty spots with -1.0
-        for (int i = var_size; i < var_size * 2; i++) {
-            temp_array[i] = -1.0;
-        }
-
         // double the size and the capacity
         someVar.size *= 2;
         someVar.capacity = someVar.size;
