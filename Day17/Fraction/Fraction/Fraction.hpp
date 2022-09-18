@@ -20,7 +20,7 @@ private:
     int _lcm;
     double _real_representation;
     
-    int computeGCD(int& num, int& denom);
+    void simplifyFraction(const Fraction& f);
     
 public:
     Fraction();
@@ -39,19 +39,8 @@ public:
     bool operator>(const Fraction& rhs);
     bool operator==(const Fraction& rhs);
     
-    Fraction& pow(int exponent) {
-        _numerator = std::pow(_numerator, exponent);
-        _denominator = std::pow(_denominator, exponent);
-        return * this;
-    }
-    
-    Fraction& pow(const Fraction& exponent) {
-        _numerator = std::pow(_numerator, exponent._real_representation);
-        _denominator = std::pow(_denominator, exponent._real_representation);
-        return * this;
-    }
-    
-    
+    Fraction& pow(int exponent);
+    Fraction& pow(const Fraction& exponent);
 };
 
 std::ostream& operator<<(std::ostream& out, const Fraction f);

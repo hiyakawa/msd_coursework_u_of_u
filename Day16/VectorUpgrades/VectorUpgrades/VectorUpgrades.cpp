@@ -151,7 +151,7 @@ int MyVector::get(const size_t& index) const {
     
     else {
         std::cerr << "Index is beyond range!" << std::endl;
-        return IndexBeyondRange;
+        exit(IndexBeyondRange);
     }
 }
 

@@ -49,15 +49,26 @@ Fraction& Fraction::operator+=(const Fraction& rhs) {
         _denominator *= rhs._denominator;
     }
     
-    _gcd = computeGCD(_numerator, _denominator);
+    simplifyFraction(* this);
     
     return * this;
 }
 
-int Fraction::computeGCD(int& num, int& denom) {
-    _gcd = std::gcd(num, denom);
-    
-    _numerator = num / _gcd;
-    _denominator = denom / _gcd;
+Fraction& Fraction::pow(int exponent) {
+    _numerator = std::pow(_numerator, exponent);
+    _denominator = std::pow(_denominator, exponent);
+    return * this;
 }
 
+Fraction& Fraction::pow(const Fraction& exponent) {
+    _numerator = std::pow(_numerator, exponent._real_representation);
+    _denominator = std::pow(_denominator, exponent._real_representation);
+    return * this;
+}
+
+void Fraction::simplifyFraction(const Fraction& f) {
+    _gcd = std::gcd(_numerator, _denominator);
+    
+    _numerator /= _gcd;
+    _denominator /= _gcd;
+}

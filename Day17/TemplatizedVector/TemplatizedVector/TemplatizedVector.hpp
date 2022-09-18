@@ -174,6 +174,7 @@ bool MyVector<T>::operator<(const MyVector<T>& rhs) const {
         }
     }
     
+    // if the sizes are not equal, do not compare the two vectors
     return false;
 }
 
@@ -203,7 +204,7 @@ T MyVector<T>::get(const size_t& index) const {
     
     else {
         std::cerr << "Index is beyond range!" << std::endl;
-        return IndexBeyondRange;
+        exit(IndexBeyondRange);
     }
 }
 
@@ -238,7 +239,7 @@ void MyVector<T>::growVector() {
             temp_array[i] = _data[i];
         }
         
-        _capacity *= 2;
+        _capacity = 2 * _size;
 
         delete [] _data;
         _data = temp_array;

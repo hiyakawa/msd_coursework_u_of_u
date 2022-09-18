@@ -14,7 +14,7 @@ using std::endl;
 
 int main(int argc, const char * argv[]) {
     Fraction f1;
-    cout << f1._real_representation << endl;
+    
     
     
     return 0;
