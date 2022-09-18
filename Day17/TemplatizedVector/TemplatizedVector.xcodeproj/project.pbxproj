@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		ED04E6B928D4C6CC004536A7 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ED04E6B828D4C6CC004536A7 /* main.cpp */; };
-		ED04E6C128D4C6F2004536A7 /* TemplatizedVector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ED04E6BF28D4C6F2004536A7 /* TemplatizedVector.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -26,7 +25,6 @@
 /* Begin PBXFileReference section */
 		ED04E6B528D4C6CC004536A7 /* TemplatizedVector */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = TemplatizedVector; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED04E6B828D4C6CC004536A7 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		ED04E6BF28D4C6F2004536A7 /* TemplatizedVector.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TemplatizedVector.cpp; sourceTree = "<group>"; };
 		ED04E6C028D4C6F2004536A7 /* TemplatizedVector.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TemplatizedVector.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -61,7 +59,6 @@
 			isa = PBXGroup;
 			children = (
 				ED04E6B828D4C6CC004536A7 /* main.cpp */,
-				ED04E6BF28D4C6F2004536A7 /* TemplatizedVector.cpp */,
 				ED04E6C028D4C6F2004536A7 /* TemplatizedVector.hpp */,
 			);
 			path = TemplatizedVector;
@@ -124,7 +121,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ED04E6C128D4C6F2004536A7 /* TemplatizedVector.cpp in Sources */,
 				ED04E6B928D4C6CC004536A7 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
