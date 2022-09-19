@@ -31,7 +31,7 @@ int MyVector::get(const size_t& index) const {
     
     else {
         std::cerr << "Index is beyond range!" << std::endl;
-        return IndexBeyondRange;
+        exit(IndexBeyondRange);
     }
 }
 
@@ -62,7 +62,7 @@ void MyVector::growVector() {
             temp_array[i] = _data[i];
         }
 
-        _capacity = _size * 2;
+        _capacity *= 2;
 
         // free up the old chunk of memory
         delete [] _data;

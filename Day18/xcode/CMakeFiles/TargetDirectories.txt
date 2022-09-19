@@ -1,0 +1,3 @@
+/Users/laurazhang/myLocalGithubRepo/Day18/xcode/CMakeFiles/testSFML.dir
+/Users/laurazhang/myLocalGithubRepo/Day18/xcode/CMakeFiles/ALL_BUILD.dir
+/Users/laurazhang/myLocalGithubRepo/Day18/xcode/CMakeFiles/ZERO_CHECK.dir

@@ -49,7 +49,8 @@ int main(int argc, const char * argv[]) {
     cout << endl << "intVec2's size is " << intVec2.getSize();
     cout << ", capacity is " << intVec2.getCapacity() << endl << endl;
     
-    MyVector<int> intVec3 = intVec1;
+    MyVector<int> intVec3(1);
+    intVec3 = intVec1;
     
     cout << "***** tests for operator=() **********" << endl;
     cout << endl << "The elements in intVec3 are:" << endl;
@@ -186,6 +187,7 @@ int main(int argc, const char * argv[]) {
     cout << endl << "dblVec2 >= dblVec3? " << (dblVec2 >= dblVec3);
     cout << endl << endl;
     
+    
     cout << "===============================" << endl;
     cout << "   tests for MyVector<string>  " << endl;
     cout << "===============================" << endl;
@@ -269,6 +271,7 @@ int main(int argc, const char * argv[]) {
     cout << endl << "strVec1 >= strVec2? " << (strVec1 >= strVec2);
     cout << endl << "strVec2 >= strVec3? " << (strVec2 >= strVec3);
     cout << endl << endl;
+    
     
     cout << "===============================" << endl;
     cout << "   tests for MyVector<char>    " << endl;

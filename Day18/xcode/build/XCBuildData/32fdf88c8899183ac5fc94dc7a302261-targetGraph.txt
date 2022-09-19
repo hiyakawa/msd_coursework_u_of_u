@@ -1,0 +1,7 @@
+Target dependency graph (3 targets)
+ZERO_CHECK in testSFML, no dependencies
+testSFML in testSFML, depends on:
+ZERO_CHECK in testSFML (explicit)
+ALL_BUILD in testSFML, depends on:
+testSFML in testSFML (explicit)
+ZERO_CHECK in testSFML (explicit)

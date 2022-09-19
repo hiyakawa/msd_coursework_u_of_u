@@ -49,6 +49,7 @@ public:
     void popBack();
     
     void growVector();
+    void freeVector();
     
     size_t getSize() const;
     size_t getCapacity() const;
@@ -255,6 +256,14 @@ size_t MyVector<T>::getSize() const {
 template<typename T>
 size_t MyVector<T>::getCapacity() const {
     return _capacity;
+}
+
+template<typename T>
+void MyVector<T>::freeVector() {
+    delete [] _data;
+    _data = nullptr;
+    _size = 0;
+    _capacity = 0;
 }
 
 #endif /* TemplatizedVector_hpp */
