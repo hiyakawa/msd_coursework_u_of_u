@@ -287,6 +287,4 @@ const T* MyVector<T>::end() const {
 
 bool isEvenNum(const int& i);
 
-bool isEvenNumAndCount(const int& i);
-
 #endif /* STLMyVector_hpp */
