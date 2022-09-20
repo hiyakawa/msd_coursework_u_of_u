@@ -1,25 +1,30 @@
-//
-//  Snake.hpp
-//  SnakeGame
-//
-//  Created by Mark Hale on 9/19/22.
-//
+#pragma once
 
 #ifndef Snake_hpp
 #define Snake_hpp
 
-#include <stdio.h>
-#include <SFML/Graphics.hpp>
+#include "SnakeGame.hpp"
 
-class Snake{
-    
+class Snake {
 private:
+    unsigned int _length;
+    const unsigned int k_max_length = 300;
+    unsigned int _speed;
+    MoveDirection _next_move_direction;
+    std::vector<Location> _movement_loc;
+    std::vector<Location> _head_loc;
+    bool isRunning;
+    
     //beginning of a snake obj
     sf::RectangleShape snakeStub;
-
+    
 public:
     //default constructor
-    Snake( );
+    Snake();
+    
+    void getMovement(MoveDirection move_direction);
+    unsigned int growSnake(unsigned int fruit_size);
+    bool isTouchingItself();
     
     //move functions which take in the sf library class object window via reference
     void moveLeft( sf::RenderWindow& window );

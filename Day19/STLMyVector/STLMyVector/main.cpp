@@ -60,9 +60,9 @@ int main(int argc, const char * argv[]) {
     
     std::remove_if(intVec1.begin(), intVec1.end(), isEvenNum);
     
-    for (unsigned int i = 0; i < count_even_num; i++) {
-        intVec1.popBack();
-    }
+//    for (unsigned int i = 0; i < count_even_num; i++) {
+//        intVec1.popBack();
+//    }
     
     cout << "After removing even numbers from the vector, the elements in intVec1 are:" << endl;
     std::for_each(intVec1.begin(), intVec1.end(), [] (const int& i) {cout << i << " ";});

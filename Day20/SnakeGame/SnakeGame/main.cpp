@@ -5,11 +5,10 @@
 //  Group members: Muyuan Zhang, Mark Hale
 //
 
-#include "SnakeGame.hpp"
+#include "Fruit.hpp"
 
 #include <curses.h>
 #include <iostream>
-#include <SFML/Graphics.hpp>
 
 using namespace std;
 
@@ -80,8 +79,7 @@ int main( int argc, const char * argv[] ) {
     return 0;
 }
 
-// press Q to quit the game
-// press N to start a new game
+
 
 
 

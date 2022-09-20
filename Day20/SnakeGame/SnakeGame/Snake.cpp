@@ -6,7 +6,6 @@
 //
 
 #include "Snake.hpp"
-#include <SFML/Graphics.hpp>
 
 //a default constructor to instantiate the fields of the class member variables
 Snake::Snake(){
