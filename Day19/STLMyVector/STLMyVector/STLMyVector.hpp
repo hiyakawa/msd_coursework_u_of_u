@@ -1,13 +1,12 @@
 //
-//  TemplatizedVector.hpp
-//  TemplatizedVector
+//  STLMyVector.hpp
+//  STLMyVector
 //
-//  Created by Laura Zhang on 9/16/22.
-//  Group members: Muyuan Zhang, Gloria Dukuzeyesu
+//  Created by Laura Zhang on 9/20/22.
 //
 
-#ifndef TemplatizedVector_hpp
-#define TemplatizedVector_hpp
+#ifndef STLMyVector_hpp
+#define STLMyVector_hpp
 
 #include <iostream>
 #include <cstddef>
@@ -53,6 +52,11 @@ public:
     
     size_t getSize() const;
     size_t getCapacity() const;
+    
+    T* begin();
+    const T* begin() const;
+    T* end();
+    const T* end() const;
 };
 
 template<typename T>
@@ -102,6 +106,9 @@ MyVector<T>& MyVector<T>::operator=(const MyVector<T>& rhs) {
     // do a deep copy
     _size = rhs._size;
     _capacity = rhs._size;
+    
+    delete[] _data;
+    _data = new T[rhs._capacity];
     
     for (size_t i = 0; i < _size; i++) {
         _data[i] = rhs._data[i];
@@ -258,4 +265,28 @@ size_t MyVector<T>::getCapacity() const {
     return _capacity;
 }
 
-#endif /* TemplatizedVector_hpp */
+template<typename T>
+T* MyVector<T>::begin() {
+    return _data;
+}
+
+template<typename T>
+const T* MyVector<T>::begin() const {
+    return _data;
+}
+
+template<typename T>
+T* MyVector<T>::end() {
+    return _data + _size;
+}
+
+template<typename T>
+const T* MyVector<T>::end() const {
+    return _data + _size;
+}
+
+bool isEvenNum(const int& i);
+
+bool isEvenNumAndCount(const int& i);
+
+#endif /* STLMyVector_hpp */

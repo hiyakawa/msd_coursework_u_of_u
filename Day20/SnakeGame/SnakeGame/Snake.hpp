@@ -28,4 +28,11 @@ public:
     void moveDown( sf::RenderWindow& window );
 };
 
+enum Directions {
+    KEY_UP,
+    KEY_DOWN,
+    KEY_LEFT,
+    KEY_RIGHT,
+}
+
 #endif /* Snake_hpp */
