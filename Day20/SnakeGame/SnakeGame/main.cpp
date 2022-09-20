@@ -29,7 +29,7 @@ using namespace std;
 //#define KEY_LEFT 75
 //#define KEY_RIGHT 77
 
-int main(int argc, const char * argv[]) {
+int main( int argc, const char * argv[] ) {
     /*
      -------
             |
@@ -73,35 +73,58 @@ int main(int argc, const char * argv[]) {
     }
      */
     
-    //Laura, this is code from Day18 lab:
+    //code from Day18 lab:
     
-    // create the window
-    sf::RenderWindow window(sf::VideoMode(800, 600), "My window");
-    // run the program as long as the window is open
-    while (window.isOpen())
+    //create the window
+    sf::RenderWindow window( sf::VideoMode( 800, 600 ), "My window" );
+    //run the program as long as the window is open
+    while ( window.isOpen( ) )
     {
-        // check all the window's events that were triggered since the
+        //check all the window's events that were triggered since the
         //last
         //iteration of the loop
         sf::Event event;
-        while (window.pollEvent(event))
+        while ( window.pollEvent( event ) )
         {
-            // "close requested" event: we close the window
-            if (event.type == sf::Event::Closed)
-                window.close();
+            //"close requested" event: we close the window
+            if ( event.type == sf::Event::Closed )
+                window.close( );
         }
-        // clear the window with black color
-        window.clear(sf::Color::Black);
-        sf::CircleShape shape(50.f);
-        // set the shape color to green
-        shape.setFillColor(sf::Color(100, 250, 50));
-        window.draw(shape);
-        // end the current frame
-        window.display();
+        //clear the window with black color
+        window.clear( sf::Color::Black );
+        Snake snake( 50.f );
+        //set the shape color to green
+        snake.setFillColor( sf::Color( 100, 250, 50 ) );
+        
+        //Code added here:
+        //event listener that listens for keystrokes
+        if( event.type == sf::Event::KeyPressed &&
+            event.key.code == sf::Keyboard::Left ){
+            
+            //snake.moveLeft(window);
+            
+        }
+        
+        window.draw( snake );
+        //end the current frame
+        window.display( );
     }
     
     return 0;
 }
 
-// press Q to quit the game
-// press N to start a new game
+//press Q to quit the game
+//press N to start a new game
+
+
+
+/*Bells and Whistles to consider if we have time:
+
+1. maybe the fruit/apples are different colors and when snake eats them the part of him that grows changes to that color so he turns into a rainbow snake
+2. snake's speed increases over increments of time
+3. add music/speed up music as game progresses
+4. add maze objects that are kill spots to avoid or bad fuit/appples that are kill events
+5. add a 2d avatar/stencil to snake body or head or objects eaten
+ */
+
+
