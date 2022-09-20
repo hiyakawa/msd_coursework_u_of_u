@@ -7,12 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		EDF5899828D90E4100F42DD7 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EDF5899728D90E4100F42DD7 /* main.cpp */; };
-		EDF589A028D90E5500F42DD7 /* SnakeGame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EDF5899E28D90E5500F42DD7 /* SnakeGame.cpp */; };
+		9A09017328D9629F0065EF9E /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A09017228D9629F0065EF9E /* main.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		EDF5899228D90E4100F42DD7 /* CopyFiles */ = {
+		9A09016D28D9629F0065EF9E /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = /usr/share/man/man1/;
@@ -24,14 +23,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		EDF5899428D90E4100F42DD7 /* SnakeGame */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SnakeGame; sourceTree = BUILT_PRODUCTS_DIR; };
-		EDF5899728D90E4100F42DD7 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		EDF5899E28D90E5500F42DD7 /* SnakeGame.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SnakeGame.cpp; sourceTree = "<group>"; };
-		EDF5899F28D90E5500F42DD7 /* SnakeGame.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SnakeGame.hpp; sourceTree = "<group>"; };
+		9A09016F28D9629F0065EF9E /* SnakeGame */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SnakeGame; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A09017228D9629F0065EF9E /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		EDF5899128D90E4100F42DD7 /* Frameworks */ = {
+		9A09016C28D9629F0065EF9E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -41,28 +38,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		EDF5898B28D90E4100F42DD7 = {
+		9A09016628D9629F0065EF9E = {
 			isa = PBXGroup;
 			children = (
-				EDF5899628D90E4100F42DD7 /* SnakeGame */,
-				EDF5899528D90E4100F42DD7 /* Products */,
+				9A09017128D9629F0065EF9E /* SnakeGame */,
+				9A09017028D9629F0065EF9E /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		EDF5899528D90E4100F42DD7 /* Products */ = {
+		9A09017028D9629F0065EF9E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				EDF5899428D90E4100F42DD7 /* SnakeGame */,
+				9A09016F28D9629F0065EF9E /* SnakeGame */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		EDF5899628D90E4100F42DD7 /* SnakeGame */ = {
+		9A09017128D9629F0065EF9E /* SnakeGame */ = {
 			isa = PBXGroup;
 			children = (
-				EDF5899728D90E4100F42DD7 /* main.cpp */,
-				EDF5899E28D90E5500F42DD7 /* SnakeGame.cpp */,
-				EDF5899F28D90E5500F42DD7 /* SnakeGame.hpp */,
+				9A09017228D9629F0065EF9E /* main.cpp */,
 			);
 			path = SnakeGame;
 			sourceTree = "<group>";
@@ -70,13 +65,13 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		EDF5899328D90E4100F42DD7 /* SnakeGame */ = {
+		9A09016E28D9629F0065EF9E /* SnakeGame */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EDF5899B28D90E4100F42DD7 /* Build configuration list for PBXNativeTarget "SnakeGame" */;
+			buildConfigurationList = 9A09017628D9629F0065EF9E /* Build configuration list for PBXNativeTarget "SnakeGame" */;
 			buildPhases = (
-				EDF5899028D90E4100F42DD7 /* Sources */,
-				EDF5899128D90E4100F42DD7 /* Frameworks */,
-				EDF5899228D90E4100F42DD7 /* CopyFiles */,
+				9A09016B28D9629F0065EF9E /* Sources */,
+				9A09016C28D9629F0065EF9E /* Frameworks */,
+				9A09016D28D9629F0065EF9E /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -84,24 +79,24 @@
 			);
 			name = SnakeGame;
 			productName = SnakeGame;
-			productReference = EDF5899428D90E4100F42DD7 /* SnakeGame */;
+			productReference = 9A09016F28D9629F0065EF9E /* SnakeGame */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		EDF5898C28D90E4100F42DD7 /* Project object */ = {
+		9A09016728D9629F0065EF9E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastUpgradeCheck = 1340;
 				TargetAttributes = {
-					EDF5899328D90E4100F42DD7 = {
+					9A09016E28D9629F0065EF9E = {
 						CreatedOnToolsVersion = 13.4.1;
 					};
 				};
 			};
-			buildConfigurationList = EDF5898F28D90E4100F42DD7 /* Build configuration list for PBXProject "SnakeGame" */;
+			buildConfigurationList = 9A09016A28D9629F0065EF9E /* Build configuration list for PBXProject "SnakeGame" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -109,30 +104,29 @@
 				en,
 				Base,
 			);
-			mainGroup = EDF5898B28D90E4100F42DD7;
-			productRefGroup = EDF5899528D90E4100F42DD7 /* Products */;
+			mainGroup = 9A09016628D9629F0065EF9E;
+			productRefGroup = 9A09017028D9629F0065EF9E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				EDF5899328D90E4100F42DD7 /* SnakeGame */,
+				9A09016E28D9629F0065EF9E /* SnakeGame */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		EDF5899028D90E4100F42DD7 /* Sources */ = {
+		9A09016B28D9629F0065EF9E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EDF589A028D90E5500F42DD7 /* SnakeGame.cpp in Sources */,
-				EDF5899828D90E4100F42DD7 /* main.cpp in Sources */,
+				9A09017328D9629F0065EF9E /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		EDF5899928D90E4100F42DD7 /* Debug */ = {
+		9A09017428D9629F0065EF9E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -190,7 +184,7 @@
 			};
 			name = Debug;
 		};
-		EDF5899A28D90E4100F42DD7 /* Release */ = {
+		9A09017528D9629F0065EF9E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -241,22 +235,18 @@
 			};
 			name = Release;
 		};
-		EDF5899C28D90E4100F42DD7 /* Debug */ = {
+		9A09017728D9629F0065EF9E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = DDUW79UFSN;
-				ENABLE_HARDENED_RUNTIME = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
 		};
-		EDF5899D28D90E4100F42DD7 /* Release */ = {
+		9A09017828D9629F0065EF9E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = DDUW79UFSN;
-				ENABLE_HARDENED_RUNTIME = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -264,25 +254,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		EDF5898F28D90E4100F42DD7 /* Build configuration list for PBXProject "SnakeGame" */ = {
+		9A09016A28D9629F0065EF9E /* Build configuration list for PBXProject "SnakeGame" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				EDF5899928D90E4100F42DD7 /* Debug */,
-				EDF5899A28D90E4100F42DD7 /* Release */,
+				9A09017428D9629F0065EF9E /* Debug */,
+				9A09017528D9629F0065EF9E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EDF5899B28D90E4100F42DD7 /* Build configuration list for PBXNativeTarget "SnakeGame" */ = {
+		9A09017628D9629F0065EF9E /* Build configuration list for PBXNativeTarget "SnakeGame" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				EDF5899C28D90E4100F42DD7 /* Debug */,
-				EDF5899D28D90E4100F42DD7 /* Release */,
+				9A09017728D9629F0065EF9E /* Debug */,
+				9A09017828D9629F0065EF9E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = EDF5898C28D90E4100F42DD7 /* Project object */;
+	rootObject = 9A09016728D9629F0065EF9E /* Project object */;
 }
