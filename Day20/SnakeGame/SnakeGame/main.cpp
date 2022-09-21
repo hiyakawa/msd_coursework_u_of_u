@@ -15,6 +15,7 @@
 using namespace std;
 
 int main( int argc, const char * argv[] ) {
+    
     /*
      -------
             |
@@ -34,11 +35,8 @@ int main( int argc, const char * argv[] ) {
      
      */
     
-    //code from Day18 lab:
-    
     //creates a window
     sf::RenderWindow window( sf::VideoMode( 800, 600 ), "My window" );
-    
     
     Snake snake;
     snake.setPosition( );

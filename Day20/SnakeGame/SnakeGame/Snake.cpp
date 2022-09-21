@@ -47,19 +47,17 @@ void Snake::moveRight( sf::RenderWindow& window ){
 
 //up movement functionality
 void Snake::moveUp( sf::RenderWindow& window ){
-    float xAxis = snakeStub.getPosition( ).x;
-    float width = window.getSize( ).x;
-    float leftOfHead = snakeStub.getSize().x;
-    if( xAxis < ( width - leftOfHead ) ){
-        snakeStub.move( sf::Vector2f( 0.0, 0.1 ) );
+    float xAxis = snakeStub.getPosition( ).y;
+    if( xAxis > 0 ){
+        snakeStub.move( sf::Vector2f( 0.0, -0.1 ) );
     }
 }
 //down movement functionality
 void Snake::moveDown( sf::RenderWindow& window ){
-    float xAxis = snakeStub.getPosition( ).x;
-    float width = window.getSize( ).x;
-    float leftOfHead = snakeStub.getSize().x;
+    float xAxis = snakeStub.getPosition( ).y;
+    float width = window.getSize( ).y;
+    float leftOfHead = snakeStub.getSize( ).y;
     if( xAxis < ( width - leftOfHead ) ){
-        snakeStub.move( sf::Vector2f( 0.0, -0.1 ) );
+        snakeStub.move( sf::Vector2f( 0.0, 0.1 ) );
     }
 }

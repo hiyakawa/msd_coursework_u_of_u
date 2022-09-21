@@ -5,7 +5,7 @@
 
 #include "Snake.hpp"
 
-class Fruit {
+class Fruit{
 private:
     unsigned int _size;
     std::vector<Location> _location;
