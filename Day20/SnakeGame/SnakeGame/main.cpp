@@ -8,7 +8,6 @@
 //#include "SnakeGame.hpp"
 #include "Snake.hpp"
 #include "Fruit.hpp"
-
 #include <curses.h>
 #include <iostream>
 
@@ -37,7 +36,7 @@ int main( int argc, const char * argv[] ) {
     
     //creates a window
     sf::RenderWindow window( sf::VideoMode( 800, 600 ), "My window" );
-    
+    Fruit fruit;
     Snake snake;
     snake.setPosition( );
     

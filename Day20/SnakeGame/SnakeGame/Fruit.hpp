@@ -1,15 +1,21 @@
+//
+//  Fruit.hpp
+//  SnakeGame
+//
+//  Created by Laura Zhang on 9/21/22.
+//
+
 #pragma once
 
-#ifndef Fruit_hpp
-#define Fruit_hpp
+#include <SFML/Graphics.hpp>
+#include <time.h>
 
-#include "Snake.hpp"
-
-class Fruit{
+class Fruit {
 private:
     unsigned int _size;
-    std::vector<Location> _location;
     
+public:
+    Fruit();
+    sf::RectangleShape shape;
+    void draw(sf::RenderTarget& fruit, sf::RenderStates state) const;
 };
-
-#endif /* Fruit_hpp */
