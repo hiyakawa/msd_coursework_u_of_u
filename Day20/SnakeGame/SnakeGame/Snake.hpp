@@ -13,10 +13,9 @@ private:
     
 public:
     //default constructor
-    Snake();
-    
+    Snake( );
     void setColor( );
-    void setPosition() ;
+    void setPosition( ) ;
     void draw( sf::RenderWindow& window );
     
     //move functions which take in the sf library class object window via reference

@@ -12,10 +12,9 @@ struct Location {
     unsigned int x_coo, y_coo;
 };
 //
-//MAY I TAKE THIS CODE OUT? I HAVE A SNAKE OBJECT WITH BASIC FUNCTIONALITY THAT I WILL IMPROVE TOMORROW.
+//**ATTENTION LAURA** May I take the below snake code out? I have a snake object with basic functionality that I will continue to develop. I need to fix a vertical out of bound issue and then I will addres the velocity.
 //
 
-//<<<<<<< HEAD
 //class Snake {
 //private:
 //    unsigned int _length;
@@ -37,7 +36,7 @@ struct Location {
 //};
 
 
-//I COMMENTED THIS OUT BECAUSE IT IS STOPPING THE COMPILER. DO YOU THINK YOU WILL HAVE A WORKING RANDOMIZED FRUIT CLASS WEDNESDAY?
+//**ATTENTION LAURA** I commented this out in order to get the compiler to work. When do you think you will have a working randomized fruit class? Wednesday?
 
 //class Fruit {
 //private:
@@ -46,7 +45,7 @@ struct Location {
 //
 //};
 
-//PLEASE RUN AND SEE THE SNAKE AS IS FOR NOW.
+//**PLEASE RUN** to see if you are alright with the snake object I am developing. Thank you :)
 
 class Border {
 private:

@@ -14,11 +14,6 @@
 
 using namespace std;
 
-//#define KEY_UP 72
-//#define KEY_DOWN 80
-//#define KEY_LEFT 75
-//#define KEY_RIGHT 77
-
 int main( int argc, const char * argv[] ) {
     /*
      -------
@@ -39,22 +34,20 @@ int main( int argc, const char * argv[] ) {
      
      */
     
-
-    
     //code from Day18 lab:
     
-    //create the window
+    //creates a window
     sf::RenderWindow window( sf::VideoMode( 800, 600 ), "My window" );
-    //run the program as long as the window is open
+    
     
     Snake snake;
     snake.setPosition( );
     
+    //runs the program as long as the window is open
     while ( window.isOpen( ) )
     {
-        //check all the window's events that were triggered since the
-        //last
-        //iteration of the loop
+        //checks all the window's events that were triggered since the
+        //last iteration of the loop
         sf::Event event;
         while ( window.pollEvent( event ) )
         {
@@ -76,7 +69,7 @@ int main( int argc, const char * argv[] ) {
             snake.moveRight( window );
         }
         
-        //Up and Down are currently going out of bounds
+        //Up and Down are currently going out of bounds I will continue to troublble shoot this
         else if( ( event.type == sf::Event::KeyPressed ) && ( event.key.code == sf::Keyboard::Up ) ){
             snake.moveUp( window );
         }
@@ -92,10 +85,6 @@ int main( int argc, const char * argv[] ) {
     return 0;
 }
 
-
-
-
-
 /*Bells and Whistles to consider if we have time:
 
 1. maybe the fruit/apples are different colors and when snake eats them the part of him that grows changes to that color so he turns into a rainbow snake
@@ -104,5 +93,3 @@ int main( int argc, const char * argv[] ) {
 4. add maze objects that are kill spots to avoid or bad fuit/appples that are kill events
 5. add a 2d avatar/stencil to snake body or head or objects eaten
  */
-
-
