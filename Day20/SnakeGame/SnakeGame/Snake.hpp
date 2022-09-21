@@ -7,7 +7,6 @@
 
 #ifndef Snake_hpp
 #define Snake_hpp
-
 #include <stdio.h>
 #include <SFML/Graphics.hpp>
 
@@ -20,6 +19,10 @@ private:
 public:
     //default constructor
     Snake( );
+    
+    void setColor( );
+    void setPosition() ;
+    void draw( sf::RenderWindow& window );
     
     //move functions which take in the sf library class object window via reference
     void moveLeft( sf::RenderWindow& window );

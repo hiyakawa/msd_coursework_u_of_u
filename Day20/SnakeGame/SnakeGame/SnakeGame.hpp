@@ -32,25 +32,25 @@ struct Location {
     unsigned int x_coo, y_coo;
 };
 
-class Snake {
-private:
-    unsigned int _length;
-    const unsigned int k_max_length = 300;
-    unsigned int _speed;
-    MoveDirection _next_move_direction;
-    std::vector<Location> _movement_loc;
-    std::vector<Location> _head_loc;
-    bool isRunning;
-    
-public:
-    Snake() {
-        _length = 5;
-    }
-    
-    void getMovement(MoveDirection move_direction);
-    unsigned int growSnake(unsigned int fruit_size);
-    bool isTouchingItself();
-};
+//class Snake {
+//private:
+//    unsigned int _length;
+//    const unsigned int k_max_length = 300;
+//    unsigned int _speed;
+//    MoveDirection _next_move_direction;
+//    std::vector<Location> _movement_loc;
+//    std::vector<Location> _head_loc;
+//    bool isRunning;
+//
+//public:
+//    Snake() {
+//        _length = 5;
+//    }
+//
+//    void getMovement(MoveDirection move_direction);
+//    unsigned int growSnake(unsigned int fruit_size);
+//    bool isTouchingItself();
+//};
 
 class Fruit {
 private:

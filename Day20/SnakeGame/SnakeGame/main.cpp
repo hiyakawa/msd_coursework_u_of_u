@@ -5,8 +5,8 @@
 //  Created by Laura Zhang on 9/19/22.
 //
 
-#include "SnakeGame.hpp"
-
+//#include "SnakeGame.hpp"
+#include "Snake.hpp"
 #include <curses.h>
 #include <iostream>
 #include <SFML/Graphics.hpp>
@@ -78,6 +78,10 @@ int main( int argc, const char * argv[] ) {
     //create the window
     sf::RenderWindow window( sf::VideoMode( 800, 600 ), "My window" );
     //run the program as long as the window is open
+    
+    Snake snake;
+    snake.setPosition( );
+    
     while ( window.isOpen( ) )
     {
         //check all the window's events that were triggered since the
@@ -92,20 +96,27 @@ int main( int argc, const char * argv[] ) {
         }
         //clear the window with black color
         window.clear( sf::Color::Black );
-        Snake snake( 50.f );
         //set the shape color to green
-        snake.setFillColor( sf::Color( 100, 250, 50 ) );
+        snake.setColor( );
         
-        //Code added here:
         //event listener that listens for keystrokes
         if( event.type == sf::Event::KeyPressed &&
             event.key.code == sf::Keyboard::Left ){
-            
-            //snake.moveLeft(window);
-            
+            snake.moveLeft( window );
+        }
+        else if( ( event.type == sf::Event::KeyPressed ) && ( event.key.code == sf::Keyboard::Right ) ){
+            snake.moveRight( window );
         }
         
-        window.draw( snake );
+        //Up and Down are currently going out of bounds
+        else if( ( event.type == sf::Event::KeyPressed ) && ( event.key.code == sf::Keyboard::Up ) ){
+            snake.moveUp( window );
+        }
+        else if( ( event.type == sf::Event::KeyPressed ) && ( event.key.code == sf::Keyboard::Down ) ){
+            snake.moveDown( window );
+        }
+        
+        snake.draw( window );
         //end the current frame
         window.display( );
     }
