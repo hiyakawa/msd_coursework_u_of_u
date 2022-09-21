@@ -3,7 +3,7 @@
 //  TemplatizedVector
 //
 //  Created by Laura Zhang on 9/16/22.
-//  Group member: Muyuan Zhang, Gloria Dukuzeyesu
+//  Group members: Muyuan Zhang, Gloria Dukuzeyesu
 //
 
 #include "TemplatizedVector.hpp"

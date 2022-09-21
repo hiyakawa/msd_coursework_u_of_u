@@ -1,24 +1,19 @@
-//
-//  Snake.hpp
-//  SnakeGame
-//
-//  Created by Mark Hale on 9/19/22.
-//
+#pragma once
 
 #ifndef Snake_hpp
 #define Snake_hpp
 #include <stdio.h>
 #include <SFML/Graphics.hpp>
+#include "SnakeGame.hpp"
 
-class Snake{
-    
+class Snake {
 private:
-    //beginning of a snake obj
-    sf::RectangleShape snakeStub;
 
+    sf::RectangleShape snakeStub;
+    
 public:
     //default constructor
-    Snake( );
+    Snake();
     
     void setColor( );
     void setPosition() ;

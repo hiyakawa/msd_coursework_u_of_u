@@ -3,7 +3,7 @@
 //  TemplatizedVector
 //
 //  Created by Laura Zhang on 9/16/22.
-//  Group member: Muyuan Zhang, Gloria Dukuzeyesu
+//  Group members: Muyuan Zhang, Gloria Dukuzeyesu
 //
 
 #ifndef TemplatizedVector_hpp
@@ -256,14 +256,6 @@ size_t MyVector<T>::getSize() const {
 template<typename T>
 size_t MyVector<T>::getCapacity() const {
     return _capacity;
-}
-
-template<typename T>
-void MyVector<T>::freeVector() {
-    delete [] _data;
-    _data = nullptr;
-    _size = 0;
-    _capacity = 0;
 }
 
 #endif /* TemplatizedVector_hpp */

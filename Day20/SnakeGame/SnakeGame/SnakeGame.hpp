@@ -1,37 +1,21 @@
-//
-//  SnakeGame.hpp
-//  SnakeGame
-//
-//  Created by Laura Zhang on 9/19/22.
-//
+#pragma once
 
 #ifndef SnakeGame_hpp
 #define SnakeGame_hpp
 
+#include <SFML/Graphics.hpp>
+
 #include <string>
 #include <vector>
-
-enum MoveDirection {
-    Up,
-    Down,
-    Left,
-    Right,
-};
-
-enum Color {
-    
-};
-
-enum Results {
-    OutOfBound = 1,
-    SelfCollision = 2,
-    ReachMaxLength = 0,
-};
 
 struct Location {
     unsigned int x_coo, y_coo;
 };
+//
+//MAY I TAKE THIS CODE OUT? I HAVE A SNAKE OBJECT WITH BASIC FUNCTIONALITY THAT I WILL IMPROVE TOMORROW.
+//
 
+//<<<<<<< HEAD
 //class Snake {
 //private:
 //    unsigned int _length;
@@ -52,21 +36,25 @@ struct Location {
 //    bool isTouchingItself();
 //};
 
-class Fruit {
-private:
-    unsigned int _size;
-    std::vector<Location> _location;
-    
-};
+
+//I COMMENTED THIS OUT BECAUSE IT IS STOPPING THE COMPILER. DO YOU THINK YOU WILL HAVE A WORKING RANDOMIZED FRUIT CLASS WEDNESDAY?
+
+//class Fruit {
+//private:
+//    unsigned int _size;
+//    std::vector<Location> _location;
+//
+//};
+
+//PLEASE RUN AND SEE THE SNAKE AS IS FOR NOW.
 
 class Border {
 private:
     unsigned int _width, _height;
-    
     unsigned int _left_bound,
-                    _right_bound,
-                    _top_bound,
-                    _bottom_bound;
+                 _right_bound,
+                 _top_bound,
+                 _bottom_bound;
     
 public:
     Border() {
@@ -89,5 +77,14 @@ private:
     std::string _name;
     
 };
+
+enum Results {
+    OutOfBound = 1,
+    SelfCollision = 2,
+    ReachMaxLength = 0,
+};
+
+// press Q to quit the game
+// press N to start a new game
 
 #endif /* SnakeGame_hpp */

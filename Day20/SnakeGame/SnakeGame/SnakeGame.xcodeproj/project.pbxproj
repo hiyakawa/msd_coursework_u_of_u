@@ -6,10 +6,6 @@
 	objectVersion = 55;
 	objects = {
 
-/* Begin PBXBuildFile section */
-		9A09017328D9629F0065EF9E /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A09017228D9629F0065EF9E /* main.cpp */; };
-/* End PBXBuildFile section */
-
 /* Begin PBXCopyFilesBuildPhase section */
 		9A09016D28D9629F0065EF9E /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -24,7 +20,7 @@
 
 /* Begin PBXFileReference section */
 		9A09016F28D9629F0065EF9E /* SnakeGame */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SnakeGame; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A09017228D9629F0065EF9E /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		ED20CE9A28DA0C4A00507747 /* SnakeGame */ = {isa = PBXFileReference; lastKnownFileType = folder; name = SnakeGame; path = ../..; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,7 +53,7 @@
 		9A09017128D9629F0065EF9E /* SnakeGame */ = {
 			isa = PBXGroup;
 			children = (
-				9A09017228D9629F0065EF9E /* main.cpp */,
+				ED20CE9A28DA0C4A00507747 /* SnakeGame */,
 			);
 			path = SnakeGame;
 			sourceTree = "<group>";
@@ -119,7 +115,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A09017328D9629F0065EF9E /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
