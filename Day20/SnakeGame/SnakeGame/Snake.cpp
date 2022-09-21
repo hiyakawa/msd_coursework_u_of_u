@@ -7,6 +7,8 @@
 
 #include "Snake.hpp"
 
+char cardinalDirection;
+
 //a default constructor to instantiate the fields of the class member variables
 Snake::Snake( ){
     snakeStub.setSize( sf::Vector2f( 15, 15 ) );
@@ -27,37 +29,51 @@ void Snake::setPosition(){
     snakeStub.setPosition( 100, 50 );
 }
 
-//left movement functionality
-void Snake::moveLeft( sf::RenderWindow& window ){
-    float xAxis = snakeStub.getPosition( ).x;
-    if( xAxis >= 0 ){
-        snakeStub.move( sf::Vector2f( -0.1, 0.0 ) );
-    }
+//keeps snake object moving in the direction it was last heading
+void Snake::move( sf::RenderWindow& window ){
+    Snake::move( window, cardinalDirection );//cardinal ie N,E,S,W
 }
 
-//right movement functionality
-void Snake::moveRight( sf::RenderWindow& window ){
+
+//changes snake diretional velocity based upon keystrokes
+void Snake::move( sf::RenderWindow& window, char direction ){
+    
     float xAxis = snakeStub.getPosition( ).x;
+    float yAxis = snakeStub.getPosition( ).y;
+    float snakeX = snakeStub.getSize().x;
+    float snakeY = snakeStub.getSize().y;
     float width = window.getSize( ).x;
-    float leftOfHead = snakeStub.getSize().x;
-    if( xAxis < ( width - leftOfHead ) ){
-        snakeStub.move( sf::Vector2f( 0.1, 0.0 ) );
+    float height = window.getSize( ).y;
+    cardinalDirection = direction;
+    
+    if( direction == 'd'){
+        
+        if( yAxis < ( height - snakeY ) ){
+            snakeStub.move( sf::Vector2f( 0.0, 0.1 ) );
+        }
     }
-}
-
-//up movement functionality
-void Snake::moveUp( sf::RenderWindow& window ){
-    float xAxis = snakeStub.getPosition( ).y;
-    if( xAxis > 0 ){
-        snakeStub.move( sf::Vector2f( 0.0, -0.1 ) );
+    
+    if( direction == 'u'){
+        
+        if( yAxis > 0 ){
+            snakeStub.move( sf::Vector2f( 0.0, -0.1 ) );
+        }
     }
-}
-//down movement functionality
-void Snake::moveDown( sf::RenderWindow& window ){
-    float xAxis = snakeStub.getPosition( ).y;
-    float width = window.getSize( ).y;
-    float leftOfHead = snakeStub.getSize( ).y;
-    if( xAxis < ( width - leftOfHead ) ){
-        snakeStub.move( sf::Vector2f( 0.0, 0.1 ) );
+    
+    if( direction == 'r'){
+        
+        if( xAxis < ( width - snakeX ) ){
+            snakeStub.move( sf::Vector2f( 0.1, 0.0 ) );
+        }
     }
+    
+    if( direction == 'l'){
+        
+        if( xAxis > 0 ){
+            snakeStub.move( sf::Vector2f( -0.1, 0.0 ) );
+        }
+    }
+    
+    //else
+    
 }

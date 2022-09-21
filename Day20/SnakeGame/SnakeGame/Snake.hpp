@@ -18,11 +18,10 @@ public:
     void setPosition( ) ;
     void draw( sf::RenderWindow& window );
     
-    //move functions which take in the sf library class object window via reference
-    void moveLeft( sf::RenderWindow& window );
-    void moveRight( sf::RenderWindow& window );
-    void moveUp( sf::RenderWindow& window );
-    void moveDown( sf::RenderWindow& window );
+    void move( sf::RenderWindow& window );
+    void move( sf::RenderWindow& window, char direction );
+    void gameOver( sf::RenderWindow& window );
+
 };
 
 #endif /* Snake_hpp */

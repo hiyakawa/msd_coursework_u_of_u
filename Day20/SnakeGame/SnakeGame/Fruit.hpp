@@ -11,11 +11,11 @@
 #include <time.h>
 
 class Fruit {
-private:
-    unsigned int _size;
-    
-public:
-    Fruit();
-    sf::RectangleShape shape;
-    void draw(sf::RenderTarget& fruit, sf::RenderStates state) const;
+//private:
+//    unsigned int _size;
+//    
+//public:
+//    Fruit();
+//    sf::RectangleShape shape;
+//    void draw(sf::RenderTarget& fruit, sf::RenderStates state) const;
 };

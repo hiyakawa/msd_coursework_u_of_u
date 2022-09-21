@@ -60,18 +60,21 @@ int main( int argc, const char * argv[] ) {
         //event listener that listens for keystrokes
         if( event.type == sf::Event::KeyPressed &&
             event.key.code == sf::Keyboard::Left ){
-            snake.moveLeft( window );
+            snake.move( window, 'l' );
         }
         else if( ( event.type == sf::Event::KeyPressed ) && ( event.key.code == sf::Keyboard::Right ) ){
-            snake.moveRight( window );
+            snake.move( window, 'r' );
         }
         
         //Up and Down are currently going out of bounds I will continue to troublble shoot this
         else if( ( event.type == sf::Event::KeyPressed ) && ( event.key.code == sf::Keyboard::Up ) ){
-            snake.moveUp( window );
+            snake.move( window, 'u' );
         }
         else if( ( event.type == sf::Event::KeyPressed ) && ( event.key.code == sf::Keyboard::Down ) ){
-            snake.moveDown( window );
+            snake.move( window, 'd' );
+        }
+        else{
+            snake.move( window );
         }
         
         snake.draw( window );
