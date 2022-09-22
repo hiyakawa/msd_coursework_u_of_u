@@ -4,23 +4,28 @@
 #define Snake_hpp
 #include <stdio.h>
 #include <SFML/Graphics.hpp>
-#include "SnakeGame.hpp"
 
 class Snake {
 private:
 
     sf::RectangleShape snakeStub;
+    bool isGameOver;
+    sf::Texture texture;
+    sf::Image background;
+    sf::Sprite sprite;
     
 public:
     //default constructor
     Snake( );
+    Snake( std::string file );
+    
     void setColor( );
     void setPosition( ) ;
     void draw( sf::RenderWindow& window );
     
     void move( sf::RenderWindow& window );
     void move( sf::RenderWindow& window, char direction );
-    void gameOver( sf::RenderWindow& window );
+    bool gameOver( sf::RenderWindow& window );
 
 };
 
