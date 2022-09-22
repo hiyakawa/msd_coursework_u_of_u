@@ -20,7 +20,9 @@
 
 /* Begin PBXFileReference section */
 		9A09016F28D9629F0065EF9E /* SnakeGame */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SnakeGame; sourceTree = BUILT_PRODUCTS_DIR; };
-		ED66D67E28DD1A8E006A33C2 /* SnakeGame */ = {isa = PBXFileReference; lastKnownFileType = folder; name = SnakeGame; path = ..; sourceTree = "<group>"; };
+		ED827D0828DD257500B7F7B8 /* SnakeGame */ = {isa = PBXFileReference; lastKnownFileType = folder; name = SnakeGame; path = ..; sourceTree = "<group>"; };
+		ED827D0928DD257500B7F7B8 /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = CMakeLists.txt; path = ../../CMakeLists.txt; sourceTree = "<group>"; };
+		ED827D0A28DD257500B7F7B8 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../../README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,7 +39,9 @@
 		9A09016628D9629F0065EF9E = {
 			isa = PBXGroup;
 			children = (
-				ED66D67E28DD1A8E006A33C2 /* SnakeGame */,
+				ED827D0928DD257500B7F7B8 /* CMakeLists.txt */,
+				ED827D0A28DD257500B7F7B8 /* README.md */,
+				ED827D0828DD257500B7F7B8 /* SnakeGame */,
 				9A09017028D9629F0065EF9E /* Products */,
 			);
 			sourceTree = "<group>";
