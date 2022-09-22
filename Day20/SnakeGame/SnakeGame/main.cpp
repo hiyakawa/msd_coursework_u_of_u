@@ -8,13 +8,6 @@
 #include "Snake.hpp"
 #include "SnakeGame.hpp"
 #include <SFML/Audio.hpp>
-#include <SFML/Graphics.hpp>//necessary?
-
-//#include <iostream>
-//#include "Fruit.hpp"
-//#include <curses.h>
-
-using namespace std;
 
 int main( int argc, const char * argv[] ) {
     

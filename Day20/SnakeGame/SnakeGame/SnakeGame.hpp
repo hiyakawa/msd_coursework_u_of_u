@@ -1,7 +1,5 @@
 #pragma once
 
-#ifndef SnakeGame_hpp
-#define SnakeGame_hpp
 #include <SFML/Graphics.hpp>
 
 class SnakeGame{
@@ -16,5 +14,3 @@ public:
 
 // press Q to quit the game
 // press N to start a new game
-
-#endif /* SnakeGame_hpp */
