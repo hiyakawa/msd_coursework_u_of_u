@@ -7,8 +7,6 @@
 
 #include "SnakeGame.hpp"
 
-using namespace std;
-
 SnakeGame::SnakeGame( string file, sf::Sprite& sprite, sf::Window& window ){
     background.loadFromFile( file );
     texture.loadFromImage( background );

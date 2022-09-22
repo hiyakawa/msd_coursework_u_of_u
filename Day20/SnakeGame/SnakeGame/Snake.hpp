@@ -1,13 +1,9 @@
 #pragma once
 
-#ifndef Snake_hpp
-#define Snake_hpp
-#include <stdio.h>
 #include <SFML/Graphics.hpp>
 
 class Snake {
 private:
-
     sf::RectangleShape snakeStub;
     bool isGameOver;
     sf::Texture texture;
@@ -15,7 +11,6 @@ private:
     sf::Sprite sprite;
     
 public:
-    //default constructor
     Snake( );
     Snake( std::string file );
     
@@ -28,5 +23,3 @@ public:
     bool gameOver( sf::RenderWindow& window );
 
 };
-
-#endif /* Snake_hpp */
