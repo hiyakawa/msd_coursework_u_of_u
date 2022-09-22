@@ -6,6 +6,7 @@
 //
 
 //#include "SnakeGame.hpp"
+//#include <SFML/Graphics.hpp>
 #include "Snake.hpp"
 #include "Fruit.hpp"
 #include <curses.h>
@@ -35,7 +36,7 @@ int main( int argc, const char * argv[] ) {
      */
     
     //creates a window
-    sf::RenderWindow window( sf::VideoMode( 800, 600 ), "My window" );
+    sf::RenderWindow window( sf::VideoMode( 1000, 800 ), "My window" );
     Fruit fruit;
     Snake snake;
     snake.setPosition( );
@@ -46,20 +47,17 @@ int main( int argc, const char * argv[] ) {
         //checks all the window's events that were triggered since the
         //last iteration of the loop
         sf::Event event;
-        while ( window.pollEvent( event ) )
+        while( window.pollEvent( event ) )
         {
             //"close requested" event: we close the window
-            if ( event.type == sf::Event::Closed )
+            if( event.type == sf::Event::Closed ){
                 window.close( );
         }
-        //clear the window with black color
-        window.clear( sf::Color::Black );
-        //set the shape color to green
-        snake.setColor( );
+        }
         
         //event listener that listens for keystrokes
-        if( event.type == sf::Event::KeyPressed &&
-            event.key.code == sf::Keyboard::Left ){
+        if( ( event.type == sf::Event::KeyPressed ) &&
+            ( event.key.code == sf::Keyboard::Left ) ){
             snake.move( window, 'l' );
         }
         else if( ( event.type == sf::Event::KeyPressed ) && ( event.key.code == sf::Keyboard::Right ) ){
@@ -77,6 +75,10 @@ int main( int argc, const char * argv[] ) {
             snake.move( window );
         }
         
+        //clear the window with black color
+        window.clear( sf::Color::Black );
+        //set the shape color to green
+        snake.setColor( );
         snake.draw( window );
         //end the current frame
         window.display( );

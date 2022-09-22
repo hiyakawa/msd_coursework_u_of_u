@@ -40,40 +40,47 @@ void Snake::move( sf::RenderWindow& window, char direction ){
     
     float xAxis = snakeStub.getPosition( ).x;
     float yAxis = snakeStub.getPosition( ).y;
-    float snakeX = snakeStub.getSize().x;
-    float snakeY = snakeStub.getSize().y;
     float width = window.getSize( ).x;
     float height = window.getSize( ).y;
     cardinalDirection = direction;
     
-    if( direction == 'd'){
+    if( xAxis < width && xAxis > 0 && yAxis < height && yAxis > 0 ){
         
-        if( yAxis < ( height - snakeY ) ){
-            snakeStub.move( sf::Vector2f( 0.0, 0.1 ) );
+        if( direction == 'd'){
+            
+            if( yAxis < height ){
+                snakeStub.move( sf::Vector2f( 0.0, 0.1 ) );
+            }
+        }
+        
+        else if( direction == 'u'){
+            
+            if( yAxis > 0 ){
+                snakeStub.move( sf::Vector2f( 0.0, -0.1 ) );
+            }
+        }
+        
+        else if( direction == 'r' ){
+            
+            if( xAxis < width ){
+                snakeStub.move( sf::Vector2f( 0.1, 0.0 ) );
+            }
+        }
+        
+        else if( direction == 'l'){
+            
+            if( xAxis > 0 ){
+                snakeStub.move( sf::Vector2f( -0.1, 0.0 ) );
+            }
         }
     }
-    
-    if( direction == 'u'){
-        
-        if( yAxis > 0 ){
-            snakeStub.move( sf::Vector2f( 0.0, -0.1 ) );
-        }
+    else {
+        window.close();
+// I'm still working on a window display for end of game
+//        gameOver( window );
     }
-    
-    if( direction == 'r'){
-        
-        if( xAxis < ( width - snakeX ) ){
-            snakeStub.move( sf::Vector2f( 0.1, 0.0 ) );
-        }
-    }
-    
-    if( direction == 'l'){
-        
-        if( xAxis > 0 ){
-            snakeStub.move( sf::Vector2f( -0.1, 0.0 ) );
-        }
-    }
-    
-    //else
-    
+}
+
+void Snake::gameOver( sf::RenderWindow& window ){
+    //I still need to work on this
 }
