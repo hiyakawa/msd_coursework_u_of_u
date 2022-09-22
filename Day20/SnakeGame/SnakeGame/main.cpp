@@ -53,7 +53,7 @@ int main( int argc, const char * argv[] ) {
     
     //throwing error don't know why
 //    sf::SoundBuffer buffer;
-
+//
 //    if( !buffer.loadFromFile( "/Users/computer/MSD/cs6010-labs/Day20/SnakeGame/SnakeGame/Sprites/Ball.wav" ) ){
 //        return -1;
 //    }
