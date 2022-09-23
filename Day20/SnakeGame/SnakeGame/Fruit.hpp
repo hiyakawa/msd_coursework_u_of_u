@@ -1,13 +1,13 @@
 //
 //  Fruit.hpp
+//  Final Project
 //  SnakeGame
 //
 //  Group members: Muyuan Zhang, Mark Hale
 //
 
 #pragma once
-#ifndef Fruit_hpp
-#define Fruit_hpp
+
 #include <stdio.h>
 #include <SFML/Graphics.hpp>
 #include <time.h>//currently unused
@@ -30,4 +30,3 @@ public:
     sf::Sprite getSprite( );
     sf::Rect<float> getGlobalBounds( );
 };
-#endif /* Fruit_hpp */

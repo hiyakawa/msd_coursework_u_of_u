@@ -1,5 +1,6 @@
 //
 //  SnakeGame.cpp
+//  Final Project
 //  SnakeGame
 //
 //  Group members: Muyuan Zhang, Mark Hale
