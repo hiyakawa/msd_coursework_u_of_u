@@ -8,15 +8,15 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
-#include <time.h>
+//#include <time.h> // used anywhere?
 
-class Fruit {
+class Fruit{
 private:
     sf::RectangleShape fruit;
     
 public:
-    Fruit();
-    void setColor();
-    void setPosition() ;
+    Fruit( );
+    void setColor( );
+    void setPosition( ) ;
     void draw( sf::RenderWindow& window );
 };

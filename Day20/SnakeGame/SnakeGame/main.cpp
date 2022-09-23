@@ -8,6 +8,7 @@
 #include "Snake.hpp"
 #include "SnakeGame.hpp"
 #include <SFML/Audio.hpp>
+#include "Fruit.hpp"
 
 int main( int argc, const char * argv[] ) {
     
@@ -36,13 +37,15 @@ int main( int argc, const char * argv[] ) {
     //creates a window
     sf::RenderWindow window( sf::VideoMode( wWidth, wHeight ), "My window" );
     window.setTitle( "S_N_A_K_E G_A_M_E" );
-    //Fruit fruit;
+    
     Snake snake( "/Users/computer/MSD/cs6010-labs/Day20/SnakeGame/SnakeGame/Sprites/snake.png" );
     //snake.setPosition( );
     sf::Sprite sprite;
     std::string mainFile = "/Users/computer/MSD/cs6010-labs/Day20/SnakeGame/SnakeGame/Sprites/tree1.png";
     std::string endFile = "/Users/computer/MSD/cs6010-labs/Day20/SnakeGame/SnakeGame/Sprites/gameover.png";
     SnakeGame game( mainFile, sprite, window );
+    //Fruit fruit;
+    
     
     //throwing error don't know why
 //    sf::SoundBuffer buffer;
@@ -87,13 +90,10 @@ int main( int argc, const char * argv[] ) {
             snake.move( window );
         }
         
-    
-        
-        
         //clear the window with black color
         window.clear( sf::Color::Cyan );
-        //set the shape color to green
-        //snake.setColor( );
+        //draws fruit object
+        //fruit.draw( window );
         window.draw( sprite );
         snake.draw( window );
         //end the current frame
