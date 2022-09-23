@@ -17,7 +17,11 @@ Snake::Snake( std::string file ){
     texture.loadFromImage( background );
     sprite.setTexture( texture );
     sprite.setScale( 0.1, 0.1 );
-    sprite.setPosition( 0.1, 0.1);
+    sprite.setPosition( 200.0, 500.0 );
+    //stops the first while loop ie go to new window
+    isGameOver = false;
+    //resets the cardinal direction upon game restart
+    cardinalDirection = ' ';
 }
 
 //sets the color of the snake object
@@ -83,14 +87,12 @@ void Snake::move( sf::RenderWindow& window, char direction ){
     else {
         isGameOver = true;
         gameOver( window );
-
-        // I'm still working on a window display for end of game
-//        gameOver( window );
     }
 }
 
+//terminates while loop
 bool Snake::gameOver( sf::RenderWindow& window ){
     window.clear( sf::Color::Black );
-    
+    //triggers next while loop
     return isGameOver;
 }

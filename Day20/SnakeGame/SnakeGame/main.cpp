@@ -87,8 +87,11 @@ int main( int argc, const char * argv[] ) {
             snake.move( window );
         }
         
+    
+        
+        
         //clear the window with black color
-        window.clear( sf::Color::White );
+        window.clear( sf::Color::Cyan );
         //set the shape color to green
         //snake.setColor( );
         window.draw( sprite );
@@ -112,8 +115,16 @@ int main( int argc, const char * argv[] ) {
             if( event.type == sf::Event::Closed ){
                 window.close( );
             }
+            //restarts game through listening for the return key
+            if( event.key.code == sf::Keyboard::Return ){
+                main( argc, argv );//wanted arguments
+            }
+            //ends game through listening for the escape key
+            if( event.key.code == sf::Keyboard::Escape ){
+                window.close( );
+            }
         }
-        window.clear( sf::Color::Black );
+        window.clear( sf::Color::White );
         window.draw( newSprite );
         window.display( );
     }
