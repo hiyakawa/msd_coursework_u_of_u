@@ -48,25 +48,25 @@ void Snake::move( sf::RenderWindow& window, char direction ){
         //uses keystroke input to excute directional change "down"
         if( direction == 'd'){
             if( yAxis < height ){
-                snake.move( sf::Vector2f( 0.0, 0.015 ) );//SLOWED FOR TESTING
+                snake.move( sf::Vector2f( 0.0, 0.15 ) );
             }
         }
         //uses keystroke input to excute directional change "up"
         else if( direction == 'u'){
             if( yAxis > 0 ){
-                snake.move( sf::Vector2f( 0.0, -0.015 ) );//SLOWED FOR TESTING
+                snake.move( sf::Vector2f( 0.0, -0.15 ) );
             }
         }
         //uses keystroke input to excute directional change "right"
         else if( direction == 'r' ){
             if( xAxis < width ){
-                snake.move( sf::Vector2f( 0.015, 0.0 ) );//SLOWED FOR TESTING
+                snake.move( sf::Vector2f( 0.15, 0.0 ) );
             }
         }
         //uses keystroke input to excute directional change "left"
         else if( direction == 'l'){
             if( xAxis > 0 ){
-                snake.move( sf::Vector2f( -0.015, 0.0 ) );//SLOWED FOR TESTING
+                snake.move( sf::Vector2f( -0.15, 0.0 ) );
             }
         }
     }

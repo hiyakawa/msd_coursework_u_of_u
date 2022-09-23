@@ -10,7 +10,7 @@
 #define Fruit_hpp
 #include <stdio.h>
 #include <SFML/Graphics.hpp>
-#include <time.h>
+#include <time.h>//currently unused
 
 class Fruit{
 private:
@@ -24,7 +24,7 @@ public:
     Fruit( std::string file );
     
     void setColor( );
-    void setPosition( int index, sf::RenderWindow& window ) ;
+    void setPosition( ) ;
     void draw( sf::RenderWindow& window );
     
     sf::Sprite getSprite( );
