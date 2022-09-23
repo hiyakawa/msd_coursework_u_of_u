@@ -1,14 +1,20 @@
-#pragma once
+//
+//  Snake.hpp
+//  SnakeGame
+//
+//  Group members: Muyuan Zhang, Mark Hale
+//
 
+#pragma once
+#include "Fruit.hpp"
 #include <SFML/Graphics.hpp>
 
 class Snake {
 private:
-    sf::RectangleShape snakeStub;
     bool isGameOver;
     sf::Texture texture;
-    sf::Image background;
-    sf::Sprite sprite;
+    sf::Image sAvatar;
+    sf::Sprite snake;
     
 public:
     Snake( );
@@ -21,5 +27,8 @@ public:
     void move( sf::RenderWindow& window );
     void move( sf::RenderWindow& window, char direction );
     bool gameOver( sf::RenderWindow& window );
-
+    friend bool eatMe ( Snake& snake, Fruit& apple );
+    
+    sf::Sprite getSprite( );
+    sf::Rect<float> getGlobalBounds( );
 };

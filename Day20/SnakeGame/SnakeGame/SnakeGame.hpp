@@ -1,5 +1,11 @@
-#pragma once
+//
+//  SnakeGame.hpp
+//  SnakeGame
+//
+//  Group members: Muyuan Zhang, Mark Hale
+//
 
+#pragma once
 #include <SFML/Graphics.hpp>
 
 class SnakeGame{
@@ -11,6 +17,3 @@ public:
     SnakeGame( );
     SnakeGame( std::string file, sf::Sprite& sprite, sf::Window& window );
 };
-
-// press Q to quit the game
-// press N to start a new game

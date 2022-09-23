@@ -2,7 +2,7 @@
 //  SnakeGame.cpp
 //  SnakeGame
 //
-//  Created by Laura Zhang on 9/19/22.
+//  Group members: Muyuan Zhang, Mark Hale
 //
 
 #include "SnakeGame.hpp"
