@@ -46,13 +46,13 @@ void Snake::move( sf::RenderWindow& window, char direction ){
     //checks whether the x-axis and y-axis of the snake object are within the window
     if( xAxis < width && xAxis > 0 && yAxis < height && yAxis > 0 ){
         //uses keystroke input to excute directional change "down"
-        if( direction == 'd'){
+        if( direction == 'd' ){
             if( yAxis < height ){
                 snake.move( sf::Vector2f( 0.0, 0.15 ) );
             }
         }
         //uses keystroke input to excute directional change "up"
-        else if( direction == 'u'){
+        else if( direction == 'u' ){
             if( yAxis > 0 ){
                 snake.move( sf::Vector2f( 0.0, -0.15 ) );
             }
@@ -64,7 +64,7 @@ void Snake::move( sf::RenderWindow& window, char direction ){
             }
         }
         //uses keystroke input to excute directional change "left"
-        else if( direction == 'l'){
+        else if( direction == 'l' ){
             if( xAxis > 0 ){
                 snake.move( sf::Vector2f( -0.15, 0.0 ) );
             }
