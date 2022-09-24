@@ -1,6 +1,5 @@
 //
 //  Snake.hpp
-//  Final Project
 //  SnakeGame
 //
 //  Group members: Muyuan Zhang, Mark Hale
@@ -13,8 +12,8 @@
 class Snake {
 private:
     bool isGameOver;
-    sf::Texture texture;
     sf::Image sAvatar;
+    sf::Texture texture;
     sf::Sprite snake;
     
 public:

@@ -1,6 +1,5 @@
 //
 //  main.cpp
-//  Final Project
 //  SnakeGame
 //
 //  Group members: Muyuan Zhang, Mark Hale
@@ -14,7 +13,7 @@
 #include <iostream>
 
 int main( int argc, const char * argv[] ) {
-//    Test test;
+    //game instantiation
     SnakeGame game;
     game.MakeGame();
     

@@ -1,6 +1,5 @@
 //
 //  Snake.cpp
-//  Final Project
 //  SnakeGame
 //
 //  Group members: Muyuan Zhang, Mark Hale
@@ -34,7 +33,7 @@ void Snake::draw( sf::RenderWindow& window ){
 }
 //keeps snake object moving in the direction it was last heading
 void Snake::move( sf::RenderWindow& window ){
-    Snake::move( window, cardinalDirection );//cardinal ie N,E,S,W
+    Snake::move( window, cardinalDirection );
 }
 //changes snake directional orientation based upon hearing keystrokes
 void Snake::move( sf::RenderWindow& window, char direction ){

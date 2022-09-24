@@ -26,17 +26,17 @@ void Fruit::draw( sf::RenderWindow& window ){
 }
 //sets the initial position of the snake
 void Fruit::setPosition( ){
-    // set random coordinate for fruit // not working
+    //sets random coordinate for fruit
     unsigned int x_coo = ( rand( ) % 985 + 15 );
     unsigned int y_coo = ( rand( ) % 785 + 15 );
-
+    //if random apple position is near the edge reposition spple
     if( x_coo < 10 || x_coo > 990 ){
         x_coo = rand( ) % 985 + 15;
     }
     if( y_coo < 10 || y_coo > 750 ){
         y_coo = rand( ) % 785 + 15;
     }
-    
+    //new positioning of apple
     apple.setPosition( x_coo, y_coo );
 }
 //returns the apple sprite used in setPosition()
