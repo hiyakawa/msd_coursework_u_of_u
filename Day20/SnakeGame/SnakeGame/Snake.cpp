@@ -86,11 +86,11 @@ bool Snake::gameOver( sf::RenderWindow& window ){
 bool eatMe( Snake& snake, Fruit& apple ){
     return( snake.getSprite( ).getGlobalBounds( ).intersects( apple.getSprite( ).getGlobalBounds( ) ) );
 }
-//returns snake bounds for use in eatMe()
+//returns snake bounds for use in eatMe( )
 sf::Sprite Snake::getSprite( ){
     return snake;
 }
-//returns global bounds for use in eatMe()
+//returns global bounds for use in eatMe( )
 sf::Rect<float> Snake::getGlobalBounds( ){
-    return snake.getGlobalBounds();
+    return snake.getGlobalBounds( );
 }

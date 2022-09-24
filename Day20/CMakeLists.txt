@@ -16,7 +16,7 @@ cmake_minimum_required(VERSION 3.15)
 #the project is called asteroids
 project(SnakeGame)
 #the project contains an executable named testSFML that uses the following cpp files
-add_executable(SnakeGame SnakeGame/main.cpp SnakeGame/Snake.cpp SnakeGame/SnakeGame.cpp SnakeGame/Fruit.cpp)
+add_executable(SnakeGame SnakeGame/main.cpp SnakeGame/Snake.cpp SnakeGame/SnakeGame.cpp SnakeGame/Fruit.cpp SnakeGame/Test.cpp)
 #create a folder named "cmake" at the top of your project and put the
 #findSFML.cmake file in it.  This line tells Cmake to look there for
 #find____.cmake files

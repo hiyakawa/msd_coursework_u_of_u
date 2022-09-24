@@ -42,32 +42,11 @@ void SnakeGame::MakeGame( ){
     std::string appleFile = "/Users/computer/MSD/cs6010-labs/Day20/SnakeGame/SnakeGame/Sprites/app.png";
     Fruit fruit( appleFile );
     
-    // (unsuccessful dynamic apple generation - took reapproach)
-    vector<Fruit> basket;
-    for( int i = 0; i < 5; i++ ){
-        Fruit f;
-        f.setPosition( );
-        basket.push_back( f );
-    }
-    
-    // (non-functioning SoundBuffer for playing game sounds)
-    //    sf::SoundBuffer buffer;
-    //
-    //    if( !buffer.loadFromFile( "/Users/computer/MSD/cs6010-labs/Day20/SnakeGame/SnakeGame/Sprites/Ball.wav" ) ){
-    //        return -1;
-    //    }
-    //
-    //    sf::Sound sound;
-    //    sound.setBuffer( buffer );
-    
     //chaining call to help abstract main
     renderWindow( window, snake, fruit );
 }
 //displaying sprites and listening for key events
 void SnakeGame::renderWindow( sf::RenderWindow& window, Snake& snake, Fruit& fruit ){
-    // (changed response to collesion condition from a bool remove to a re-draw event)
-    //collision condition
-    //bool removeApple = false;
     
     //runs the program as long as the window is open
     while ( window.isOpen( ) && !snake.gameOver( window ) )
@@ -101,15 +80,13 @@ void SnakeGame::renderWindow( sf::RenderWindow& window, Snake& snake, Fruit& fru
         //fills the window with cyan color
         window.clear( sf::Color::Cyan );
         //draws tree object
-        window.draw( treeSprite );// (moved draw tree above the apple so the apple displays in front of tree)
+        window.draw( treeSprite );
         //draws and removes apple object
-        if( !eatMe( snake, fruit )/*&& !removeApple */){ // (no longer deleting apple unnecessary check)
+        if( !eatMe( snake, fruit ) ){
             //draws the fruit object
             fruit.draw( window );
         }
         else{
-            // (orinally removing the apple caused regeneration work - solution reappear same object)
-            //removeApple = true;
             score++;
             fruit.setPosition( );
         }
@@ -144,7 +121,7 @@ void SnakeGame::endGame( sf::RenderWindow& window ){
         //moving these if statements outside of the while loop to make play faster (reduced competing tasks)
         //restarts game by listening for the return key
         if( event.key.code == sf::Keyboard::Return ){
-            MakeGame();
+            MakeGame( );
         }
         //ends game through listening for the escape key
         if( event.key.code == sf::Keyboard::Escape ){

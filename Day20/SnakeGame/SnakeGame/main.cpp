@@ -15,7 +15,12 @@
 int main( int argc, const char * argv[] ) {
     //game instantiation
     SnakeGame game;
-    game.MakeGame();
+    game.MakeGame( );
+    
+    //test calls
+    //Test test;
+    //Test testing( "test" );
+    //test.SnakeTest( );
     
     return 0;
 }
