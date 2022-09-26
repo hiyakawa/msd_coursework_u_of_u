@@ -1,4 +1,4 @@
-# CS 6010 Labs & Assignments
+# CS 6011 Labs & Assignments
 
 #### Fall 2022 @U of Utah
 
