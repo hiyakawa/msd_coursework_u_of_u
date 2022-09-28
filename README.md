@@ -8,4 +8,4 @@ u1430770@umail.utah.edu
 
 * CS 6010: Introduction to Software Development
 
-* cs 6011: Computer Programming
+* CS 6011: Computer Programming
