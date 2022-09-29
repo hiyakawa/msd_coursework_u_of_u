@@ -1,7 +1,27 @@
-# CS 6010 Day 20
+# Snake Game
 
-Muyuan Zhang
+(CS6010 Final Project)
 
-This folder contains:
+#### Mark Hale, Muyuan Zhang
 
-Final Project: Snake Game (Collaborated with Mark Hale)
+## Overview
+
+This is a snake game project powered by C++ SFML and compiled by CMake.
+Players use keyboard to manipulate the snake to gather fruits.
+If the snake touches the border, the game is over.
+
+## Controls
+
+* Snake Direction Up: Up Arrow
+
+* Snake Direction Left: Left Arrow
+
+* Snake Direction Down: Down Arrow
+
+* Snake Direction Right: Right Arrow
+
+## Features
+
+* Sound effects
+
+* Game over message when the snake dies
