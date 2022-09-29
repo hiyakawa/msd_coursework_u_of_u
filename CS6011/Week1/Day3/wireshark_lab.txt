@@ -1,0 +1,13 @@
+what is the source address
+partner’s ipv4 address
+
+the destination address?
+my ipv4 address
+
+Open the Data section - how do the integer values compare with the ASCII that is displayed in the terminal?
+They are from 08 to 37 as hexit, and if we check the ASCII table, they are referring to the same things as the terminal shows. Special characters are replaced by dots.
+
+How long does it take a ping packet to travel to your classmate's machine and back?
+7.930 ms
+21.093 ms
+163.299 ms
