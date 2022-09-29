@@ -108,6 +108,7 @@ class Fraction {
     };
 
     public String toString() {
+        this.reduce();
         String strFraction = numerator_ + "/" + denominator_;
         return strFraction;
     };
