@@ -57,7 +57,7 @@ class RainfallStatistics {
             }
             double avg_rainfall = sum_rainfall / rainfallData.size();
 
-            // use Map to classify the data by months and calculate mean values
+            // use Map to group the data by months and calculate mean values
             Map<Integer, DoubleSummaryStatistics> classify =
                     rainfallData.stream().collect(
                             Collectors.groupingBy(RainfallStatistics::getMonth,

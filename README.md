@@ -6,6 +6,6 @@
 
 u1430770@umail.utah.edu
 
-* CS 6010: Introduction to Software Development
+* CS 6010: Introduction to Software Development (C++)
 
-* CS 6011: Computer Programming
+* CS 6011: Computer Programming (Java/JavaScript/HTML)
