@@ -32,7 +32,7 @@ class FractionTest {
         try {
             Fraction f8 = new Fraction(10, 0);
         }
-        catch (IllegalArgumentException denominatorZero) {
+        catch (Exception denominatorZero) {
             denominatorZero.printStackTrace();
         }
 
