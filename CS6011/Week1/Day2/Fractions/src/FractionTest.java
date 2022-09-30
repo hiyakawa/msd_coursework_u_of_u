@@ -26,6 +26,15 @@ class FractionTest {
         Assertions.assertEquals(f6.toString(), "-3/2");
 
         Fraction f7 = f1.reciprocal();
-        Assertions.assertEquals(f7.toString(), "-2/1");
+        Assertions.assertEquals(f7.toDouble(), -2.0);
+
+        // day 5 updated: Lab - Exceptions
+        try {
+            Fraction f8 = new Fraction(10, 0);
+        }
+        catch (IllegalArgumentException denominatorZero) {
+            denominatorZero.printStackTrace();
+        }
+
     }
 }

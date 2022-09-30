@@ -82,7 +82,7 @@ class RainfallStatistics {
     }
 
     // convert month in English to integers
-    public static int convertMonth(String str_month) {
+    private static int convertMonth(String str_month) {
         int int_month = switch (str_month) {
             case "January" -> 1;
             case "February" -> 2;

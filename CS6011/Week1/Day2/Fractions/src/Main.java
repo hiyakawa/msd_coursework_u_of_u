@@ -13,9 +13,10 @@ class Fraction {
         }
 
         return gcd;
-    };
+    }
 
     private void reduce() {
+        // if denominator is 0, throw an exception
         if (denominator_ == 0) {
             throw new IllegalArgumentException("The denominator is zero!");
         }
@@ -29,12 +30,12 @@ class Fraction {
             numerator_ = - numerator_;
             denominator_ = - denominator_;
         }
-    };
+    }
 
     public Fraction() {
         numerator_ = 0;
         denominator_ = 1;
-    };
+    }
 
     public Fraction(long n, long d) {
         // if denominator is 0, throw an exception
@@ -45,7 +46,8 @@ class Fraction {
         if (n == 0) {
             numerator_ = 0;
             denominator_ = 1;
-        } else {
+        }
+        else {
             numerator_ = n;
             denominator_ = d;
 
@@ -59,7 +61,7 @@ class Fraction {
                 denominator_ = - denominator_;
             }
         }
-    };
+    }
 
     public Fraction plus(Fraction rhs) {
         Fraction temp = new Fraction();
@@ -68,7 +70,7 @@ class Fraction {
         temp.reduce();
 
         return temp;
-    };
+    }
 
     public Fraction minus(Fraction rhs) {
         Fraction temp = new Fraction();
@@ -77,7 +79,7 @@ class Fraction {
         temp.reduce();
 
         return temp;
-    };
+    }
 
     public Fraction times(Fraction rhs) {
         Fraction temp = new Fraction();
@@ -86,7 +88,7 @@ class Fraction {
         temp.reduce();
 
         return temp;
-    };
+    }
 
     public Fraction dividedBy(Fraction rhs) {
         Fraction temp = new Fraction();
@@ -95,7 +97,7 @@ class Fraction {
         temp.reduce();
 
         return temp;
-    };
+    }
 
     public Fraction reciprocal() {
         Fraction temp = new Fraction();
@@ -105,21 +107,27 @@ class Fraction {
         temp.reduce();
 
         return temp;
-    };
+    }
 
     public String toString() {
         this.reduce();
         String strFraction = numerator_ + "/" + denominator_;
         return strFraction;
-    };
+    }
 
     public double toDouble() {
         double dblFraction = 1.0 * numerator_ / denominator_;
         return dblFraction;
-    };
+    }
 }
 
 public class Main {
     public static void main(String[] args) {
+        Fraction f1 = new Fraction(1, 2);
+        Fraction f2 = new Fraction(1, 2);
+        Fraction f3 = f2.minus(f1);
+        System.out.println(f3.toString());
+        Fraction f4 = f3.reciprocal();
+        System.out.println(f3.toString());
     }
 }
