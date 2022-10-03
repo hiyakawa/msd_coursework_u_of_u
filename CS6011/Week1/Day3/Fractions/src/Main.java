@@ -37,7 +37,7 @@ class Fraction {
         denominator_ = 1;
     }
 
-    public Fraction(long n, long d) throws IllegalArgumentException{
+    public Fraction(long n, long d) throws IllegalArgumentException {
         // if denominator is 0, throw an exception
         if (d == 0) {
             throw new IllegalArgumentException("The denominator is zero!");
