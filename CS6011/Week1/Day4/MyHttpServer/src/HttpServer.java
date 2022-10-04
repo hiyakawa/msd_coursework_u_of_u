@@ -8,9 +8,7 @@ import java.io.File;
 
 public class HttpServer {
     public static final String WEB_ROOT =
-            System.getProperty("user.dir") + File.separator + "webroot";
-
-    private static final String SHUTDOWN_COMMAND = "/SHUTDOWN";
+            System.getProperty("user.dir") + File.separator + "resources";
 
     public static void main(String[] args) {
         HttpServer server = new HttpServer();
@@ -20,18 +18,22 @@ public class HttpServer {
     public void Await() {
         ServerSocket serverSocket = null;
         int port = 8080;
+
         try {
             serverSocket = new ServerSocket
                     (port, 1, InetAddress.getByName("127.0.0.1"));
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             e.printStackTrace();
             System.exit(1);
         }
 
+        // the client might request for multiple files
         while (true) {
-            Socket socket = null;
-            InputStream input = null;
-            OutputStream output = null;
+            Socket socket;
+            InputStream input;
+            OutputStream output;
+
             try {
                 socket = serverSocket.accept();
                 input = socket.getInputStream();
@@ -40,10 +42,6 @@ public class HttpServer {
                 HttpRequest request = new HttpRequest(input);
                 request.parse();
 
-                if (request.getUri().equals(SHUTDOWN_COMMAND)) {
-                    break;
-                }
-
                 // create an HttpResponse object
                 HttpResponse response = new HttpResponse(output);
                 response.setRequest(request);
@@ -51,7 +49,8 @@ public class HttpServer {
 
                 socket.close();
 
-            } catch (Exception e) {
+            }
+            catch (Exception e) {
                 e.printStackTrace();
             }
         }

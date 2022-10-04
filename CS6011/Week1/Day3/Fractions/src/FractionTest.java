@@ -4,13 +4,8 @@ import org.junit.jupiter.api.Test;
 // Test Class
 class FractionTest {
     @Test
-    public void runAllTests() {
-        Assertions.assertEquals(3,3);
-    }
-
-    @Test
     public void testTimes() {
-        Fraction f1 = new Fraction(-6, 12);
+        Fraction f1 = new Fraction(6, -12);
         Fraction f2 = new Fraction(1, 3);
 
         Fraction f3 = f2.plus(f1);
@@ -36,5 +31,9 @@ class FractionTest {
             denominatorZero.printStackTrace();
         }
 
+        // day 6 updated: Lab - Sorting Fractions
+        Assertions.assertEquals(f3.compareTo(f5), 0);
+        Assertions.assertEquals(f2.compareTo(f1), 1);
+        Assertions.assertEquals(f7.compareTo(f6), -1);
     }
 }
