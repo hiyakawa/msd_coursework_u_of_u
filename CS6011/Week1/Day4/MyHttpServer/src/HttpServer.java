@@ -4,11 +4,9 @@ import java.net.InetAddress;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.IOException;
-import java.io.File;
 
 public class HttpServer {
-    public static final String WEB_ROOT =
-            System.getProperty("user.dir") + File.separator + "resources";
+    public static final String WEB_ROOT =  System.getProperty("user.dir") + "/resources";
 
     public static void main(String[] args) {
         HttpServer server = new HttpServer();
@@ -48,7 +46,6 @@ public class HttpServer {
                 response.sendStaticResource();
 
                 socket.close();
-
             }
             catch (Exception e) {
                 e.printStackTrace();

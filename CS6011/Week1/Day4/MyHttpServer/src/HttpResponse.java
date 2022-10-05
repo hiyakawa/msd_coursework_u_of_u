@@ -20,19 +20,30 @@ public class HttpResponse {
     public void sendStaticResource() throws IOException {
         byte[] bytes = new byte[BUFFER_SIZE];
         FileInputStream inputFile = null;
+
         try {
             File file = new File(HttpServer.WEB_ROOT, request.getUri());
 
             if (file.exists()) {
+                output.write(
+                        ("HTTP/1.1 200\n"
+                                + "Content-Type: text/html\n"
+                                + "\n").getBytes()
+                );
+
                 inputFile = new FileInputStream(file);
                 int ch = inputFile.read(bytes, 0, BUFFER_SIZE);
+
                 while (ch != -1) {
                     output.write(bytes, 0, ch);
                     ch = inputFile.read(bytes, 0, BUFFER_SIZE);
                 }
+
+                output.flush();
+                output.close();
             }
             else {
-                // file not found
+                // if the file is not found
                 String result = "404 File Not Found";
                 String errorMessage = "HTTP/1.1 "
                         + result + "\r\n"

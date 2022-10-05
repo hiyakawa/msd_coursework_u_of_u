@@ -2,7 +2,7 @@ import java.io.InputStream;
 import java.io.IOException;
 
 public class HttpRequest {
-    private InputStream input;
+    private final InputStream input;
     private String uri;
 
     public HttpRequest(InputStream inputStream) {
@@ -14,6 +14,7 @@ public class HttpRequest {
         int i;
         byte[] buffer = new byte[2048];
 
+        // read request from InputStream and get uri
         try {
             i = input.read(buffer);
         }
@@ -22,11 +23,11 @@ public class HttpRequest {
             i = -1;
         }
 
+        // GET /index.html HTTP/1.1
         for (int j = 0; j < i; j++) {
             request.append((char) buffer[j]);
         }
 
-        System.out.print(request);
         uri = parseUri(request.toString());
     }
 
@@ -37,13 +38,17 @@ public class HttpRequest {
         if (index1 != -1) {
             index2 = requestString.indexOf(' ', index1 + 1);
 
-            if (index2 > index1)
+            if (index2 > index1) {
                 return requestString.substring(index1 + 1, index2);
+            }
         }
         return null;
     }
 
     public String getUri() {
+        if (uri.equals("/")) {
+            uri = "/index.html";
+        }
         return uri;
     }
 }
