@@ -1,10 +1,12 @@
+package com.example.synthesizeapplication;
+
 import static java.lang.Math.PI;
 import static java.lang.Math.sin;
 
 public class SineWave implements AudioComponent {
-    private final int frequency_;
+    private double frequency_;
 
-    public SineWave(int frequency) {
+    public SineWave(double frequency) {
         frequency_ = frequency;
     }
 
@@ -16,6 +18,7 @@ public class SineWave implements AudioComponent {
         for (int i = 0; i < AudioClip.TOTAL_SAMPLES; i++) {
             audioClip.setSample(i, (short) (maxValue * sin(2 * PI * frequency_ * i / audioClip.getSampleRate())));
         }
+
         return audioClip;
     }
 
@@ -26,6 +29,14 @@ public class SineWave implements AudioComponent {
 
     @Override
     public void connectInput(AudioComponent input) {
+        assert(false);
+    }
 
+    public void removeInput(AudioComponent input) {
+        assert(false);
+    }
+
+    public void setFrequency(double frequency) {
+        frequency_ = frequency;
     }
 }

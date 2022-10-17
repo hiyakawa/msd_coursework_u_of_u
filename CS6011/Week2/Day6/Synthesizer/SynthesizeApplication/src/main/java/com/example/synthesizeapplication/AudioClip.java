@@ -1,3 +1,5 @@
+package com.example.synthesizeapplication;
+
 import java.util.Arrays;
 
 public class AudioClip {
@@ -29,4 +31,3 @@ public class AudioClip {
         return SAMPLE_RATE;
     }
 }
-

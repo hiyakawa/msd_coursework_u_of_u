@@ -1,3 +1,5 @@
+package com.example.synthesizeapplication;
+
 public class Filter implements AudioComponent {
     private AudioComponent input_;
     private double scale_;

@@ -1,3 +1,5 @@
+package com.example.synthesizeapplication;
+
 import java.util.ArrayList;
 
 public class Mixer implements AudioComponent {
