@@ -1,16 +1,10 @@
 package com.example.synthesizeapplication;
 
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
-import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.Slider;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -38,15 +32,18 @@ public class SynthesizeApplication extends Application {
 
         // center panel
         mainCanvas_ = new AnchorPane();
-        mainCanvas_.setStyle("-fx-background-color: lightgray");
+        mainCanvas_.setStyle("-fx-background-color: #476da1");
+        // green: 008080
+        // blue: 3b6ea5 or 476da1
 
         // speaker
-        speaker_ = new Circle(450, 450, SPEAKER_RADIUS, Color.GRAY);
+        speaker_ = new Circle(450, 450, SPEAKER_RADIUS);
+        speaker_.setFill(Color.GRAY);
         mainCanvas_.getChildren().add(speaker_);
 
         // top panel
         HBox menu = new HBox();
-        menu.setStyle("-fx-background-color: darkgray");
+        menu.setStyle("-fx-background-color: #e9e9e9");
         Button cBtn = new Button("C4");
         Button dBtn = new Button("D4");
         Button eBtn = new Button("E4");
@@ -79,8 +76,13 @@ public class SynthesizeApplication extends Application {
         rightPanel.getChildren().add(sineWaveBtn);
         sineWaveBtn.setOnAction(e -> createComponent("Sine Wave"));
 
+        Button volumeBtn = new Button("Volume");
+        rightPanel.getChildren().add(volumeBtn);
+        volumeBtn.setOnAction(e -> createComponent("Volume"));
+
         // bottom panel
         HBox bottomPanel = new HBox();
+        bottomPanel.setStyle("-fx-background-color: #d3d0c9");
         Button playBtn = new Button("Play");
         playBtn.setAlignment(Pos.CENTER);
         playBtn.setOnAction(e -> play());
@@ -146,9 +148,16 @@ public class SynthesizeApplication extends Application {
         }
     }
 
-    private void createComponent(String sineWave) {
-        AudioComponent sinewave = new SineWave(440);
-        AudioComponentWidgetBase acw = new AudioComponentWidgetBase(sinewave, mainCanvas_, "Sine Wave");
+    private void createComponent(String name) {
+        AudioComponentWidgetBase acw;
+        if (name == "Sine Wave") {
+            AudioComponent sinewave = new SineWave(440);
+            acw = new SineWaveWidgets(sinewave, mainCanvas_, name);
+        }
+        else {
+            AudioComponent volume = new Filter(1);
+            acw = new VolumeWidget(volume, mainCanvas_, name);
+        }
         widgets_.add(acw);
         acw.setLayoutX(layoutX_);
         acw.setLayoutY(layoutY_);

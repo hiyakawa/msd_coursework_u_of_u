@@ -29,4 +29,8 @@ public class Filter implements AudioComponent {
     public void connectInput(AudioComponent input) {
         input_ = input;
     }
+
+    public void setScale_(double scale) {
+        scale_ = scale;
+    }
 }
