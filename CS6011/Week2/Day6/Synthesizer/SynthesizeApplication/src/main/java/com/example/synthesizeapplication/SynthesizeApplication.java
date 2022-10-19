@@ -2,17 +2,20 @@ package com.example.synthesizeapplication;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
+import javax.imageio.ImageIO;
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
+import java.awt.*;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -37,14 +40,8 @@ public class SynthesizeApplication extends Application {
         // speaker
         speaker_ = new Circle(450, 450, SPEAKER_RADIUS);
         speaker_.setFill(Color.GRAY);
+        speaker_.setStroke(Color.LIGHTGRAY);
         mainCanvas_.getChildren().add(speaker_);
-
-//        // top panel
-//        HBox menu = new HBox();
-//        menu.setStyle("-fx-background-color: #e9e9e9");
-//        menu.setAlignment(Pos.CENTER);
-//        menu.setSpacing(50);
-//        menu.setPadding(new Insets(10));
 
         // left panel
         VBox leftPanel = new VBox();

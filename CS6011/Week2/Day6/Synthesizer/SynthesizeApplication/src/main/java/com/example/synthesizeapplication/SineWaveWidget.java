@@ -36,8 +36,8 @@ public class SineWaveWidget extends AudioComponentWidgetBase {
 
         baseLayout_ = new HBox();
         baseLayout_.setStyle("-fx-border-color: gray;" +
-                "-fx-border-image-width: 4;" +
                 "-fx-background-color: #ffffff");
+
         this.getChildren().add(baseLayout_);
 
         // center
@@ -68,6 +68,7 @@ public class SineWaveWidget extends AudioComponentWidgetBase {
 
         volumeOutput_ = new Circle(CIRCLE_RADIUS);
         volumeOutput_.setFill(Color.rgb(9, 1, 102));
+        volumeOutput_.setStroke(Color.DARKGRAY);
 
         volumeOutput_.setOnMousePressed(e -> startConnection(e, volumeOutput_));
         volumeOutput_.setOnMouseDragged(e -> moveConnection(e));
@@ -112,6 +113,7 @@ public class SineWaveWidget extends AudioComponentWidgetBase {
 
         if (line_ != null) {
             parent_.getChildren().remove(line_);
+            connectedWidget_.filterAC_.removeInput(this.audioComponent_);
         }
     }
 
@@ -165,6 +167,7 @@ public class SineWaveWidget extends AudioComponentWidgetBase {
         else {
             parent_.getChildren().remove(line_);
             line_ = null;
+            connectedWidget_.filterAC_.removeInput(this.audioComponent_);
         }
     }
 }
