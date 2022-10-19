@@ -6,7 +6,7 @@ import static java.lang.Math.sin;
 public class SineWave implements AudioComponent {
     private double frequency_;
 
-    public SineWave(double frequency) {
+    SineWave(double frequency) {
         frequency_ = frequency;
     }
 

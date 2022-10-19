@@ -33,17 +33,22 @@ public class SynthesizeApplication extends Application {
         // center panel
         mainCanvas_ = new AnchorPane();
         mainCanvas_.setStyle("-fx-background-color: #476da1");
-        // green: 008080
-        // blue: 3b6ea5 or 476da1
 
         // speaker
         speaker_ = new Circle(450, 450, SPEAKER_RADIUS);
         speaker_.setFill(Color.GRAY);
         mainCanvas_.getChildren().add(speaker_);
 
-        // top panel
-        HBox menu = new HBox();
-        menu.setStyle("-fx-background-color: #e9e9e9");
+//        // top panel
+//        HBox menu = new HBox();
+//        menu.setStyle("-fx-background-color: #e9e9e9");
+//        menu.setAlignment(Pos.CENTER);
+//        menu.setSpacing(50);
+//        menu.setPadding(new Insets(10));
+
+        // left panel
+        VBox leftPanel = new VBox();
+        leftPanel.setStyle("-fx-background-color: #476da1");
         Button cBtn = new Button("C4");
         Button dBtn = new Button("D4");
         Button eBtn = new Button("E4");
@@ -61,42 +66,31 @@ public class SynthesizeApplication extends Application {
         aBtn.setOnAction(e -> playKey(440.0000));
         bBtn.setOnAction(e -> playKey(493.8833));
 
-        menu.getChildren().addAll(cBtn, dBtn, eBtn, fBtn, gBtn, aBtn, bBtn);
+        leftPanel.getChildren().addAll(cBtn, dBtn, eBtn, fBtn, gBtn, aBtn, bBtn);
 
-        // left panel
-        VBox leftPanel = new VBox();
-        leftPanel.setStyle("-fx-background-color: gray");
-
-        // right panel
-        VBox rightPanel = new VBox();
-        rightPanel.setStyle("-fx-background-color: gray");
-        rightPanel.setPadding(new Insets(4));
-
-        Button sineWaveBtn = new Button("Sine Wave");
-        rightPanel.getChildren().add(sineWaveBtn);
-        sineWaveBtn.setOnAction(e -> createComponent("Sine Wave"));
-
-        Button volumeBtn = new Button("Volume");
-        rightPanel.getChildren().add(volumeBtn);
-        volumeBtn.setOnAction(e -> createComponent("Volume"));
+        leftPanel.setSpacing(20);
+        leftPanel.setPadding(new Insets(4));
 
         // bottom panel
         HBox bottomPanel = new HBox();
-        bottomPanel.setStyle("-fx-background-color: #d3d0c9");
+        bottomPanel.setStyle("-fx-background-color: #afafaf");
+        bottomPanel.setBorder(new Border(new BorderStroke(Color.LIGHTGRAY, BorderStrokeStyle.SOLID, null , null)));
+
         Button playBtn = new Button("Play");
-        playBtn.setAlignment(Pos.CENTER);
         playBtn.setOnAction(e -> play());
 
-        bottomPanel.getChildren().add(playBtn);
+        Button sineWaveBtn = new Button("Sine Wave");
+        sineWaveBtn.setOnAction(e -> createComponent("Sine Wave"));
 
-        menu.setAlignment(Pos.CENTER);
-        menu.setSpacing(50);
-        menu.setPadding(new Insets(10));
+        Button volumeBtn = new Button("Volume");
+        volumeBtn.setOnAction(e -> createComponent("Volume"));
+
+        bottomPanel.getChildren().addAll(sineWaveBtn, volumeBtn, playBtn);
+        bottomPanel.setSpacing(10);
 
         root.setCenter(mainCanvas_);
-        root.setTop(menu);
+//        root.setTop(menu);
         root.setLeft(leftPanel);
-        root.setRight(rightPanel);
         root.setBottom(bottomPanel);
 
         stage.setTitle("Synthesizer");
@@ -152,10 +146,10 @@ public class SynthesizeApplication extends Application {
         AudioComponentWidgetBase acw;
         if (name == "Sine Wave") {
             AudioComponent sinewave = new SineWave(440);
-            acw = new SineWaveWidgets(sinewave, mainCanvas_, name);
+            acw = new SineWaveWidget(sinewave, mainCanvas_, name);
         }
         else {
-            AudioComponent volume = new Filter(1);
+            Filter volume = new Filter(1);
             acw = new VolumeWidget(volume, mainCanvas_, name);
         }
         widgets_.add(acw);

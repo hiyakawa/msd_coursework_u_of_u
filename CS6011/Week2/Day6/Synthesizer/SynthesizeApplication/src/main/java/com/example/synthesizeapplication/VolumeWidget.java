@@ -16,32 +16,33 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.util.ArrayList;
 
-import static com.example.synthesizeapplication.SineWaveWidgets.CIRCLE_RADIUS;
+import static com.example.synthesizeapplication.SynthesizeApplication.SPEAKER_RADIUS;
 
 public class VolumeWidget extends AudioComponentWidgetBase {
-    private AudioComponent audioComponent_;
+    protected static Filter filterAC_;
     private AnchorPane parent_;
     private HBox baseLayout;
     private String name_;
-    protected static Line line_;
+    protected Line line_;
     private Label nameLable_;
-    private Circle output_;
+    protected SineWaveWidget connectedWidget_;
+    protected static Circle swOutput_;
+    private Circle speakerOutput_;
+    protected static int CIRCLE_RADIUS = 10;
     private double mouseStartDragX_, mouseStartDragY_;
     private double widgetStartDragX_, widgetStartDragY_;
-    public static ArrayList<AudioComponentWidgetBase> widgetsConnectedToVolume_ = new ArrayList<>();
 
-    VolumeWidget(AudioComponent ac, AnchorPane parent, String name) {
+    VolumeWidget(Filter ac, AnchorPane parent, String name) {
         super(ac, parent, name);
-        audioComponent_ = ac;
+        filterAC_ = ac;
         parent_ = parent;
         name_ = name;
 
         baseLayout = new HBox();
-        baseLayout.setStyle("-fx-border-color: darkgray;" +
+        baseLayout.setStyle("-fx-border-color: gray;" +
                 "-fx-border-image-width: 4;" +
-                "-fx-background-color: #ffffff");
+                "-fx-background-color: #d6d6cf");
         this.getChildren().add(baseLayout);
 
         // center
@@ -70,14 +71,17 @@ public class VolumeWidget extends AudioComponentWidgetBase {
         Button closeBtn = new Button("×");
         closeBtn.setOnAction(e -> closeWidget());
 
-        output_ = new Circle(10);
-        output_.setFill(Color.LIGHTGRAY);
+        swOutput_ = new Circle(CIRCLE_RADIUS);
+        swOutput_.setFill(Color.rgb(9, 1, 102));
 
-        output_.setOnMousePressed(e -> startConnection(e, output_));
-        output_.setOnMouseDragged(e -> moveConnection(e));
-        output_.setOnMouseReleased(e -> endConnection(e));
+        speakerOutput_ = new Circle(CIRCLE_RADIUS);
+        speakerOutput_.setFill(Color.GRAY);
 
-        rightSide.getChildren().addAll(closeBtn, output_);
+        speakerOutput_.setOnMousePressed(e -> startConnection(e, speakerOutput_));
+        speakerOutput_.setOnMouseDragged(e -> moveConnection(e));
+        speakerOutput_.setOnMouseReleased(e -> endConnection(e));
+
+        rightSide.getChildren().addAll(closeBtn, swOutput_, speakerOutput_);
         baseLayout.getChildren().addAll(center, rightSide);
         parent_.getChildren().add(this);
     }
@@ -93,15 +97,20 @@ public class VolumeWidget extends AudioComponentWidgetBase {
     void handleDrag(MouseEvent e) {
         double mouseDelX = e.getSceneX() - mouseStartDragX_;
         double mouseDelY = e.getSceneY() - mouseStartDragY_;
-        this.relocate(widgetStartDragX_ + mouseDelX,
-                widgetStartDragY_ + mouseDelY);
+        this.relocate(widgetStartDragX_ + mouseDelX, widgetStartDragY_ + mouseDelY);
 
         Bounds parentBounds = parent_.getBoundsInParent();
-        Bounds bounds = output_.localToScene(output_.getBoundsInLocal());
+        Bounds speakerBounds = speakerOutput_.localToScene(speakerOutput_.getBoundsInLocal());
+        Bounds swBounds = swOutput_.localToScene(swOutput_.getBoundsInLocal());
 
         if (line_ != null) {
-            line_.setStartX(bounds.getCenterX() - parentBounds.getMinX());
-            line_.setStartY(bounds.getCenterY() - parentBounds.getMinY());
+            line_.setStartX(speakerBounds.getCenterX() - parentBounds.getMinX());
+            line_.setStartY(speakerBounds.getCenterY() - parentBounds.getMinY());
+        }
+
+        if (connectedWidget_ != null && connectedWidget_.line_ != null) {
+            connectedWidget_.line_.setEndX(swBounds.getCenterX() - parentBounds.getMinX());
+            connectedWidget_.line_.setEndY(swBounds.getCenterY() - parentBounds.getMinY());
         }
     }
 
@@ -113,16 +122,18 @@ public class VolumeWidget extends AudioComponentWidgetBase {
         if (line_ != null) {
             parent_.getChildren().remove(line_);
         }
+
+        connectedWidget_.parent_.getChildren().remove(connectedWidget_.line_);
     }
 
     public AudioComponent getAudioComponent() {
-        return audioComponent_;
+        return filterAC_;
     }
 
     void handleSlider(Slider slider) {
         double scale = slider.getValue();
         nameLable_.setText("    Volume Scale\n          × " + round(scale, 2));
-        ((Filter) audioComponent_).setScale_(scale);
+        filterAC_.setScale_(scale);
     }
 
     void startConnection(MouseEvent e, Circle output) {
@@ -134,7 +145,7 @@ public class VolumeWidget extends AudioComponentWidgetBase {
         Bounds bounds = output.localToScene(output.getBoundsInLocal());
 
         line_ = new Line();
-        line_.setStyle("-fx-stroke: #d3d0c9;");
+        line_.setStyle("-fx-stroke: #808080;");
         line_.setStrokeWidth(2);
         line_.setStartX(bounds.getCenterX() - parentBounds.getMinX());
         line_.setStartY(bounds.getCenterY() - parentBounds.getMinY());
@@ -150,19 +161,35 @@ public class VolumeWidget extends AudioComponentWidgetBase {
     }
 
     void endConnection(MouseEvent e) {
-        Circle volumeCircle = SineWaveWidgets.volumeCircle_;
-        Bounds volumeCircleBounds = volumeCircle.localToScreen(volumeCircle.getBoundsInLocal());
-        double distance = Math.sqrt(Math.pow(volumeCircleBounds.getCenterX() - e.getScreenX(), 2.0) +
-                Math.pow(volumeCircleBounds.getCenterY() - e.getScreenY(), 2.0));
+        Circle speaker = SynthesizeApplication.speaker_;
+        Bounds speakerBounds = speaker.localToScreen(speaker.getBoundsInLocal());
+        double distance = Math.sqrt(Math.pow(speakerBounds.getCenterX() - e.getScreenX(), 2.0) +
+                Math.pow(speakerBounds.getCenterY() - e.getScreenY(), 2.0));
 
-        if (distance < CIRCLE_RADIUS) {
-            VolumeWidget.widgetsConnectedToVolume_.add(this);
+        if (distance < SPEAKER_RADIUS) {
+            SynthesizeApplication.widgetsConnectedToSpeaker_.add(this);
         }
         else {
             parent_.getChildren().remove(line_);
             line_ = null;
-            VolumeWidget.widgetsConnectedToVolume_.remove(this);
+            SynthesizeApplication.widgetsConnectedToSpeaker_.remove(this);
         }
+
+//        Circle volumeCircle = SineWaveWidgets.volumeCircle_;
+//        Bounds volumeCircleBounds = volumeCircle.localToScreen(volumeCircle.getBoundsInLocal());
+//        double distance = Math.sqrt(Math.pow(volumeCircleBounds.getCenterX() - e.getScreenX(), 2.0) +
+//                Math.pow(volumeCircleBounds.getCenterY() - e.getScreenY(), 2.0));
+//        connectedWidget_ = (SineWaveWidgets) volumeCircle.getParent().getParent().getParent();
+//
+//        if (distance < CIRCLE_RADIUS && connectedWidget_.connectedWidget_ == null) {
+//            connectedWidget_.connectedWidget_ = this;
+//        }
+//        else {
+//            parent_.getChildren().remove(line_);
+//            line_ = null;
+//            connectedWidget_.connectedWidget_ = null;
+//            connectedWidget_ = null;
+//        }
     }
 
     public static double round(double value, int places) {

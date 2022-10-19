@@ -15,29 +15,27 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 
-import static com.example.synthesizeapplication.SynthesizeApplication.SPEAKER_RADIUS;
-
-public class SineWaveWidgets extends AudioComponentWidgetBase {
+public class SineWaveWidget extends AudioComponentWidgetBase {
     private AudioComponent audioComponent_;
-    private AnchorPane parent_;
+    protected AnchorPane parent_;
     private HBox baseLayout_;
     private String name_;
     private Label nameLable_;
-    private Line line_;
-    private Circle outputCircle_;
-    public static Circle volumeCircle_;
-    public static int CIRCLE_RADIUS = 10;
+    protected Line line_;
+    protected static Circle volumeOutput_;
+    protected static int CIRCLE_RADIUS = 10;
+    protected VolumeWidget connectedWidget_;
     private double mouseStartDragX_, mouseStartDragY_;
     private double widgetStartDragX_, widgetStartDragY_;
 
-    SineWaveWidgets(AudioComponent ac, AnchorPane parent, String name) {
+    SineWaveWidget(AudioComponent ac, AnchorPane parent, String name) {
         super(ac, parent, name);
         audioComponent_ = ac;
         parent_ = parent;
         name_ = name;
 
         baseLayout_ = new HBox();
-        baseLayout_.setStyle("-fx-border-color: darkgray;" +
+        baseLayout_.setStyle("-fx-border-color: gray;" +
                 "-fx-border-image-width: 4;" +
                 "-fx-background-color: #ffffff");
         this.getChildren().add(baseLayout_);
@@ -68,17 +66,14 @@ public class SineWaveWidgets extends AudioComponentWidgetBase {
         Button closeBtn = new Button("×");
         closeBtn.setOnAction(e -> closeWidget());
 
-        volumeCircle_ = new Circle(CIRCLE_RADIUS);
-        volumeCircle_.setFill(Color.LIGHTGRAY);
+        volumeOutput_ = new Circle(CIRCLE_RADIUS);
+        volumeOutput_.setFill(Color.rgb(9, 1, 102));
 
-        outputCircle_ = new Circle(CIRCLE_RADIUS);
-        outputCircle_.setFill(Color.GRAY);
+        volumeOutput_.setOnMousePressed(e -> startConnection(e, volumeOutput_));
+        volumeOutput_.setOnMouseDragged(e -> moveConnection(e));
+        volumeOutput_.setOnMouseReleased(e -> endConnection(e));
 
-        outputCircle_.setOnMousePressed(e -> startConnection(e, outputCircle_));
-        outputCircle_.setOnMouseDragged(e -> moveConnection(e));
-        outputCircle_.setOnMouseReleased(e -> endConnection(e));
-
-        rightSide.getChildren().addAll(closeBtn, volumeCircle_, outputCircle_);
+        rightSide.getChildren().addAll(closeBtn, volumeOutput_);
         baseLayout_.getChildren().addAll(center, rightSide);
         parent_.getChildren().add(this);
     }
@@ -94,22 +89,20 @@ public class SineWaveWidgets extends AudioComponentWidgetBase {
     void handleDrag(MouseEvent e) {
         double mouseDelX = e.getSceneX() - mouseStartDragX_;
         double mouseDelY = e.getSceneY() - mouseStartDragY_;
-        this.relocate(widgetStartDragX_ + mouseDelX,
-                widgetStartDragY_ + mouseDelY);
+        this.relocate(widgetStartDragX_ + mouseDelX, widgetStartDragY_ + mouseDelY);
 
         Bounds parentBounds = parent_.getBoundsInParent();
-        Bounds outputBounds = outputCircle_.localToScene(outputCircle_.getBoundsInLocal());
-        Bounds volumeBounds = volumeCircle_.localToScene(outputCircle_.getBoundsInLocal());
+        Bounds volumeBounds = volumeOutput_.localToScene(volumeOutput_.getBoundsInLocal());
 
         if (line_ != null) {
-            line_.setStartX(outputBounds.getCenterX() - parentBounds.getMinX());
-            line_.setStartY(outputBounds.getCenterY() - parentBounds.getMinY());
+            line_.setStartX(volumeBounds.getCenterX() - parentBounds.getMinX());
+            line_.setStartY(volumeBounds.getCenterY() - parentBounds.getMinY());
         }
 
-        if (VolumeWidget.line_ != null) {
-            VolumeWidget.line_.setEndX(volumeBounds.getCenterX() - parentBounds.getMinX());
-            VolumeWidget.line_.setEndY(volumeBounds.getCenterY() - parentBounds.getMinY());
-        }
+//        if (connectedWidget_ != null && connectedWidget_.line_ != null) {
+//            connectedWidget_.line_.setEndX(volumeBounds.getCenterX() - parentBounds.getMinX());
+//            connectedWidget_.line_.setEndY(volumeBounds.getCenterY() - parentBounds.getMinY());
+//        }
     }
 
     void closeWidget() {
@@ -140,9 +133,10 @@ public class SineWaveWidgets extends AudioComponentWidgetBase {
         Bounds parentBounds = parent_.getBoundsInParent();
         Bounds bounds = output.localToScene(output.getBoundsInLocal());
 
-        line_ = new Line();
-        line_.setStyle("-fx-stroke: #808080");
-        line_.setStrokeWidth(2);
+        Cable cable = new Cable();
+        line_ = cable.line_;
+        line_.setStyle("-fx-stroke: #090166");
+        cable.startSWWidget_ = this;
         line_.setStartX(bounds.getCenterX() - parentBounds.getMinX());
         line_.setStartY(bounds.getCenterY() - parentBounds.getMinY());
         line_.setEndX(e.getSceneX());
@@ -157,18 +151,20 @@ public class SineWaveWidgets extends AudioComponentWidgetBase {
     }
 
     void endConnection(MouseEvent e) {
-        Circle speaker = SynthesizeApplication.speaker_;
-        Bounds speakerBounds = speaker.localToScreen(speaker.getBoundsInLocal());
-        double distance = Math.sqrt(Math.pow(speakerBounds.getCenterX() - e.getScreenX(), 2.0) +
-                Math.pow(speakerBounds.getCenterY() - e.getScreenY(), 2.0));
+        Circle volumeCircle = VolumeWidget.swOutput_;
+        Bounds volumeCircleBounds = volumeCircle.localToScreen(volumeCircle.getBoundsInLocal());
+        double distance = Math.sqrt(Math.pow(volumeCircleBounds.getCenterX() - e.getScreenX(), 2.0) +
+                Math.pow(volumeCircleBounds.getCenterY() - e.getScreenY(), 2.0));
+        VolumeWidget curWidget = (VolumeWidget) volumeCircle.getParent().getParent().getParent();
 
-        if (distance < SPEAKER_RADIUS) {
-            SynthesizeApplication.widgetsConnectedToSpeaker_.add(this);
+        if (distance < CIRCLE_RADIUS) {
+            VolumeWidget.filterAC_.connectInput(audioComponent_);
+            connectedWidget_ = curWidget;
+            curWidget.connectedWidget_ = this;
         }
         else {
             parent_.getChildren().remove(line_);
             line_ = null;
-            SynthesizeApplication.widgetsConnectedToSpeaker_.remove(this);
         }
     }
 }

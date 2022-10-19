@@ -30,6 +30,10 @@ public class Filter implements AudioComponent {
         input_ = input;
     }
 
+    public void removeInput(AudioComponent input) {
+        input_ = null;
+    }
+
     public void setScale_(double scale) {
         scale_ = scale;
     }
