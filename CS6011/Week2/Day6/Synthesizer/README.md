@@ -19,4 +19,4 @@ or volume control widgets to the speaker
 
 ## Screenshot
 
-![image](https://someurl/imagelocation/image.png)
+![image](https://github.com/hiyakawa/msd_coursework_u_of_u/blob/main/CS6011/Week2/Day6/Synthesizer/screenshot.png)
