@@ -1,9 +1,19 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.Arrays;
 import java.util.Scanner;
 
 // prob 1
 class TextAnalyzer {
+    private static class Dict {
+        private char letter_;
+        private int counter_;
+
+        Dict(char letter, int counter) {
+            letter_ = letter;
+            counter_ = counter;
+        }
+    }
     public static void parseFile(String file_name) {
         File file = new File(file_name);
 
@@ -16,7 +26,7 @@ class TextAnalyzer {
 
         try {
             Scanner fileReader = new Scanner(file);
-            int[] myArray = new int[26];
+            int[] counterList = new int[26];
 
             while (fileReader.hasNext()) {
                 String line = fileReader.nextLine().toLowerCase();
@@ -25,13 +35,20 @@ class TextAnalyzer {
                     char cur_char = line.charAt(i);
 
                     if (cur_char >= 'a' && cur_char <= 'z') {
-                        myArray[line.charAt(i) - 'a']++;
+                        counterList[cur_char - 'a']++;
                     }
                 }
             }
 
-            for (int i = 0; i < myArray.length; i++) {
-                System.out.println((char)(i + 65) + " appears " + myArray[i] + " times");
+            Dict[] letterCountList = new Dict[26];
+
+            for (int i = 0; i < counterList.length; i++) {
+                letterCountList[i] = new Dict((char) ('a' + i), counterList[i]);
+            }
+
+            Arrays.sort(letterCountList, (c1, c2) -> (c2.counter_ - c1.counter_));
+            for (Dict d : letterCountList) {
+                System.out.println("Letter " + d.letter_ + " appears " + d.counter_ + " times");
             }
         }
         catch (FileNotFoundException e) {
@@ -42,7 +59,7 @@ class TextAnalyzer {
 
 // prob 2
 class GuessNum {
-
+    
 }
 
 // prob 3
@@ -61,14 +78,7 @@ class Calendar {
 
             String[] weekdays = new String[] {"Monday", "Tuesday",
                     "Wednesday", "Thursday", "Friday", "Saturday"};
-            int remainder = inputDay % 7;
-
-            if (remainder != 0) {
-                System.out.println("The " + inputDay + "th day is " + weekdays[inputDay % 7 - 1]);
-            }
-            else {
-                System.out.println("The " + inputDay + "th day is Sunday");
-            }
+            System.out.println("The " + inputDay + "th day is " + weekdays[(inputDay + 6) % 7]);
         }
         catch (Exception e) {
             throw e;

@@ -22,7 +22,7 @@ public class SineWaveWidget extends AudioComponentWidgetBase {
     private String name_;
     private Label nameLable_;
     protected Line line_;
-    protected static Circle volumeOutput_;
+    protected Circle volumeOutput_;
     protected static int CIRCLE_RADIUS = 10;
     protected VolumeWidget connectedWidget_;
     private double mouseStartDragX_, mouseStartDragY_;
@@ -99,11 +99,6 @@ public class SineWaveWidget extends AudioComponentWidgetBase {
             line_.setStartX(volumeBounds.getCenterX() - parentBounds.getMinX());
             line_.setStartY(volumeBounds.getCenterY() - parentBounds.getMinY());
         }
-
-//        if (connectedWidget_ != null && connectedWidget_.line_ != null) {
-//            connectedWidget_.line_.setEndX(volumeBounds.getCenterX() - parentBounds.getMinX());
-//            connectedWidget_.line_.setEndY(volumeBounds.getCenterY() - parentBounds.getMinY());
-//        }
     }
 
     void closeWidget() {

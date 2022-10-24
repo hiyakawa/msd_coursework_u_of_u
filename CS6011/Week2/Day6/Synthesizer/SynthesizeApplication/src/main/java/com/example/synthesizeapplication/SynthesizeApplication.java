@@ -6,16 +6,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
-import javax.imageio.ImageIO;
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
-import java.awt.*;
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -29,7 +25,7 @@ public class SynthesizeApplication extends Application {
     public static ArrayList<AudioComponentWidgetBase> widgetsConnectedToSpeaker_ = new ArrayList<>();
 
     @Override
-    public void start(Stage stage) throws IOException {
+    public void start(Stage stage) {
         BorderPane root = new BorderPane();
         Scene scene = new Scene(root, 900, 600);
 
