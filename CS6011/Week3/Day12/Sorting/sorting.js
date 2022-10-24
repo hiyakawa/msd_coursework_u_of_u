@@ -1,4 +1,4 @@
-"using strict";
+"use strict";
 
 function selectionSort(arr, param) {
     for (let i = 0; i < arr.length; i++) {

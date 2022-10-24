@@ -1,3 +1,5 @@
+"use strict";
+
 document.writeln("Hello world from document.writeln()!")
 // will show in the web page
 console.log("Hello world from console.log()!")
