@@ -67,7 +67,6 @@ function main() {
     newDiv2.append(newUl4);
 
     document.body.append(newDiv2);
-
 }
 
 window.onload = main;
