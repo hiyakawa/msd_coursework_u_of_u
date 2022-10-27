@@ -2,7 +2,7 @@
 
 function selectionSort(arr, param) {
     for (let i = 0; i < arr.length; i++) {
-        minLocation = findMinLocation(arr, i, param);
+        let minLocation = findMinLocation(arr, i, param);
         // if a smaller element is found
         if (minLocation != i) {
             // swap the elements
@@ -35,19 +35,19 @@ function compareTo(a, b) {
 }
 
 // // int arrry
-// let intArr = [5, 4, 3, 2, 1];
+let intArr = [5, 4, 3, 2, 1];
 // selectionSort(intArr);
 // console.log(intArr);
 // // [1, 2, 3, 4, 5]
 
 // // float arrry
-// let floatArr = [5.1, 4.2, 3.0, 2.9, 1.7];
+let floatArr = [5.1, 4.2, 3.0, 2.9, 1.7];
 // selectionSort(floatArr);
 // console.log(floatArr);
 // // [1.7, 2.9, 3, 4.2, 5.1]
 
 // // string arrry
-// let stringArr = ["C", "a", "3", "b", "1"];
+let stringArr = ["C", "a", "3", "b", "1"];
 // selectionSort(stringArr);
 // console.log(stringArr);
 // // ['1', '3', 'C', 'a', 'b']
@@ -60,12 +60,12 @@ function compareTo(a, b) {
 // // [1.1, '2', 3, 5, '6.2']
 // // strings are converted to floats (or ints)
 
-// console.log(selectionSort(intArr, compareTo));
-// // [1, 2, 3, 4, 5]
-// console.log(selectionSort(floatArr, compareTo));
-// // [1.7, 2.9, 3, 4.2, 5.1]
-// console.log(selectionSort(stringArr, compareTo));
-// // ['1', '3', 'C', 'a', 'b']
+console.log(selectionSort(intArr, compareTo));
+// [1, 2, 3, 4, 5]
+console.log(selectionSort(floatArr, compareTo));
+// [1.7, 2.9, 3, 4.2, 5.1]
+console.log(selectionSort(stringArr, compareTo));
+// ['1', '3', 'C', 'a', 'b']
 
 /* Q: Try changing the comparison in compareTo() from "<" to ">".
  *    What happens when you sort now?

@@ -68,7 +68,7 @@ function animate() {
     }
 
     for (let bee of bees) {
-        let speed = 10;
+        let speed = 20;
         if (pot.xPos > bee.xPos) {
             bee.xPos += Math.random() * speed;
         }
@@ -111,7 +111,7 @@ function handleMove(e) {
     erase();
     ctx.drawImage(pot.img, e.x - pot.width/2, e.y - pot.height/2, pot.width, pot.height);
     pot.xPos = e.x - pot.width/2;
-    pot.yPos = e.y - pot.height/2;
+    pot.yPos = e.y- pot.height/2;
 }
 
 document.onmousemove = handleMove;
