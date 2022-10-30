@@ -1,14 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Chat Room</title>
     <script type="text/javascript" src="chat.js"></script>
 </body>
 </head>
 <body>
-    hello
+    <div id="chat">
+        <div id="chatmsg">
+            <form id="nameform" method="POST">
+                <p>User Name</p>
+                <input type="text" name="User" maxlength="500" autocomplete="off">
+                
+            </form>
+
+            <form id="chatform" method="POST">
+                <p>Room Name</p>
+                <input type="text" name="Room" maxlength="500" autocomplete="off">
+                <button type="submit">Enter Room</button>
+            </form>
+        </div>
+    </div>
 </body>
 </html>

@@ -82,7 +82,6 @@ public class SynthesizeApplication extends Application {
         bottomPanel.setSpacing(10);
 
         root.setCenter(mainCanvas_);
-//        root.setTop(menu);
         root.setLeft(leftPanel);
         root.setBottom(bottomPanel);
 
