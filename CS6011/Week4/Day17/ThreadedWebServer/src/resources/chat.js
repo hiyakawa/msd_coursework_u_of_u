@@ -3,11 +3,11 @@
 function main() {
     let ws = new WebSocket("ws://localhost:8080");
 
-    let name = document.getElementById("nameform");
-    let room = document.getElementById("roomform");
-
-    name.addEventListener("submit", handleKeyPressCB);
-    room.addEventListener("submit", handleKeyPressCB);
+    // let name = document.getElementById("nameform");
+    // let room = document.getElementById("roomform");
+    //
+    // name.addEventListener("submit", handleKeyPressCB);
+    // room.addEventListener("submit", handleKeyPressCB);
 
     // ws.onopen = handleOpen;
     // ws.close = handleClose;

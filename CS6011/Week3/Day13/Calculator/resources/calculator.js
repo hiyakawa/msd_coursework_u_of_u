@@ -5,15 +5,35 @@ let yTA = document.getElementById("yTA");
 let resultTA = document.getElementById("resultTA");
 let wsResultTA = document.getElementById("wsResultTA");
 let button = document.getElementById("addBtn");
-let wsOpen = false;
 let ws = new WebSocket("ws://localhost:8080");
+let wsOpen = false;
 
 xTA.addEventListener("keypress", handleKeyPressCB);
 yTA.addEventListener("keypress", handleKeyPressCB);
 button.addEventListener("click", handleKeyPressCB);
 
 ws.onopen = handleConnectCB;
-ws.onmesssage = handleMessageFromWsCB;
+ws.onmessage = handleMessageFromWsCB;
+
+function handleAjaxErrorCB() {
+    console.log("An ajax error occurred");
+    wsResultTA.value = "Server has a problem...";
+}
+
+function handleAjaxSuccessCB() {
+    console.log("Got a response from the server");
+    resultTA.value = this.responseText;
+}
+
+function handleConnectCB() {
+    console.log("The web socket is open.");
+    wsOpen = true;
+}
+
+function handleMessageFromWsCB(event) {
+    console.log("Receiving message...");
+    wsResultTA.value = event.data;
+}
 
 function handleKeyPressCB(event) {
     if (event.type == "click" || event.keyCode == 13) {
@@ -47,22 +67,4 @@ function handleKeyPressCB(event) {
             wsResultTA.value = "WS is not open...";
         }
     }
-}
-
-function handleAjaxErrorCB() {
-    console.log("An ajax error occurred");
-    resultTA.value = "Server has a problem...";
-}
-
-function handleAjaxSuccessCB() {
-    console.log("Got a response from the server");
-    resultTA.value = this.responseText;
-}
-
-function handleConnectCB() {
-    wsOpen = true;
-}
-
-function handleMessageFromWsCB(event) {
-    wsResultTA.value = event.data;
 }

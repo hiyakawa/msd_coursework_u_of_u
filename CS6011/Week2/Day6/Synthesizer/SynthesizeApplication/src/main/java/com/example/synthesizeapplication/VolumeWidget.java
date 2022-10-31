@@ -20,14 +20,14 @@ import java.math.RoundingMode;
 import static com.example.synthesizeapplication.SynthesizeApplication.SPEAKER_RADIUS;
 
 public class VolumeWidget extends AudioComponentWidgetBase {
-    protected Filter filterAC_;
+    protected static Filter filterAC_;
     private AnchorPane parent_;
     private HBox baseLayout;
     private String name_;
     protected Line line_;
     private Label nameLable_;
     protected SineWaveWidget connectedWidget_;
-    protected Circle swOutput_;
+    protected static Circle swOutput_;
     private Circle speakerOutput_;
     protected static int CIRCLE_RADIUS = 10;
     private double mouseStartDragX_, mouseStartDragY_;
