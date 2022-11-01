@@ -1,3 +1,8 @@
+/*
+ * Muyuan Zhang
+ * Collaborated with Gloria Dukuzeyesu
+ */
+
 package Game;
 
 import Items.Item;
@@ -29,6 +34,8 @@ public class Adventure {
         Room balcony  = new Room( "Balcony", "A balcony overlooking lush gardens." );
 
         Room cell = new Cell();
+
+        // add our new rooms here
         Room garden = new Garden();
         Room bathroom = new Bathroom();
 
@@ -38,6 +45,7 @@ public class Adventure {
         hall.addConnection( kitchen );
         hall.addConnection( stairs );
 
+        // add connections between the new rooms and the hall
         hall.addConnection( garden );
         hall.addConnection( bathroom );
 
@@ -111,7 +119,7 @@ public class Adventure {
                     System.out.println( "There is no " + itemName + " here." );
                 }
             }
-            else if( currentRoom.handleCommand( subcommands ) == true ){
+            else if( currentRoom.handleCommand( subcommands ) == true ) {
 
             }
             else {

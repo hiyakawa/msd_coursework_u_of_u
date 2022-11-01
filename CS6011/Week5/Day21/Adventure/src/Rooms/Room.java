@@ -1,7 +1,6 @@
 package Rooms;
 
 import Items.Item;
-
 import java.util.ArrayList;
 
 public class Room {
@@ -53,7 +52,7 @@ public class Room {
         // doors_ is 0-based
         doorNum = doorNum - 1;
 
-        if( doorNum > doors_.size() || doorNum < 0 ) {
+        if( doorNum >= doors_.size() || doorNum < 0 ) {
             System.out.println( "There is no such door." );
             return null;
         }
