@@ -19,13 +19,13 @@ get rid of the bees. Have fun!
 
 ## Screenshot
 
-#### game.html
-
-![image](https://github.com/hiyakawa/msd_coursework_u_of_u/blob/main/CS6011/Week3/Day13/NotTheBees/game.png)
-
 #### index.html
 
 ![image](https://github.com/hiyakawa/msd_coursework_u_of_u/blob/main/CS6011/Week3/Day13/NotTheBees/index.png)
+
+#### game.html
+
+![image](https://github.com/hiyakawa/msd_coursework_u_of_u/blob/main/CS6011/Week3/Day13/NotTheBees/game.png)
 
 #### gameover.html
 
