@@ -52,7 +52,7 @@ input[type=button] {
 }
 
 #msgCtnt {
-    width: 460px;
+    width: 450px;
     height: 120px;
     border-radius: 10px;
     border: 1px solid darkgray;
@@ -60,12 +60,13 @@ input[type=button] {
 }
 
 #msg {
-    width: 450px;
+    width: 440px;
     height: 30px;
     resize: none;
 }
 
 #chatBoard {
+    min-height: 150px;
     border-radius: 8px;
     padding: 10px;
     margin: 10px 0;
@@ -77,6 +78,7 @@ input[type=button] {
 #parent {
     margin: auto;
     width: 80%;
+    min-height: 600px;
     border: 4px solid black;
     padding: 20px;
     margin-top: 50px;
