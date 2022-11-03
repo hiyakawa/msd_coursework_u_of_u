@@ -51,11 +51,17 @@ input[type=button] {
     resize: none;
 }
 
-#msg {
-    width: 80%;
-    height: 60px;
+#msgCtnt {
+    width: 460px;
+    height: 120px;
     border-radius: 10px;
     border: 1px solid darkgray;
+    display:inline-block;
+}
+
+#msg {
+    width: 450px;
+    height: 30px;
     resize: none;
 }
 
