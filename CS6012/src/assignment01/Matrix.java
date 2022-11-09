@@ -70,6 +70,7 @@ public class Matrix {
                 }
             }
         }
+
         return true;
     }
 
@@ -84,6 +85,7 @@ public class Matrix {
             }
             matrixStr += "\n";
         }
+
         return matrixStr;
     }
 
@@ -103,6 +105,7 @@ public class Matrix {
                 result.data_[i][j] = this.data_[i][j] + matrix.data_[i][j];
             }
         }
+
         return result;
     }
 
@@ -128,6 +131,7 @@ public class Matrix {
                 result.data_[i][j] = curCell;
             }
         }
+
         return result;
     }
 
@@ -159,6 +163,7 @@ public class Matrix {
                 result.data_[j][i] = this.data_[i][j];
             }
         }
+
         return result;
     }
 }
