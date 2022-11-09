@@ -1,4 +1,4 @@
-1. Where is the assertEquals method defined? What does it do? 
+#### 1. Where is the assertEquals method defined? What does it do? 
 Can we use assertEquals for more than just int types? 
 (Hint: Consult the API for JUnit)
 
@@ -6,7 +6,7 @@ A: It is defined in `public class Assert extends java.lang.Object`
  to assert two variables or objects are equal. 
  Yes, we can also use it for double/long/objects.
 
-2. Briefly describe what each of the three tests is checking.
+#### 2. Briefly describe what each of the three tests is checking.
 
 A: Test 1 is to check if the return value of `findSmallestDiff()` 
 of an empty array is -1.
@@ -17,13 +17,13 @@ the array are all the same.
 Test 3 is to check if the algorithm works for a small random array, 
 especially when there are negative numbers in it.
 
-3. Why is our unimplemented findSmallestDiff method passing one of the tests?
+#### 3. Why is our unimplemented findSmallestDiff method passing one of the tests?
 
 A: Because the unimplemented findSmallestDiff() returns 0, 
 and the expected return value of test 2 happens to be 0. 
 They are equal and test 2 got an invalid answer.
 
-4. Why are we failing the third test? How should our method be modified to correct this?
+#### 4. Why are we failing the third test? How should our method be modified to correct this?
 
 A: There are negative numbers in test 3 and the method messed up 
 the calculation without using absolute value. 
@@ -51,7 +51,7 @@ public static int findSmallestDiff(int[] a) {
 }
 ```
 
-5. What is the appropriate call to assertEquals for your new test (test 4)?
+#### 5. What is the appropriate call to assertEquals for your new test (test 4)?
 
 A:
 ```
@@ -61,7 +61,7 @@ public void allDiffEqual() {
 }
 ```
 
-6. Provide one more test (test 5) for the findSmallestDiff method. 
+#### 6. Provide one more test (test 5) for the findSmallestDiff method. 
 Briefly describe your test and write the call to assertEquals here.
 
 A:
@@ -78,7 +78,7 @@ public void bigArray() {
 }
 ```
 
-7. Briefly describe your unit tests for Assignment 1.
+#### 7. Briefly describe your unit tests for Assignment 1.
 
 A: Checked if the results are as expected when we call times() 
 and plus() with matrices whose dimensions are compatible or 
