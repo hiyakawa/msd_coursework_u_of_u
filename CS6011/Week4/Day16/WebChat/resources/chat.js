@@ -25,6 +25,14 @@ document.getElementById('lightBtn').addEventListener('click', function () {
     document.body.style.backgroundColor = document.body.style.backgroundColor === "white" ? "gray" : "white";
 });
 
+// window.setInterval(function() {
+//     let elem = document.getElementById('chatBoard');
+//     elem.scrollTop = elem.scrollHeight;
+// }, 5000);
+
+// let objDiv = document.getElementById("chatBoard");
+// objDiv.scrollTop = objDiv.scrollHeight;
+
 function handleKeyPressCB(event) {
     if (event.keyCode == 13) {
         event.preventDefault();
