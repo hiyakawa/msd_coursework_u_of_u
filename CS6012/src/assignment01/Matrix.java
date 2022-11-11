@@ -14,21 +14,24 @@ public class Matrix {
 
     // constructor with data for new matrix (automatically determines dimensions)
     public Matrix(int data[][]) {
-        numRows_ = data.length; // d.length is the number of 1D arrays in the 2D array
+        // d.length is the number of 1D arrays in the 2D array
+        numRows_ = data.length;
 
         if (numRows_ == 0) {
             numColumns_ = 0;
         }
         else {
-            numColumns_ = data[0].length; // d[0] is the first 1D array
+            numColumns_ = data[0].length;
+            // d[0] is the first 1D array
         }
 
-        data_ = new int[numRows_][numColumns_]; // create a new matrix to hold the data
+        // create a new matrix to hold the data
+        data_ = new int[numRows_][numColumns_];
 
         // copy the data over
-        for (int i = 0; i < numRows_; i++) {
-            for (int j = 0; j < numColumns_; j++) {
-                data_[i][j] = data[i][j];
+        for (int curRow = 0; curRow < numRows_; curRow++) {
+            for (int curCol = 0; curCol < numColumns_; curCol++) {
+                data_[curRow][curCol] = data[curRow][curCol];
             }
         }
     }
@@ -40,10 +43,23 @@ public class Matrix {
         data_ = new int[numRows_][numColumns_];
 
         // copy the data over
-        for (int i = 0; i < numRows_; i++) {
-            for (int j = 0; j < numColumns_; j++) {
-                data_[i][j] = matrix.data_[i][j];
+        for (int curRow = 0; curRow < numRows_; curRow++) {
+            for (int curCol = 0; curCol < numColumns_; curCol++) {
+                data_[curRow][curCol] = matrix.data_[curRow][curCol];
             }
+        }
+    }
+
+    // constructor for empty matrix
+    public Matrix(int numRows, int numCols) {
+        numRows_ = numRows;
+
+        if (numRows_ == 0) {
+            numColumns_ = 0;
+        }
+        else {
+            numColumns_ = numCols;
+            data_ = new int[numRows_][numColumns_];
         }
     }
 
@@ -54,18 +70,18 @@ public class Matrix {
             return false;
         }
 
-        Matrix matrix = (Matrix) other;
         // if the above was not true, we know it's safe to treat 'o' as a Matrix
+        Matrix matrix = (Matrix) other;
 
         // not equal if the dimensions are different
-        if (this.numColumns_ != matrix.numColumns_ || this.numRows_ != matrix.numRows_) {
+        if (numColumns_ != matrix.numColumns_ || numRows_ != matrix.numRows_) {
             return false;
         }
 
         // compare each cell
-        for (int i = 0; i < numRows_; i++) {
-            for (int j = 0; j < numColumns_; j++) {
-                if (this.data_[i][j] != matrix.data_[i][j]) {
+        for (int curRow = 0; curRow < numRows_; curRow++) {
+            for (int curCol = 0; curCol < numColumns_; curCol++) {
+                if (data_[curRow][curCol] != matrix.data_[curRow][curCol]) {
                     return false;
                 }
             }
@@ -78,10 +94,9 @@ public class Matrix {
     public String toString() {
         String matrixStr = "";
 
-        for (int i = 0; i < numRows_; i++) {
-            for (int j = 0; j < numColumns_; j++) {
-                matrixStr += data_[i][j];
-                matrixStr += " ";
+        for (int curRow = 0; curRow < numRows_; curRow++) {
+            for (int curCol = 0; curCol < numColumns_; curCol++) {
+                matrixStr += (data_[curRow][curCol] + " ");
             }
             matrixStr += "\n";
         }
@@ -92,17 +107,16 @@ public class Matrix {
     // addition
     public Matrix plus(Matrix matrix) {
         // check if the dimensions of the two matrices are compatible
-        if (this.numColumns_ != matrix.numColumns_ || this.numRows_ != matrix.numRows_) {
+        if (numColumns_ != matrix.numColumns_ || numRows_ != matrix.numRows_) {
             System.out.println("not compatible [error message: plus()]");
             return null;
         }
 
-        int [][] resultData = new int[numRows_][numColumns_];
-        Matrix result = new Matrix(resultData);
+        Matrix result = new Matrix(numRows_, numColumns_);
 
         for (int i = 0; i < numRows_; i++) {
             for (int j = 0; j < numColumns_; j++) {
-                result.data_[i][j] = this.data_[i][j] + matrix.data_[i][j];
+                result.data_[i][j] = data_[i][j] + matrix.data_[i][j];
             }
         }
 
@@ -112,23 +126,24 @@ public class Matrix {
     // matrix multiplication
     public Matrix times(Matrix matrix) {
         // check if the dimensions of the two matrices are compatible
-        if (this.numColumns_ != matrix.numRows_) {
+        if (numColumns_ != matrix.numRows_
+                || numRows_ == 0 || matrix.numRows_ == 0) {
             System.out.println("not compatible [error message: times()]");
             return null;
         }
 
-        int [][] resultData = new int[this.numRows_][matrix.numColumns_];
+        int [][] resultData = new int[numRows_][matrix.numColumns_];
         Matrix result = new Matrix(resultData);
 
-        for (int i = 0; i < this.numRows_; i++) {
-            for (int j = 0; j < matrix.numColumns_; j++) {
-                int curCell = 0;
+        for (int curRow = 0; curRow < numRows_; curRow++) {
+            for (int curCol = 0; curCol < matrix.numColumns_; curCol++) {
+                int curCellValue = 0;
 
-                for (int k = 0; k < this.numColumns_; k++) {
-                    curCell += this.data_[i][k] * matrix.data_[k][j];
+                for (int curCell = 0; curCell < numColumns_; curCell++) {
+                    curCellValue += data_[curRow][curCell] * matrix.data_[curCell][curCol];
                 }
 
-                result.data_[i][j] = curCell;
+                result.data_[curRow][curCol] = curCellValue;
             }
         }
 
@@ -150,17 +165,17 @@ public class Matrix {
 
     // transposition
     public Matrix transpose() {
-        int[][] resultData = new int[this.numColumns_][this.numRows_];
+        int [][] resultData = new int[numColumns_][numRows_];
         Matrix result = new Matrix(resultData);
 
-        result.numRows_ = this.numColumns_;
-        result.numColumns_ = this.numRows_;
+        result.numRows_ = numColumns_;
+        result.numColumns_ = numRows_;
         result.data_ = resultData;
 
         // copy the data over
-        for (int i = 0; i < numRows_; i++) {
-            for (int j = 0; j < numColumns_; j++) {
-                result.data_[j][i] = this.data_[i][j];
+        for (int curRow = 0; curRow < numRows_; curRow++) {
+            for (int curCol = 0; curCol < numColumns_; curCol++) {
+                result.data_[curCol][curRow] = data_[curRow][curCol];
             }
         }
 

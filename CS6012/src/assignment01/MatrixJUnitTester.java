@@ -47,7 +47,7 @@ class MatrixTest {
     }
 
     @Test
-    public void timesADouble() {
+    public void timesANum() {
         Matrix result = twoByThree.times(2);
         int[][] twoByThreeResultData = {{2, 4, 6}, {8, 10, 12}};
         Matrix twoByThreeResult = new Matrix(twoByThreeResultData);
@@ -75,25 +75,20 @@ class MatrixTest {
 
     @Test
     public void twoByThreeToString() {
-        String resultString = "1 2 3 \n4 5 6 \n";
-        Assert.assertEquals(resultString, twoByThree.toString());
+        String twoByThreeString = "1 2 3 \n4 5 6 \n";
+        Assert.assertEquals(twoByThreeString, twoByThree.toString());
     }
 
     @Test
     public void twoByThreeTransposition() {
         int[][] threeByTwoResultData = {{1, 4}, {2, 5}, {3, 6}};
         Matrix threeByTwoResult = new Matrix(threeByTwoResultData);
-        Assertions.assertTrue(threeByTwoResult.equals(twoByThree.transpose()));
+        Assertions.assertEquals(threeByTwoResult, twoByThree.transpose());
 
         // try to transpose twice and get the original matrix
         Assertions.assertTrue(twoByThree.equals(twoByThree.transpose().transpose()));
     }
 
     @AfterEach
-    public void tearDown() throws Exception {
-        oneByOne = null;
-        twoByThree = null;
-        threeByTwo = null;
-        twoByTwo = null;
-    }
+    public void tearDown() throws Exception {}
 }

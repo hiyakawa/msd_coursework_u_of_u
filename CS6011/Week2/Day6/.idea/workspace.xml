@@ -2,9 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="13ea1fe5-35dc-498b-ba7e-01104ac81e9f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../../Week5/Day21/Adventure/src/Rooms/Garden.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Week4/Day16/WebChat/resources/chat.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../Week4/Day16/WebChat/resources/chat.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Week4/Day16/WebChat/resources/chat.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../Week4/Day16/WebChat/resources/chat.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../CS6012/src/assignment02/LibraryBook.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../CS6012/src/assignment02/LibraryBookGeneric.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../CS6012/src/assignment02/LibraryGeneric.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../CS6012/src/assignment02/assignment02.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../CS6012/out/production/CS6012/lab01/worksheet.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../CS6012/src/assignment01/Matrix.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../CS6012/src/assignment01/Matrix.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../CS6012/src/assignment01/MatrixJUnitTester.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../CS6012/src/assignment01/MatrixJUnitTester.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,14 +27,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/Users/laurazhang/myLocalGithubRepo/CS6011/Week2/Day6"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/laurazhang/myLocalGithubRepo/CS6011/Week2/Day6&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -40,6 +44,7 @@
       <option name="presentableId" value="Default" />
       <updated>1667236367550</updated>
       <workItem from="1667236368689" duration="28000" />
+      <workItem from="1668187720950" duration="4000" />
     </task>
     <servers />
   </component>
