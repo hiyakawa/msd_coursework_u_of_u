@@ -78,7 +78,7 @@ public class Matrix {
             return false;
         }
 
-        // compare each cell
+        // compare each element
         for (int curRow = 0; curRow < numRows_; curRow++) {
             for (int curCol = 0; curCol < numColumns_; curCol++) {
                 if (data_[curRow][curCol] != matrix.data_[curRow][curCol]) {
@@ -132,18 +132,20 @@ public class Matrix {
             return null;
         }
 
-        int [][] resultData = new int[numRows_][matrix.numColumns_];
-        Matrix result = new Matrix(resultData);
+//        int [][] resultData = new int[numRows_][matrix.numColumns_];
+        Matrix result = new Matrix(numRows_, matrix.numColumns_);
 
+        // iterate through the two matrices
         for (int curRow = 0; curRow < numRows_; curRow++) {
             for (int curCol = 0; curCol < matrix.numColumns_; curCol++) {
-                int curCellValue = 0;
+                int curElementValue = 0;
 
-                for (int curCell = 0; curCell < numColumns_; curCell++) {
-                    curCellValue += data_[curRow][curCell] * matrix.data_[curCell][curCol];
+                // calculate the elements in the result matrix
+                for (int curElement = 0; curElement < numColumns_; curElement++) {
+                    curElementValue += data_[curRow][curElement] * matrix.data_[curElement][curCol];
                 }
 
-                result.data_[curRow][curCol] = curCellValue;
+                result.data_[curRow][curCol] = curElementValue;
             }
         }
 
@@ -165,12 +167,8 @@ public class Matrix {
 
     // transposition
     public Matrix transpose() {
-        int [][] resultData = new int[numColumns_][numRows_];
-        Matrix result = new Matrix(resultData);
-
-        result.numRows_ = numColumns_;
-        result.numColumns_ = numRows_;
-        result.data_ = resultData;
+//        int [][] resultData = new int[numColumns_][numRows_];
+        Matrix result = new Matrix(numColumns_, numRows_);
 
         // copy the data over
         for (int curRow = 0; curRow < numRows_; curRow++) {

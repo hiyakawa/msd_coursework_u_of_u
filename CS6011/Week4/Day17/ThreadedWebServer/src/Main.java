@@ -19,7 +19,7 @@ class WebSocketTools {
         byte[] sha1Results = sha1.digest(concatenatedString.getBytes(StandardCharsets.UTF_8));
         return Base64.getEncoder().encodeToString(sha1Results);
     }
-    
+
     public static boolean isWebSocket(Map<String, String> requestHeader) {
         return requestHeader.containsKey("Upgrade") && requestHeader.get("Upgrade").equals("websocket") && requestHeader.containsKey("Sec-WebSocket-Key");
     }
