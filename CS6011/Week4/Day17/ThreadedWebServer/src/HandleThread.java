@@ -1,47 +1,49 @@
-import java.io.DataInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.Socket;
+import java.io.DataInputStream;
+import java.io.InputStream;
 
-// handle a connection ( read & parse request, send response )
-// wrap the connection handler logic in a thread
 public class HandleThread implements Runnable {
-    private final Socket socket;
+    private final Socket socket_;
 
     public HandleThread(Socket socket) {
-        this.socket = socket;
+        socket_ = socket;
     }
 
     @Override
     public void run() {
-        Request request = new Request(socket);
+        Request request = new Request(socket_);
         request.getRequest();
-        if (request.getIsWebSocket()) {
-            // if it is a web socket connection, first make handshake, then repeat the listen & send cycle
-            WebSocketTools.makeHandshake(socket, request);
+
+        if (request.getIsWS()) {
+            WebSocketTools.makeHandshake(socket_, request);
+
             while (true) {
                 try {
-                    InputStream inputStream  = socket.getInputStream();
-                    DataInputStream dataInputStream = new DataInputStream(inputStream);
-                    String wsRequest = WebSocketTools.getRequest(dataInputStream);
-                    if(wsRequest.equals("close"))
-                    {
-                        socket.close();
+                    InputStream is  = socket_.getInputStream();
+                    DataInputStream dis = new DataInputStream(is);
+                    String wsRequest = WebSocketTools.getRequest(dis);
+
+                    if (wsRequest.equals("close")) {
+                        socket_.close();
                         break;
                     }
-                    System.out.println("Get incoming request: " + wsRequest);
-                    WebSocketTools.handleResponse(socket, wsRequest);
-                } catch (IOException e) {
+
+                    WebSocketTools.handleResponse(socket_, wsRequest);
+                }
+                catch (Exception e) {
                     throw new RuntimeException(e);
                 }
             }
-        } else {
-            // if it is an HTTP request, just send back the response
-            Response response = new Response(socket, request);
-            response.handleResponse();
+        }
+        else {
+            Response response = new Response(socket_, request);
+            response.sendResponse();
+
             try {
-                socket.close();
-            } catch (IOException e) {
+                socket_.close();
+            }
+            catch (IOException e) {
                 throw new RuntimeException(e);
             }
         }

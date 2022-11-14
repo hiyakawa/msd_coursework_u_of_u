@@ -19,8 +19,7 @@ class WebSocketTools {
         byte[] sha1Results = sha1.digest(concatenatedString.getBytes(StandardCharsets.UTF_8));
         return Base64.getEncoder().encodeToString(sha1Results);
     }
-
-
+    
     public static boolean isWebSocket(Map<String, String> requestHeader) {
         return requestHeader.containsKey("Upgrade") && requestHeader.get("Upgrade").equals("websocket") && requestHeader.containsKey("Sec-WebSocket-Key");
     }
@@ -94,10 +93,11 @@ class WebSocketTools {
     }
 
     public static void makeHandshake(Socket socket, Request request) {
-        OutputStream out;
+        OutputStream os;
         try {
-            out = socket.getOutputStream();
-        } catch (IOException e) {
+            os = socket.getOutputStream();
+        }
+        catch (IOException e) {
             throw new RuntimeException(e);
         }
         byte[] response;
@@ -106,13 +106,14 @@ class WebSocketTools {
                     + "Connection: Upgrade\r\n"
                     + "Upgrade: websocket\r\n"
                     + "Sec-WebSocket-Accept: "
-                    + WebSocketTools.getWebSocketResponseKey(request.getWSRequestKey())
+                    + WebSocketTools.getWebSocketResponseKey(request.getKey())
                     + "\r\n\r\n").getBytes(StandardCharsets.UTF_8);
-        } catch (NoSuchAlgorithmException e) {
+        }
+        catch (NoSuchAlgorithmException e) {
             throw new RuntimeException(e);
         }
         try {
-            out.write(response);
+            os.write(response);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -273,7 +274,7 @@ class WebSocketTools {
         String roomName = responseJSON.get("room");
         Room room = Room.getRoom(roomName);
         if (type.equals("join")) {
-            if (room.canAddUser(responseJSON.get("user"))) {
+            if (!room.userExistsInCurRoom(responseJSON.get("user"))) {
                 handleJoin(responseJSON, socket);
             } else {
                 // if there is already a user with the same name in the same room, send back an error message

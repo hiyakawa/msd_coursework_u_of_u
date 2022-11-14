@@ -1,24 +1,22 @@
-import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
 public class Server {
+    private final ServerSocket serverSocket_;
 
-    private final ServerSocket serverSocket;
-
-    public Server(ServerSocket ss) {
-        serverSocket = ss;
+    public Server(ServerSocket serverSocket) {
+        serverSocket_ = serverSocket;
     }
 
     public void runServer() {
-        Socket socket;
+        Socket clientSocket;
         while (true) {
             try {
-                socket = serverSocket.accept();
-                Thread thread = new Thread(new HandleThread(socket));
+                clientSocket = serverSocket_.accept();
+                Thread thread = new Thread(new HandleThread(clientSocket));
                 thread.start();
-            } catch (IOException e) {
-                System.out.println(e.getMessage());
+            }
+            catch (Exception e) {
                 e.printStackTrace();
             }
         }

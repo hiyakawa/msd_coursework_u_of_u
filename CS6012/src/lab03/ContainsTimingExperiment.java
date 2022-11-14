@@ -47,7 +47,7 @@ public class ContainsTimingExperiment {
     } catch (IOException e) {
       e.printStackTrace();
     }
-    Charter charter = new Charter();
-    charter.createChart("contains_experiment.tsv", "chart.png");
+//    Charter charter = new Charter();
+//    charter.createChart("contains_experiment.tsv", "chart.png");
   }
 }

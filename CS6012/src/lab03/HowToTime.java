@@ -5,9 +5,9 @@ public class HowToTime {
   public static final int MILLION = 1_000_000;
 
   public static void main(String[] args) {
-    // countToABillionInYourHead();
-    countToABillionOutLoud();
-    // countToABillionOnYourFingers();
+//     countToABillionInYourHead();
+    // countToABillionOutLoud();
+     countToABillionOnYourFingers();
   }
 
   public static void countToABillionInYourHead() {
