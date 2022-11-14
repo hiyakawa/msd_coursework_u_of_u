@@ -117,7 +117,7 @@ public class Matrix {
         if (numColumns_ != rhsMatrix.numColumns_
                 || numRows_ != rhsMatrix.numRows_
                 || numRows_ == 0) {
-            System.out.println("not compatible [error message: plus()]");
+            System.out.println("not compatible [error message from plus(Matrix)]");
             return null;
         }
 
@@ -137,7 +137,7 @@ public class Matrix {
         // check if the dimensions of the two matrices are compatible
         if (numColumns_ != rhsMatrix.numRows_
                 || numRows_ == 0 || rhsMatrix.numRows_ == 0) {
-            System.out.println("not compatible [error message: times()]");
+            System.out.println("not compatible [error message from times(Matrix)]");
             return null;
         }
 
@@ -165,10 +165,16 @@ public class Matrix {
     public Matrix times(int scale) {
         Matrix result = new Matrix(this);
 
-        // should do something here to avoid integer overflow..
-
         for (int i = 0; i < result.numRows_; i++) {
             for (int j = 0; j < result.numColumns_; j++) {
+                // avoid integer overflow
+                long curElement = (long) result.data_[i][j] * scale;
+
+                if (curElement > Integer.MAX_VALUE) {
+                    System.out.println("integer overflow [error message: times(int)]");
+                    return null;
+                }
+
                 result.data_[i][j] *= scale;
             }
         }
