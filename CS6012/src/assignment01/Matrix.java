@@ -50,14 +50,14 @@ public class Matrix {
         }
     }
 
-    // constructor for empty matrix
+    // constructor for an empty matrix
     public Matrix(int numRows, int numCols) {
-        numRows_ = numRows;
-
-        if (numRows_ == 0) {
+        if (numRows <= 0 || numCols <= 0) {
+            numRows_ = 0;
             numColumns_ = 0;
         }
         else {
+            numRows_ = numRows;
             numColumns_ = numCols;
             data_ = new int[numRows_][numColumns_];
         }
@@ -65,23 +65,24 @@ public class Matrix {
 
     @Override
     public boolean equals(Object other) {
+        // make sure the Object we're comparing to is a Matrix
         if (!(other instanceof Matrix)) {
-            // make sure the Object we're comparing to is a Matrix
             return false;
         }
 
         // if the above was not true, we know it's safe to treat 'o' as a Matrix
-        Matrix matrix = (Matrix) other;
+        Matrix rhsMatrix = (Matrix) other;
 
         // not equal if the dimensions are different
-        if (numColumns_ != matrix.numColumns_ || numRows_ != matrix.numRows_) {
+        if (numColumns_ != rhsMatrix.numColumns_
+                || numRows_ != rhsMatrix.numRows_) {
             return false;
         }
 
         // compare each element
         for (int curRow = 0; curRow < numRows_; curRow++) {
             for (int curCol = 0; curCol < numColumns_; curCol++) {
-                if (data_[curRow][curCol] != matrix.data_[curRow][curCol]) {
+                if (data_[curRow][curCol] != rhsMatrix.data_[curRow][curCol]) {
                     return false;
                 }
             }
@@ -94,10 +95,16 @@ public class Matrix {
     public String toString() {
         String matrixStr = "";
 
+        if (numRows_ == 0) {
+            return "Oops! You are trying to print an empty matrix..";
+        }
+
         for (int curRow = 0; curRow < numRows_; curRow++) {
             for (int curCol = 0; curCol < numColumns_; curCol++) {
+                // adding spaces after each element
                 matrixStr += (data_[curRow][curCol] + " ");
             }
+            // adding new line after each row
             matrixStr += "\n";
         }
 
@@ -105,9 +112,11 @@ public class Matrix {
     }
 
     // addition
-    public Matrix plus(Matrix matrix) {
+    public Matrix plus(Matrix rhsMatrix) {
         // check if the dimensions of the two matrices are compatible
-        if (numColumns_ != matrix.numColumns_ || numRows_ != matrix.numRows_) {
+        if (numColumns_ != rhsMatrix.numColumns_
+                || numRows_ != rhsMatrix.numRows_
+                || numRows_ == 0) {
             System.out.println("not compatible [error message: plus()]");
             return null;
         }
@@ -116,7 +125,7 @@ public class Matrix {
 
         for (int i = 0; i < numRows_; i++) {
             for (int j = 0; j < numColumns_; j++) {
-                result.data_[i][j] = data_[i][j] + matrix.data_[i][j];
+                result.data_[i][j] = data_[i][j] + rhsMatrix.data_[i][j];
             }
         }
 
@@ -124,27 +133,27 @@ public class Matrix {
     }
 
     // matrix multiplication
-    public Matrix times(Matrix matrix) {
+    public Matrix times(Matrix rhsMatrix) {
         // check if the dimensions of the two matrices are compatible
-        if (numColumns_ != matrix.numRows_
-                || numRows_ == 0 || matrix.numRows_ == 0) {
+        if (numColumns_ != rhsMatrix.numRows_
+                || numRows_ == 0 || rhsMatrix.numRows_ == 0) {
             System.out.println("not compatible [error message: times()]");
             return null;
         }
 
-//        int [][] resultData = new int[numRows_][matrix.numColumns_];
-        Matrix result = new Matrix(numRows_, matrix.numColumns_);
+        Matrix result = new Matrix(numRows_, rhsMatrix.numColumns_);
 
         // iterate through the two matrices
         for (int curRow = 0; curRow < numRows_; curRow++) {
-            for (int curCol = 0; curCol < matrix.numColumns_; curCol++) {
+            for (int curCol = 0; curCol < rhsMatrix.numColumns_; curCol++) {
                 int curElementValue = 0;
 
                 // calculate the elements in the result matrix
                 for (int curElement = 0; curElement < numColumns_; curElement++) {
-                    curElementValue += data_[curRow][curElement] * matrix.data_[curElement][curCol];
+                    curElementValue += data_[curRow][curElement] * rhsMatrix.data_[curElement][curCol];
                 }
 
+                // push the current element to the result matrix
                 result.data_[curRow][curCol] = curElementValue;
             }
         }
@@ -155,6 +164,8 @@ public class Matrix {
     // scalar multiplication
     public Matrix times(int scale) {
         Matrix result = new Matrix(this);
+
+        // should do something here to avoid integer overflow..
 
         for (int i = 0; i < result.numRows_; i++) {
             for (int j = 0; j < result.numColumns_; j++) {
@@ -167,7 +178,6 @@ public class Matrix {
 
     // transposition
     public Matrix transpose() {
-//        int [][] resultData = new int[numColumns_][numRows_];
         Matrix result = new Matrix(numColumns_, numRows_);
 
         // copy the data over
