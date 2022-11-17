@@ -16,16 +16,16 @@ public class Part2 {
       }
     }
 
-    // Loop #2
-    while (b < 10) {
-      b *= a;
-      a += c;
-      d++;
-      try {
-        Thread.sleep(100);
-      } catch (InterruptedException e) {
-      }
-    }
+//    // Loop #2
+//    while (b < 10) {
+//      b *= a;
+//      a += c;
+//      d++;
+//      try {
+//        Thread.sleep(100);
+//      } catch (InterruptedException e) {
+//      }
+//    }
 
     // Loop #3
     while (a > c) {

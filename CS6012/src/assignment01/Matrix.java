@@ -171,7 +171,7 @@ public class Matrix {
                 long curElement = (long) result.data_[i][j] * scale;
 
                 if (curElement > Integer.MAX_VALUE) {
-                    System.out.println("integer overflow [error message: times(int)]");
+                    System.out.println("integer overflow [error message from times(int)]");
                     return null;
                 }
 

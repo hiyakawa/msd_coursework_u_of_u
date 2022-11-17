@@ -8,7 +8,6 @@
 package assignment01;
 
 import org.junit.Assert;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -39,13 +38,13 @@ class MatrixTest {
     // testing equals(Matrix)
     public void equalsToItself() {
         // testing with the same matrix
-        Assertions.assertTrue(oneByTen.equals(oneByTen));
+        Assert.assertTrue(oneByTen.equals(oneByTen));
 
         // testing with two matrices with the same data
-        Assertions.assertTrue(twoByTwo.equals(twoByTwoCopy));
+        Assert.assertTrue(twoByTwo.equals(twoByTwoCopy));
 
         // testing with two matrices with different data
-        Assertions.assertFalse(twoByTwo.equals(twoByThree));
+        Assert.assertFalse(twoByTwo.equals(twoByThree));
     }
 
     @Test
@@ -53,19 +52,19 @@ class MatrixTest {
     public void timesWithBalancedDimensions() {
         // test two by three matrix times three by two matrix
         Matrix twoByThreeTimesThreeByTwo = twoByThree.times(threeByTwo);
-        Assertions.assertTrue(twoByTwo.equals(twoByThreeTimesThreeByTwo));
+        Assert.assertTrue(twoByTwo.equals(twoByThreeTimesThreeByTwo));
 
         // test two by two matrix times two by three matrix
         Matrix twoByTwoTimestwoByThree = twoByTwo.times(twoByThree);
         int[][] expectedTwoByTwoTimestwoByThreeData = {{-234, 276, 450}, {123, -216, 189}};
         Matrix expectedTwoByTwoTimestwoByThree = new Matrix(expectedTwoByTwoTimestwoByThreeData);
-        Assertions.assertTrue(expectedTwoByTwoTimestwoByThree.equals(twoByTwoTimestwoByThree));
+        Assert.assertTrue(expectedTwoByTwoTimestwoByThree.equals(twoByTwoTimestwoByThree));
 
         // test one by ten matrix times ten by one matrix
         Matrix oneByTenTimesTenByOne = oneByTen.times(tenByOne);
         int[][] expectedOneByTenTimesTenByOneData = {{-165}};
         Matrix expectedOneByTenTimesTenByOne = new Matrix(expectedOneByTenTimesTenByOneData);
-        Assertions.assertTrue(expectedOneByTenTimesTenByOne.equals(oneByTenTimesTenByOne));
+        Assert.assertTrue(expectedOneByTenTimesTenByOne.equals(oneByTenTimesTenByOne));
     }
 
     @Test
@@ -73,10 +72,10 @@ class MatrixTest {
     public void timesWithUnbalancedDimensions() {
         // should return null if the matrices are not compatible
         Matrix twoByThreeTimesTwoByTwo = twoByThree.times(twoByTwo);
-        Assertions.assertNull(twoByThreeTimesTwoByTwo);
+        Assert.assertNull(twoByThreeTimesTwoByTwo);
 
         Matrix oneByTenTimesoneByTen = oneByTen.times(oneByTen);
-        Assertions.assertNull(oneByTenTimesoneByTen);
+        Assert.assertNull(oneByTenTimesoneByTen);
     }
 
     @Test
@@ -86,7 +85,7 @@ class MatrixTest {
         Matrix twoByThreeTimesMinusTwo = twoByThree.times(-2);
         int[][] expectedtwoByThreeTimesMinusTwoData = {{-2, 4, -6}, {8, -10, -12}};
         Matrix expectedtwoByThreeTimesMinusTwo = new Matrix(expectedtwoByThreeTimesMinusTwoData);
-        Assertions.assertTrue(expectedtwoByThreeTimesMinusTwo.equals(twoByThreeTimesMinusTwo));
+        Assert.assertTrue(expectedtwoByThreeTimesMinusTwo.equals(twoByThreeTimesMinusTwo));
     }
 
     @Test
@@ -96,19 +95,19 @@ class MatrixTest {
         Matrix twoByTwoPlusTwoByTwo = twoByTwo.plus(twoByTwoCopy);
         int[][] expectedTwoByTwoPlusTwoByTwoData = {{44, 128}, {166, -20}};
         Matrix expectedTwoByTwoPlusTwoByTwo = new Matrix(expectedTwoByTwoPlusTwoByTwoData);
-        Assertions.assertTrue(twoByTwoPlusTwoByTwo.equals(expectedTwoByTwoPlusTwoByTwo));
+        Assert.assertTrue(twoByTwoPlusTwoByTwo.equals(expectedTwoByTwoPlusTwoByTwo));
 
         // test two by three matrix plus two by three matrix
         Matrix twoByThreePlusTwoByThree = twoByThree.plus(twoByThree);
         int[][] expectedTwoByThreePlusTwoByThreeData = {{2, -4, 6}, {-8, 10, 12}};
         Matrix expectedTwoByThreePlusTwoByThree = new Matrix(expectedTwoByThreePlusTwoByThreeData);
-        Assertions.assertTrue(twoByThreePlusTwoByThree.equals(expectedTwoByThreePlusTwoByThree));
+        Assert.assertTrue(twoByThreePlusTwoByThree.equals(expectedTwoByThreePlusTwoByThree));
 
         // test three by two matrix plus three by two matrix
         Matrix threeByTwoPlusThreeByTwo = threeByTwo.plus(threeByTwo);
         int[][] expectedThreeByTwoPlusThreeByTwoData = {{14, 16}, {18, -20}, {22, 24}};
         Matrix expectedThreeByTwoPlusThreeByTwo = new Matrix(expectedThreeByTwoPlusThreeByTwoData);
-        Assertions.assertTrue(threeByTwoPlusThreeByTwo.equals(expectedThreeByTwoPlusThreeByTwo));
+        Assert.assertTrue(threeByTwoPlusThreeByTwo.equals(expectedThreeByTwoPlusThreeByTwo));
     }
 
     @Test
@@ -116,7 +115,7 @@ class MatrixTest {
     public void plusWithUnbalancedDimensions() {
         // should return null if the matrices are not compatible
         Matrix oneByTenPlusThreeByTwo = oneByTen.plus(threeByTwo);
-        Assertions.assertNull(oneByTenPlusThreeByTwo);
+        Assert.assertNull(oneByTenPlusThreeByTwo);
     }
 
     @Test
@@ -135,9 +134,9 @@ class MatrixTest {
     public void twoByThreeTransposition() {
         int[][] threeByTwoResultData = {{1, -4}, {-2, 5}, {3, 6}};
         Matrix threeByTwoResult = new Matrix(threeByTwoResultData);
-        Assertions.assertTrue(threeByTwoResult.equals(twoByThree.transpose()));
+        Assert.assertTrue(threeByTwoResult.equals(twoByThree.transpose()));
 
         // transpose twice and get the original matrix
-        Assertions.assertTrue(twoByThree.equals(twoByThree.transpose().transpose()));
+        Assert.assertTrue(twoByThree.equals(twoByThree.transpose().transpose()));
     }
 }

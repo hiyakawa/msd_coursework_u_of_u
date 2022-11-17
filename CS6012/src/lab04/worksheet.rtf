@@ -55,18 +55,55 @@ Normal Table;}}{\*\rsidtbl \rsid11762143\rsid15994829}{\mmathPr\mmathFont34\mbrk
 \par \hich\af4\dbch\af31505\loch\f4 A: Test 2 & test 3.
 \par
 \par \hich\af4\dbch\af31505\loch\f4 2. What are the values of arr and goal passed in to binary search?
+\par
+\par \hich\af4\dbch\af31505\loch\f4 A: arr <- [5, 10, 15, 20, 25]
+\par \hich\af4\dbch\af31505\loch\f4     goal <- 20
 \par 
 \par \hich\af4\dbch\af31505\loch\f4 3. For each of the two cases of binarySearch that are failing, which return statements are they executing in error (is it returning true when it should be returning false, or the other way around)?
+\par
+\par \hich\af4\dbch\af31505\loch\f4 A: For test 2, binarySearch() returns true in line 9 & 10, which should have returned false.
+\par \hich\af4\dbch\af31505\loch\f4    For test 3, binarySearch() returns false in line 17, which should have returned true.
 \par 
 \par \hich\af4\dbch\af31505\loch\f4 4. What is the bug in binarySearch? How do you fix it?
+\par
+\par \hich\af4\dbch\af31505\loch\f4 A: The method mistakes indexes for values. Modify `goal == mid` to `goal == arr[mid]` will fix that.
+\par
+\par ```
+\par   public static boolean binarySearch(int[] arr, int goal) {
+\par       int low = 0, high = arr.length - 1, mid = 0;
+\par       while (low <= high) {
+\par           mid = (low + high) / 2;
+\par           if (goal == arr[mid]) {
+\par               return true;
+\par           }
+\par           else if (goal < arr[mid]) {
+\par               high = mid - 1;
+\par           }
+\par           else {
+\par               low = mid + 1;
+\par           }
+\par       }
+\par       return false;
+\par   }
+\par ```
 \par 
 \par \hich\af4\dbch\af31505\loch\f4 5\hich\af4\dbch\af31505\loch\f4 . Which loops appear to be inifinite?
+\par
+\par \hich\af4\dbch\af31505\loch\f4 A: Loop #2 & loop #4.
 \par 
 \par \hich\af4\dbch\af31505\loch\f4 6. For the loops that you found to be infinite, briefly explain why they are never progressing.
+\par
+\par \hich\af4\dbch\af31505\loch\f4 A: For loop #2, in line 21, `b` will always be 0 because its initial value is 0. So we will never be able to get out of the `while (b < 10)` loop.
+\par \hich\af4\dbch\af31505\loch\f4      For loop #4, the value of `f` is always 5 or 6, so we will never be able to get out of the `while (f > 0)` loop.
 \par 
 \par \hich\af4\dbch\af31505\loch\f4 7. What does the call to password.split(" ") appear to do? Hint: examine the input value of "password", then examine the\hich\af4\dbch\af31505\loch\f4  items in the "tokens" array returned by the call.
+\par
+\par \hich\af4\dbch\af31505\loch\f4 A: Split the input string by spaces and push every element into an array, finally return that array.
 \par 
-\par \hich\af4\dbch\af31505\loch\f4 8. What is the correct password?}{\rtlch\fcs1 \af4\afs24 \ltrch\fcs0 \f4\fs24\insrsid11762143 
+\par \hich\af4\dbch\af31505\loch\f4 8. What is the correct password?
+\par
+\par \hich\af4\dbch\af31505\loch\f4 A: "1 4 9 16 25"
+}{\rtlch\fcs1 \af4\afs24 \ltrch\fcs0 \f4\fs24\insrsid11762143
 \par }{\*\themedata 504b030414000600080000002100e9de0fbfff0000001c020000130000005b436f6e74656e745f54797065735d2e786d6cac91cb4ec3301045f748fc83e52d4a
 9cb2400825e982c78ec7a27cc0c8992416c9d8b2a755fbf74cd25442a820166c2cd933f79e3be372bd1f07b5c3989ca74aaff2422b24eb1b475da5df374fd9ad
 5689811a183c61a50f98f4babebc2837878049899a52a57be670674cb23d8e90721f90a4d2fa3802cb35762680fd800ecd7551dc18eb899138e3c943d7e503b6
