@@ -26,12 +26,12 @@ public class Response {
     }
 
     private void sendResponseHeader(PrintWriter printWriter) {
-        printWriter.println(statusCode());
-        printWriter.println(contentType());
+        printWriter.println(getStatusCode());
+        printWriter.println(getContentType());
         printWriter.println("");
     }
 
-    private String statusCode() {
+    private String getStatusCode() {
         String status = " 404 NOT FOUND";
 
         if (isFileValid_) {
@@ -41,7 +41,7 @@ public class Response {
         return httpVersion_ + status;
     }
 
-    private String contentType() {
+    private String getContentType() {
         File file = new File(getFilePath());
         String fileContentType = "failed";
 

@@ -163,7 +163,16 @@ choice for generating graphs, or maybe different pivots work roughly the same on
 random lists. But zoom in the graph or take a glance at the data itself - we can 
 say median of three is the best pivot strategy.
 
-4. Mergesort vs. Quicksort Experiment: Determine the best sorting algorithm for each of the three categories of lists (best-, average-, and worst-case). For the mergesort, use the threshold value that you determined to be the best. For the quicksort, use the pivot-choosing strategy that you determined to be the best. Note that the best pivot strategy on permuted lists may lead to O(N^2) performance on best/worst case lists. If this is the case, use a different pivot for this part. As in #2, use large list sizes, the same list sizes for each category and sort, and the timing techniques demonstrated before. Plot the running times of your sorts for the three categories of lists. You may plot all six lines at once or create three plots (one for each category of lists).
+4. Mergesort vs. Quicksort Experiment: Determine the best sorting algorithm for 
+each of the three categories of lists (best-, average-, and worst-case). For the 
+mergesort, use the threshold value that you determined to be the best. For the 
+quicksort, use the pivot-choosing strategy that you determined to be the best. 
+Note that the best pivot strategy on permuted lists may lead to O(N^2) performance 
+on best/worst case lists. If this is the case, use a different pivot for this 
+part. As in #2, use large list sizes, the same list sizes for each category and 
+sort, and the timing techniques demonstrated before. Plot the running times of 
+your sorts for the three categories of lists. You may plot all six lines at once 
+or create three plots (one for each category of lists).
 
 + For the best case, set the threshold as 30 and the pivot as median of three.
 
@@ -205,9 +214,39 @@ of three.
           colour = "quick sort")) + geom_point() + labs(
           x = "size of set",
           y = "average time / nanosecond",
-          title = "Average Run Time of Different Algorithms On Ascending Lists")
+          title = "Average Run Time of Different Algorithms On Descending Lists")
 ```
 
-+ Quick sort wins this turn.
++ Again, quick sort wins this turn.
 
-5. Do the actual running times of your sorting methods exhibit the growth rates you expected to see? Why or why not? Please be thorough in this explanation.
++ For the average case, set the threshold as 30 and the pivot as median of three.
+
+```{r}
+      library(ggplot2)
+      size    <- c(1024, 2048, 4096, 8192, 16384, 32768, 65536, 131072, 262144, 
+                   524288, 1048576)
+      avgtime_merge <- c(285331, 220681, 415529, 968964, 2107698, 4706981, 
+                   10090095, 22031027, 54286768, 118486867, 258073055)
+      avgtime_quick <- c(122650, 143538, 344854, 795043, 1720882, 3822487,
+                   8013602, 17734078, 39346052, 85464453, 197979874)
+      timeingdata <- data.frame(size, avgtime_merge, avgtime_quick)
+      ggplot() + geom_line(data = timeingdata, aes(x = size, y = avgtime_merge, 
+          colour = "merge sort")) + geom_point() + 
+          geom_line(data = timeingdata, aes(x = size, y = avgtime_quick, 
+          colour = "quick sort")) + geom_point() + labs(
+          x = "size of set",
+          y = "average time / nanosecond",
+          title = "Average Run Time of Different Algorithms On Random Lists")
+```
+
++ Triple kill! Quick sort performs better in all the three cases.
+
+5. Do the actual running times of your sorting methods exhibit the growth rates 
+you expected to see? Why or why not? Please be thorough in this explanation.
+
++ Yes. For ascending/descending sorted lists, the growth rates of both mergesort 
+and quicksort are fitted as linear. But for random lists, the growth rates of 
+both mergesort and quicksort approximately follow O(N logN).
+
++ Besides, the sorting speed of mergesort is slower but more stable compared to 
+quicksort.

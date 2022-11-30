@@ -60,9 +60,7 @@ function handleKeyPressMsg (event) {
 function handleMsg(event) {
     let msgData = event.data;
     let msgObj = JSON.parse(msgData);
-    let msgType = msgObj.type; 
-    // let msgUser = msgObj.user;
-    // let msgRoom = msgObj.room;
+    let msgType = msgObj.type;
 
     let msgList = document.createElement('li');
 

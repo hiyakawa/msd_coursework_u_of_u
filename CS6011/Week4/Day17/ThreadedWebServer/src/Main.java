@@ -1,6 +1,5 @@
-import java.io.IOException;
-import java.net.ServerSocket;
 import java.io.*;
+import java.net.ServerSocket;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -32,31 +31,36 @@ class WebSocketTools {
     public static String getWebSocketResponsePayload(ArrayList<Byte> message, long payloadStart, long payloadLength) {
         boolean isMasked = isMasked(message);
         byte[] payload = new byte[(int) payloadLength];
+
         for (int i = 0; i < payloadLength; i++) {
             payload[i] = message.get((int) (i + payloadStart));
         }
+
         if (isMasked) {
-            // decode the masked message
             byte[] masks = new byte[4];
+
             for (int i = 0; i < 4; i++) {
                 masks[i] = message.get((int) (i + payloadStart - 4));
             }
+
             for (int i = 0; i < payloadLength; i++) {
                 payload[i] = (byte) (payload[i] ^ masks[i % 4]);
             }
         }
+
         return new String(payload, StandardCharsets.UTF_8);
     }
 
     private static ArrayList<Byte> getBytesFromNumber(int number, int length) {
         ArrayList<Byte> results = new ArrayList<>();
-        for(int i=0; i<length; i++)
-        {
+
+        for(int i = 0; i < length; i++) {
             byte current = (byte) (number & 0xff);
             number = number >> 8;
             results.add(current);
         }
         Collections.reverse(results);
+
         return results;
     }
 
@@ -64,31 +68,38 @@ class WebSocketTools {
         byte[] payload = response.getBytes(StandardCharsets.UTF_8);
         int payloadLength = payload.length;
         ArrayList<Byte> responseFrame = new ArrayList<>();
-        // FIN / RSV*3 / OPCODE
+
         byte firstByte = (byte) 0x81;
         responseFrame.add(firstByte);
+
         if (payloadLength <= 125) {
             byte secondByte = (byte) payloadLength;
             responseFrame.add(secondByte);
-        } else if (payloadLength <= 0xffff) {
+        }
+        else if (payloadLength <= 0xffff) {
             byte secondByte = 126;
             responseFrame.add(secondByte);
             ArrayList<Byte> lengthBytes = getBytesFromNumber(payloadLength, 2);
             responseFrame.addAll(lengthBytes);
-        } else {
+        }
+        else {
             byte secondByte = 127;
             responseFrame.add(secondByte);
             ArrayList<Byte> lengthBytes = getBytesFromNumber(payloadLength, 8);
             responseFrame.addAll(lengthBytes);
         }
+
         for (byte p :
                 payload) {
             responseFrame.add(p);
         }
+
         byte[] results = new byte[responseFrame.size()];
+
         for (int i = 0; i < responseFrame.size(); i++) {
             results[i] = responseFrame.get(i);
         }
+
         return results;
     }
 
@@ -100,7 +111,9 @@ class WebSocketTools {
         catch (IOException e) {
             throw new RuntimeException(e);
         }
+
         byte[] response;
+
         try {
             response = ("HTTP/1.1 101 Switching Protocols\r\n"
                     + "Connection: Upgrade\r\n"
@@ -112,32 +125,35 @@ class WebSocketTools {
         catch (NoSuchAlgorithmException e) {
             throw new RuntimeException(e);
         }
+
         try {
             os.write(response);
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             throw new RuntimeException(e);
         }
+
         System.out.println("handshake with the client");
     }
 
     public static String getRequest(DataInputStream dataInputStream) throws IOException {
         ArrayList<Byte> incomingBytes = new ArrayList<>();
-        // read first 2 bytes
+
         for (int i = 0; i < 2; i++) {
             incomingBytes.add(dataInputStream.readByte());
         }
+
         boolean isMasked = isMasked(incomingBytes);
         boolean isClosingFrame = isClosingFrame(incomingBytes);
         int byte1PayloadLength = incomingBytes.get(1) & 0x7f;
         long payloadLength;
         int payloadStart;
+
         if (byte1PayloadLength < 126) {
-            // payload length in byte 1
             payloadLength = byte1PayloadLength;
             payloadStart = 2;
-        } else if (byte1PayloadLength == 126) {
-            // extended payload length in byte 2 ~ 3
-            // read next 2 bytes / 1 short
+        }
+        else if (byte1PayloadLength == 126) {
             payloadLength = dataInputStream.readShort();
             short currentPayloadLength = (short) payloadLength;
             for (int i = 0; i < 2; i++) {
@@ -145,9 +161,8 @@ class WebSocketTools {
                 currentPayloadLength = (short) (currentPayloadLength >> 8);
             }
             payloadStart = 4;
-        } else {
-            // extended payload length in byte 2 ~ 9
-            // read next 8 bytes / 1 long
+        }
+        else {
             payloadLength = dataInputStream.readLong();
             long currentPayloadLength = payloadLength;
             for (int i = 0; i < 8; i++) {
@@ -156,46 +171,50 @@ class WebSocketTools {
             }
             payloadStart = 10;
         }
+
         if (isMasked) {
-            // read next 4 bytes as masks
             for (int i = 0; i < 4; i++) {
                 incomingBytes.add(dataInputStream.readByte());
             }
             payloadStart += 4;
         }
-        // read next payloadLength bytes for the payload
+
         for (int i = 0; i < payloadLength; i++) {
             incomingBytes.add(dataInputStream.readByte());
         }
+
         if (isClosingFrame) {
             return "close";
         }
+
         return getWebSocketResponsePayload(incomingBytes, payloadStart, payloadLength);
     }
 
     private static boolean isClosingFrame(ArrayList<Byte> incomingBytes) {
-        // OPCODE 8 : CLOSE
         return (incomingBytes.get(0) & 0x0f) == 8;
     }
 
     public static void sendResponse(String response, Socket socket) throws IOException {
         System.out.println("send response: " + response);
         OutputStream out = null;
+
         try {
             out = socket.getOutputStream();
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             System.out.println(e.getMessage());
             e.printStackTrace();
         }
+
         assert out != null;
         out.write(getResponseFrame(response));
     }
-
 
     private static Map<String, String> getResponseJSON(String request) {
         String[] incomingRequests = request.split("\s");
         String type = incomingRequests[0];
         Map<String, String> responseJSON = new HashMap<>();
+
         switch (type) {
             case "join" -> {
                 responseJSON.put("type", "join");
@@ -214,7 +233,6 @@ class WebSocketTools {
                 String user2 = incomingRequests[0];
                 String room2 = incomingRequests[1];
                 String timestamp = incomingRequests[2];
-                // JSON.parse() error prevention
                 String message = request.substring(user2.length() + 1 + room2.length() + 1 + timestamp.length() + 1).trim().replaceAll("[\\r\\n]", "[newline]");
                 responseJSON.put("type", "message");
                 responseJSON.put("timestamp", timestamp);
@@ -223,12 +241,14 @@ class WebSocketTools {
                 responseJSON.put("message", message);
             }
         }
+
         return responseJSON;
     }
 
     public static String stringifyJSON(Map<String, String> json) {
         StringBuilder result = new StringBuilder();
         int i = 0;
+
         for (String key : json.keySet()) {
             result.append("\"").append(key).append("\":").append("\"").append(json.get(key)).append("\"");
             i++;
@@ -236,6 +256,7 @@ class WebSocketTools {
                 result.append(",");
             }
         }
+
         return "{" + result + "}";
     }
 
@@ -256,13 +277,15 @@ class WebSocketTools {
         Room room = Room.getRoom(responseJSON.get("room"));
         Set<Socket> clients = room.getActiveSockets();
         System.out.println("active clients length: " + clients.size());
+
         if (Objects.equals(responseJSON.get("type"), "join")) {
-            // send all past messages to the new joined client
             ArrayList<Map<String, String>> messageQueue = room.getMessageQueue();
+
             for (int i = 0; i < messageQueue.size() - 1; i++) {
                 sendResponse(WebSocketTools.stringifyJSON(messageQueue.get(i)), socket);
             }
         }
+
         for (Socket client : clients) {
             sendResponse(JSONString, client);
         }
@@ -273,26 +296,31 @@ class WebSocketTools {
         String type = responseJSON.get("type");
         String roomName = responseJSON.get("room");
         Room room = Room.getRoom(roomName);
+
         if (type.equals("join")) {
             if (!room.userExistsInCurRoom(responseJSON.get("user"))) {
                 handleJoin(responseJSON, socket);
-            } else {
-                // if there is already a user with the same name in the same room, send back an error message
+            }
+            else {
                 handleDuplicateUserError(responseJSON, socket);
                 return;
             }
-        } else if (type.equals("leave")) {
+        }
+        else if (type.equals("leave")) {
             handleLeave(responseJSON, socket);
         }
+
         room.addMessage(responseJSON);
         broadcastResponse(responseJSON, socket);
     }
 
     private static void handleDuplicateUserError(Map<String, String> responseJSON, Socket socket) throws IOException {
         Map<String, String> json = new HashMap<>();
+
         json.put("type", "error");
         json.put("error", "There is someone called " + responseJSON.get("user") + " in " + responseJSON.get("room") + "! Please choose a different user name.");
-        json.put("timestamp", new String(String.valueOf(System.currentTimeMillis())));
+        json.put("timestamp", String.valueOf(System.currentTimeMillis()));
+
         String jsonString = stringifyJSON(json);
         sendResponse(jsonString, socket);
     }
@@ -301,34 +329,35 @@ class WebSocketTools {
         Map<String, String> json = new HashMap<>();
         String trimStr = str.substring(1, str.length() - 1);
         String[] keyValuePairs = trimStr.split(",");
+
         for (String keyValuePair : keyValuePairs) {
             String[] keyAndValue = keyValuePair.split(":");
             String key = keyAndValue[0].substring(1, keyAndValue[0].length() - 1);
             String value = keyAndValue[1].substring(1, keyAndValue[1].length() - 1);
             json.put(key, value);
         }
+
         return json;
     }
 }
 
-// read history messages of certain room from local files
-// write new messages to local files to retain history messages
 class PersistentMemoryTools {
-
     private static String getMemoryFileName(String room)
     {
         return "server/memory/" + room + ".txt";
     }
 
-    private static boolean isRoomRecorded(String room)
-    {
+    private static boolean isRoomRecorded(String room) {
         File file = new File(getMemoryFileName(room));
         boolean isRecorded = true;
+
         try {
             new FileInputStream(file);
-        } catch (FileNotFoundException e) {
+        }
+        catch (FileNotFoundException e) {
             isRecorded = false;
         }
+
         return isRecorded;
     }
 
@@ -365,6 +394,7 @@ class PersistentMemoryTools {
         String room = json.get("room");
         String message = WebSocketTools.stringifyJSON(json) + "\n";
         boolean isRoomRecorded = isRoomRecorded(room);
+
         if(!isRoomRecorded)
         {
             createMemoryFileForRoom(room);
@@ -378,12 +408,11 @@ class PersistentMemoryTools {
 
 public class Main {
     public static void main(String[] args) {
-        // listen at port 8080
         try (ServerSocket serverSocket = new ServerSocket(8080)) {
             Server server = new Server(serverSocket);
             server.runServer();
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
+        }
+        catch (IOException e) {
             e.printStackTrace();
         }
     }
