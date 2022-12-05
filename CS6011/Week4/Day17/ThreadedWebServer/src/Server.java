@@ -1,22 +1,26 @@
+import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
 public class Server {
-    private final ServerSocket serverSocket_;
+    public static void main(String[] args)  {
+        ServerSocket  serverSocket = null;
+        try {
+            serverSocket = new ServerSocket(8080);
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
 
-    public Server(ServerSocket serverSocket) {
-        serverSocket_ = serverSocket;
-    }
-
-    public void runServer() {
-        Socket clientSocket;
         while (true) {
             try {
-                clientSocket = serverSocket_.accept();
-                Thread thread = new Thread(new HandlerRunnable(clientSocket));
+                assert serverSocket != null;
+                Socket clientSocket = serverSocket.accept();
+                MyRunnable runnable = new MyRunnable(clientSocket);
+                Thread thread = new Thread(runnable);
                 thread.start();
             }
-            catch (Exception e) {
+            catch (IOException e) {
                 e.printStackTrace();
             }
         }

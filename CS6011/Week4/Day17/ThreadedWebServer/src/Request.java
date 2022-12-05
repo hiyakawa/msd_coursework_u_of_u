@@ -1,105 +1,42 @@
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.Socket;
-import java.nio.charset.StandardCharsets;
+import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
 
 public class Request {
-    private final Socket clientSocket_;
-    private final Map<String, String> requestHeader_ = new HashMap<>();
     private String fileName_;
-    private String httpVersion_;
-    private String key_;
-    private boolean fileExists_;
-    private boolean isWS_ = false;
+    private InputStream inputStream_;
+    private Socket clientSocket_;
+    private String inputLine_;
+    private Scanner scanner_;
+    private HashMap<String, String> requestHeader_;
 
     public Request(Socket clientSocket) {
         clientSocket_ = clientSocket;
     }
 
-    public String getFilePath(String fileName) {
-        return "/Users/laurazhang/myLocalGithubRepo/CS6011/Week4/Day17/ThreadedWebServer/src/resources/" + fileName;
-    }
+    public String getFileName() throws IOException {
+        inputStream_ = clientSocket_.getInputStream();
+        scanner_ = new Scanner(inputStream_);
+        inputLine_ = scanner_.nextLine();
 
-    public void getRequest() {
-        InputStream requestStream = null;
-
-        try {
-            requestStream = clientSocket_.getInputStream();
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        assert requestStream != null;
-        Scanner sc = new Scanner(requestStream, StandardCharsets.UTF_8);
-
-        if (sc.hasNextLine()) {
-            readHeader(sc);
-        }
-    }
-
-    private void readHeader(Scanner sc) {
-        String firstLine = sc.nextLine();
-        System.out.println(firstLine + " from thread " + Thread.currentThread().threadId());
-
-        String[] firstLineWords = firstLine.split("\s");
-
-        fileName_ = firstLineWords[1];
-        File file = new File(getFilePath(fileName_));
-        fileExists_ = file.exists() && (!file.isDirectory());
-
-        httpVersion_ = firstLineWords[2];
-
-        while (sc.hasNextLine()) {
-            String pair = sc.nextLine();
-
-            if (pair.isEmpty()) {
-                break;
-            }
-
-            String[] pairs = pair.split(": ");
-            String key = pairs[0];
-            String value = pairs[1];
-            requestHeader_.put(key, value);
-        }
-
-        isWS_ = requestHeader_.containsKey("Upgrade") &&
-                requestHeader_.get("Upgrade").equals("websocket") &&
-                requestHeader_.containsKey("Sec-WebSocket-Key");
-
-        if (isWS_) {
-            key_ = requestHeader_.get("Sec-WebSocket-Key");
-        }
-
-        // reference: https://stackoverflow.com/questions/5920135/printing-hashmap-in-java
-        requestHeader_.forEach((key, value) -> System.out.println(key + " : " + value));
-    }
-
-    public String getKey() {
-        if (!isWS_) {
-            throw new RuntimeException();
-        }
-
-        return key_;
-    }
-
-    public boolean getIsWS() {
-        return isWS_;
-    }
-
-    public boolean getFileExists() {
-        return fileExists_;
-    }
-
-    public String getFileName() {
+        String[] inputs = inputLine_.split(" ");
+        fileName_ = inputs[1];
         return fileName_;
     }
 
-    public String getHttpVersion() {
-        return httpVersion_;
+    public HashMap<String, String> getHeaderBody() throws NoSuchAlgorithmException {
+        inputLine_ = scanner_.nextLine();
+        requestHeader_ = new HashMap<>();
+        while (! inputLine_.equals("")) {
+            String[] inputs = inputLine_.split(": ");
+            requestHeader_.put(inputs[0], inputs[1]);
+            inputLine_ = scanner_.nextLine();
+        }
+        System.out.println(requestHeader_);
+
+        return requestHeader_;
     }
 }

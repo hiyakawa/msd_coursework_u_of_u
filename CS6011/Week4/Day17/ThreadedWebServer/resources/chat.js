@@ -94,4 +94,4 @@ function handleClose(){
 function handleError(event) {
     console.log("Web socket Error: ", event);
     alert("[error]");
-}
+};
