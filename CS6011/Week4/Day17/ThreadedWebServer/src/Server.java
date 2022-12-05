@@ -13,7 +13,7 @@ public class Server {
         while (true) {
             try {
                 clientSocket = serverSocket_.accept();
-                Thread thread = new Thread(new HandleThread(clientSocket));
+                Thread thread = new Thread(new HandlerRunnable(clientSocket));
                 thread.start();
             }
             catch (Exception e) {

@@ -32,7 +32,8 @@ public class BinarySearchTree<T extends Comparable<? super T>> implements Sorted
     /**
      * Ensures that this set contains the specified item.
      * @param item the item whose presence is ensured in this set
-     * @return true if this set changed as a result of this method call (that is, if the input item was actually inserted); otherwise, returns false
+     * @return true if this set changed as a result of this method call
+     * (that is, if the input item was actually inserted); otherwise, returns false
      * @throws NullPointerException if the item is null
      */
     @Override
@@ -62,6 +63,7 @@ public class BinarySearchTree<T extends Comparable<? super T>> implements Sorted
                 root_ = new Node(item);
             }
             else {
+                // value of current node is less than input value
                 if (cmp < 0) {
                     prev.right_ = new Node(item);
                 }
@@ -81,7 +83,8 @@ public class BinarySearchTree<T extends Comparable<? super T>> implements Sorted
     /**
      * Ensures that this set contains all items in the specified collection.
      * @param items the collection of items whose presence is ensured in this set
-     * @return true if this set changed as a result of this method call (that is, if any item in the input collection was actually inserted); otherwise, returns false
+     * @return true if this set changed as a result of this method call
+     * (that is, if any item in the input collection was actually inserted); otherwise, returns false
      * @throws NullPointerException if any of the items is null
      */
     @Override
@@ -144,7 +147,8 @@ public class BinarySearchTree<T extends Comparable<? super T>> implements Sorted
     /**
      * Determines if for each item in the specified collection, there is an item in this set that is equal to it.
      * @param items the collection of items sought in this set
-     * @return true if for each item in the specified collection, there is an item in this set that is equal to it; otherwise, returns false
+     * @return true if for each item in the specified collection, there is an item in this set that is equal to it;
+     * otherwise, returns false
      * @throws NullPointerException if any of the items is null
      */
     @Override
@@ -210,7 +214,8 @@ public class BinarySearchTree<T extends Comparable<? super T>> implements Sorted
     /**
      * Ensures that this set does not contain the specified item.
      * @param item the item whose absence is ensured in this set
-     * @return true if this set changed as a result of this method call (that is, if the input item was actually removed); otherwise, returns false
+     * @return true if this set changed as a result of this method call
+     * (that is, if the input item was actually removed); otherwise, returns false
      * @throws NullPointerException if the item is null
      */
     @Override
@@ -231,10 +236,12 @@ public class BinarySearchTree<T extends Comparable<? super T>> implements Sorted
                 }
             }
 
+            // the input value is not found
             if (curNode == null) {
                 return false;
             }
 
+            // if current node is an internal node with two children
             if (curNode.right_ != null && curNode.left_ != null) {
                 Node successor = curNode.right_;
                 Node ptr = null;
@@ -287,7 +294,8 @@ public class BinarySearchTree<T extends Comparable<? super T>> implements Sorted
     /**
      * Ensures that this set does not contain any of the items in the specified collection.
      * @param items the collection of items whose absence is ensured in this set
-     * @return true if this set changed as a result of this method call (that is, if any item in the input collection was actually removed); otherwise, returns false
+     * @return true if this set changed as a result of this method call
+     * (that is, if any item in the input collection was actually removed); otherwise, returns false
      * @throws NullPointerException if any of the items is null
      */
     @Override

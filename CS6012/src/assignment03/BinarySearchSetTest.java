@@ -177,6 +177,8 @@ class BinarySearchSetTest {
 
     @Test
     public void removeTest() {
+//        ascendingIntSet.iterator().remove();
+
         assertTrue(ascendingIntSet.remove(0));
         assertFalse(ascendingIntSet.remove(100));
         assertFalse(ascendingIntSet.remove(null));

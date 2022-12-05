@@ -234,13 +234,14 @@ public class BinarySearchSet<E> implements SortedSet<E>, Iterable<E> {
             if (hasNext()) {
                 return (E) set_[position++];
             }
-            return null;
+            throw new NoSuchElementException();
         }
 
         @Override
         public void remove() {
-            BinarySearchSet.this.remove(set_[position]);
-            position--;
+//            BinarySearchSet.this.remove(set_[position]);
+//            position--;
+            throw new UnsupportedOperationException();
         }
     }
 
@@ -284,7 +285,7 @@ public class BinarySearchSet<E> implements SortedSet<E>, Iterable<E> {
             return false;
         }
         catch (Exception e) {
-            return false;
+            throw new UnsupportedOperationException();
         }
     }
 

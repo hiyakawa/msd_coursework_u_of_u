@@ -21,36 +21,18 @@ public class Room {
         ArrayList<String> msgs = PersistentMemoryTools.getMessageHistoryOfRoom(roomName_);
 
         for (String curMsg: msgs) {
-            Map<String, String> jsonMsg = WebSocketTools.parseJSON(curMsg);
+            Map<String, String> jsonMsg = HandlerRunnable.parseJSON(curMsg);
             jsonMsgs_.add(jsonMsg);
         }
     }
 
-//    private static synchronized boolean roomExists(String roomName) {
-//        for (Room curRoom : rooms_) {
-//            if (curRoom.getRoomName().equals(roomName)) {
-//                return true;
-//            }
-//        }
-//
-//        return false;
-//    }
-
-    // using factory pattern
     public static synchronized Room getRoom(String roomName) throws IOException {
+        // using factory pattern
         for (Room curRoom : rooms_) {
-            if (curRoom.getRoomName().equals(roomName)) {
+            if (curRoom.roomName_.equals(roomName)) {
                 return curRoom;
             }
         }
-
-//        if (roomExists(roomName)) {
-//            for (Room curRoom : rooms_) {
-//                if (curRoom.getRoomName().equals(roomName)) {
-//                    return curRoom;
-//                }
-//            }
-//        }
 
         Room room = new Room(roomName);
         rooms_.add(room);
@@ -82,21 +64,6 @@ public class Room {
         return activeSockets;
     }
 
-//    private boolean isUserInRoom(String user) {
-//        return activeUsers.contains(user);
-//    }
-
-//    public static synchronized Room getRoomByUser(String user)
-//    {
-//        for (Room room: rooms_) {
-//            if(room.isUserInRoom(user))
-//            {
-//                return room;
-//            }
-//        }
-//        throw new RuntimeException("User " + user +" is not in any room!");
-//    }
-
     public synchronized void addMessage(Map<String, String> message) throws IOException {
         jsonMsgs_.add(message);
         PersistentMemoryTools.addMessageToMemoryFile(message);
@@ -109,9 +76,4 @@ public class Room {
     public boolean userExistsInCurRoom(String user) {
         return activeUsers.contains(user);
     }
-
-    public String getRoomName() {
-        return roomName_;
-    }
-
 }

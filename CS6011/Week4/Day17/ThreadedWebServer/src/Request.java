@@ -67,7 +67,9 @@ public class Request {
             requestHeader_.put(key, value);
         }
 
-        isWS_ = WebSocketTools.isWebSocket(requestHeader_);
+        isWS_ = requestHeader_.containsKey("Upgrade") &&
+                requestHeader_.get("Upgrade").equals("websocket") &&
+                requestHeader_.containsKey("Sec-WebSocket-Key");
 
         if (isWS_) {
             key_ = requestHeader_.get("Sec-WebSocket-Key");

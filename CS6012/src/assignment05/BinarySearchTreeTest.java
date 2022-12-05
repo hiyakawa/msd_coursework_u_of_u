@@ -104,7 +104,11 @@ class BinarySearchTreeTest {
         }
         catch (NullPointerException e) {}
 
+        // test the root, internal nodes and leaves
+        assertTrue(intBst.contains(2));
+        assertTrue(intBst.contains(6));
         assertTrue(intBst.contains(5));
+        assertTrue(intBst.contains(7));
         assertFalse(intBst.contains(100));
     }
 
@@ -182,7 +186,6 @@ class BinarySearchTreeTest {
 
     @Test
     public void isEmpty() {
-        assertNull(emptyIntBst.getRoot());
         assertTrue(emptyIntBst.isEmpty());
         assertFalse(intBst.isEmpty());
     }
@@ -191,7 +194,7 @@ class BinarySearchTreeTest {
     public void size() {
         assertEquals(0, emptyIntBst.size());
         assertEquals(6, intBst.size());
-        assertEquals(10, randomStrBst.size());
+        assertEquals(100, randomStrBst.size());
     }
 
     @Test
