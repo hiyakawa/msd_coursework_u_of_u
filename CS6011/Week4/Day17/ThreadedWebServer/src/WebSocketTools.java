@@ -4,14 +4,14 @@ import java.io.IOException;
 import java.net.Socket;
 import java.text.SimpleDateFormat;
 
-public class WebSocketHandler {
+public class WebSocketTools {
     private Socket clientSocket_;
     private String message_;
     private String roomName_;
     private long payloadLength_;
     byte[] decoded_;
 
-    public WebSocketHandler(Socket clientSocket) {
+    public WebSocketTools(Socket clientSocket) {
         clientSocket_ = clientSocket;
     }
 
@@ -69,14 +69,20 @@ public class WebSocketHandler {
             if (!payloadType.equals("join") && (!payloadType.equals("leave"))) {
                 payloadType = "message";
                 userName = message_.split(" ", 2)[0];
-                String payLoadMessage = message_.split(" ", 2)[1];
+                try {
+                    String payLoadMessage = message_.split(" ", 2)[1];
 
-                jsonStr = "{\"type\": \"" + payloadType +
-                           "\", \"user\": \"" + userName +
-                           "\", \"room\": \"" + roomName_ +
-                           "\", \"time stamp\": \"" + timeStamp +
-                           "\", \"message\": \"" + payLoadMessage + "\"}";
-                System.out.println(jsonStr);
+                    jsonStr = "{\"type\": \"" + payloadType +
+                            "\", \"user\": \"" + userName +
+                            "\", \"room\": \"" + roomName_ +
+                            "\", \"time stamp\": \"" + timeStamp +
+                            "\", \"message\": \"" + payLoadMessage + "\"}";
+                    System.out.println(jsonStr);
+                }
+                catch (Exception e) {
+                    System.out.println("client leaves the chat room");
+                    return null;
+                }
             }
             else {
                 userName = message_.split(" ", 3)[1];

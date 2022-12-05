@@ -3,10 +3,10 @@ import java.net.Socket;
 import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 
-public class MyRunnable implements Runnable {
+public class HandlerRunnable implements Runnable {
     private Socket clientSocket_;
 
-    MyRunnable(Socket clientSocket) {
+    HandlerRunnable(Socket clientSocket) {
         clientSocket_ = clientSocket;
     }
 
@@ -21,7 +21,7 @@ public class MyRunnable implements Runnable {
             response.sendResponseHeader();
 
             if (header.containsKey("Sec-WebSocket-Key")) {
-                WebSocketHandler wsRequest = new WebSocketHandler(clientSocket_);
+                WebSocketTools wsRequest = new WebSocketTools(clientSocket_);
 
                 while (true) {
                     wsRequest.readWsRequest();

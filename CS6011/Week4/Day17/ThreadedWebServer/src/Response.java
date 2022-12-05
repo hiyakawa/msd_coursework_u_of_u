@@ -6,7 +6,6 @@ import java.util.Base64;
 import java.util.HashMap;
 
 public class Response {
-    private FileInputStream fis_;
     private OutputStream os_;
     private PrintWriter printWriter_;
     private Socket clientSocket_;
@@ -41,8 +40,6 @@ public class Response {
             result = " 404 not found";
         }
 
-        System.out.println("File path: " + file_);
-
         try {
             os_ = clientSocket_.getOutputStream();
         }
@@ -59,10 +56,27 @@ public class Response {
         else {
             printWriter_.println("HTTP/1.1" + result);
             String extension = fileName_.substring(fileName_.lastIndexOf('.') + 1);
-            printWriter_.println("Content-Type: text/" + extension);
-            printWriter_.println("Content-Length: " + file_.length());
-            printWriter_.println("\n");
+            if (extension.equals("png")) {
+                File file = new File(fileName_);
+                FileInputStream fis = new FileInputStream(file);
+                byte[] data = new byte[(int) file.length()];
+                fis.read(data);
+                fis.close();
 
+                DataOutputStream binaryOut = new DataOutputStream(clientSocket_.getOutputStream());
+                binaryOut.writeBytes("HTTP/1.0 200 OK\r\n");
+                binaryOut.writeBytes("Content-Type: image/png\r\n");
+                binaryOut.writeBytes("Content-Length: " + data.length);
+                binaryOut.writeBytes("\r\n\r\n");
+                binaryOut.write(data);
+
+                binaryOut.close();
+            }
+            else {
+                printWriter_.println("Content-Type: text/" + extension);
+                printWriter_.println("Content-Length: " + file_.length());
+                printWriter_.println("\n");
+            }
             printWriter_.flush();
             sendResponseBody();
         }
@@ -70,12 +84,11 @@ public class Response {
 
     public void sendResponseBody() {
         try {
-            fis_ = new FileInputStream(file_);
-            fis_.transferTo(os_);
+            InputStream fileStream = new FileInputStream(file_);
+            fileStream.transferTo(os_);
+            fileStream.close();
         }
-        catch (IOException ex) {
-            System.out.println("File not found");
-        }
+        catch (IOException ex) {}
         printWriter_.flush();
     }
 

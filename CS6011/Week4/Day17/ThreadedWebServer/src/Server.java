@@ -16,7 +16,7 @@ public class Server {
             try {
                 assert serverSocket != null;
                 Socket clientSocket = serverSocket.accept();
-                MyRunnable runnable = new MyRunnable(clientSocket);
+                HandlerRunnable runnable = new HandlerRunnable(clientSocket);
                 Thread thread = new Thread(runnable);
                 thread.start();
             }
