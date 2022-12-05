@@ -2,19 +2,14 @@ package com.example.androidchatclient;
 
 import android.icu.text.SimpleDateFormat;
 import android.util.Log;
-
 import com.neovisionaries.ws.client.WebSocket;
 import com.neovisionaries.ws.client.WebSocketAdapter;
-
-import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.List;
 import java.util.Map;
 
 public class myWebSocket extends WebSocketAdapter {
-    String message = "I enjoy learning new things";
-
+    private String message = "I enjoy learning new things";
 
     @Override
     public void onConnected(WebSocket websocket, Map<String, List<String>> headers) throws Exception {
@@ -28,11 +23,12 @@ public class myWebSocket extends WebSocketAdapter {
         String type = (String) json.get("type");
         String user = (String) json.get("user");
         String room = (String) json.get("room");
-
         String timeStamp = " ";
+
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
             timeStamp = new SimpleDateFormat("HH:mm").format(new java.util.Date());
         }
+
         if ( type.equals("join")) {
             message = user + " has joined " + room + "  " + timeStamp;
             Log.i("GD: Message ", message);
@@ -41,13 +37,14 @@ public class myWebSocket extends WebSocketAdapter {
             String jsonMessage = (String) json.get("message");
             message = user + ": " +  jsonMessage + "  " + timeStamp;
             Log.i("GD: Message ", message);
-
-        }else{
+        }
+        else{
             message = user + " has left the " + room + "  " + timeStamp;
             Log.i("GD: Message ", message);
         }
 
         ChatDashBoard.messages.add(message);
+
         ChatDashBoard.lv_.post(new Runnable() {
             @Override
             public void run() {
@@ -55,9 +52,5 @@ public class myWebSocket extends WebSocketAdapter {
                 ChatDashBoard.lv_.smoothScrollToPosition(ChatDashBoard.adapter_.getCount() );
             }
         });
-
     }
-
-
-
 }

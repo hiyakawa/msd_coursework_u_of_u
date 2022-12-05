@@ -1,24 +1,16 @@
 package com.example.androidchatclient;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.TextView;
-
 import com.google.android.material.textfield.TextInputEditText;
 import com.neovisionaries.ws.client.WebSocket;
 import com.neovisionaries.ws.client.WebSocketFactory;
-
 import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
-
     public static WebSocket ws_;
 
     @Override
@@ -34,10 +26,9 @@ public class MainActivity extends AppCompatActivity {
         }
         ws_.addListener( new myWebSocket());
         ws_.connectAsynchronously();
-
     }
 
-    public void handleClick ( View view) {
+    public void handleClick(View view) {
         Log.i("GD : Main activity","login button was pressed" );
         TextInputEditText userName = findViewById(R.id.UserID);
         TextInputEditText roomName = findViewById(R.id.roomID);
