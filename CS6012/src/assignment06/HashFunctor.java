@@ -6,7 +6,5 @@ package assignment06;
  * 
  */
 public interface HashFunctor {
-
   public int hash(String item);
-
 }

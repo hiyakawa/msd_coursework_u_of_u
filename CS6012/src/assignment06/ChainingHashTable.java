@@ -1,20 +1,37 @@
+/*
+ * ChainingHashTable.java
+ * Author: Muyuan Zhang
+ * CS 6012 Assignment 6: Hash Tables
+ * File 1 of 6
+ */
+
 package assignment06;
 
 import java.util.Collection;
 import java.util.LinkedList;
+import static java.lang.Math.abs;
 
 public class ChainingHashTable implements Set<String> {
     private LinkedList<String>[] storage_;
     private int size_;
     private int capacity_;
     private HashFunctor functor_;
+    private static final double LOAD_FACTOR = 0.75;
 
     @SuppressWarnings("unchecked")
     public ChainingHashTable(int capacity, HashFunctor functor) {
-        capacity_ = capacity;
-        storage_ = (LinkedList<String>[]) new LinkedList[capacity_];
+        if (capacity <= 0 || functor == null) {
+            throw new IllegalArgumentException();
+        }
+
         size_ = 0;
+        capacity_ = capacity;
         functor_ = functor;
+        storage_ = (LinkedList<String>[]) new LinkedList[capacity_];
+
+        for (int i = 0; i < capacity; i++) {
+            storage_[i] = new LinkedList<>();
+        }
     }
 
     /**
@@ -26,25 +43,20 @@ public class ChainingHashTable implements Set<String> {
      */
     @Override
     public boolean add(String item) {
-        if (this.contains(item)) {
-            return false;
+        if (item == null) {
+            throw new NullPointerException();
         }
 
-        int bucket = functor_.hash(item);
-        LinkedList<String> newList = storage_[bucket];
-        newList.add(item);
+        if (! this.contains(item)) {
+            int index = hashIndex(item);
+            index += index < 0 ? capacity_ : 0;
+            storage_[index].add(item);
+            size_++;
+            growTable();
 
-        if (storage_[bucket] != null) {
-            // shift all the elements after bucket to the right
-            for (int curIndex = size_; curIndex > bucket; curIndex--) {
-                storage_[curIndex] = storage_[curIndex - 1];
-            }
+            return true;
         }
-
-        storage_[bucket] = newList;
-        size_++;
-        growTable();
-        return true;
+        return false;
     }
 
     /**
@@ -56,17 +68,30 @@ public class ChainingHashTable implements Set<String> {
      */
     @Override
     public boolean addAll(Collection<? extends String> items) {
-        return false;
+        if (items != null) {
+            int originalSize = size_;
+
+            for (String curStr : items) {
+                if (curStr == null) {
+                    throw new NullPointerException();
+                }
+                this.add(curStr);
+            }
+            return size_ != originalSize;
+        }
+        else {
+            throw new NullPointerException();
+        }
     }
 
     /**
      * Removes all items from this hash table. The hash table will be empty after this method call.
      */
     @Override
-    @SuppressWarnings("unchecked")
     public void clear() {
-        capacity_ = storage_.length;
-        storage_ = (LinkedList<String>[]) new LinkedList[capacity_];
+        for (int i = 0; i < capacity_; i++) {
+            storage_[i] = new LinkedList<>();
+        }
         size_ = 0;
     }
 
@@ -77,15 +102,12 @@ public class ChainingHashTable implements Set<String> {
      */
     @Override
     public boolean contains(String item) {
-        int bucket = functor_.hash(item);
-        if (storage_[bucket] == null)
-            return false;
-        LinkedList<String> list = storage_[bucket];
-        for (String entry : list) {
-            if (entry.equals(item))
-                return true;
+        if (item == null) {
+            throw new NullPointerException();
         }
-        return false;
+
+        int index = hashIndex(item);
+        return storage_[index].contains(item);
     }
 
     /**
@@ -96,7 +118,21 @@ public class ChainingHashTable implements Set<String> {
      */
     @Override
     public boolean containsAll(Collection<? extends String> items) {
-        return false;
+        if (items != null) {
+            for (String curStr : items) {
+                if (curStr == null) {
+                    throw new NullPointerException();
+                }
+
+                if (! this.contains(curStr)) {
+                    return false;
+                }
+            }
+            return true;
+        }
+        else {
+            throw new NullPointerException();
+        }
     }
 
     /**
@@ -116,26 +152,19 @@ public class ChainingHashTable implements Set<String> {
      */
     @Override
     public boolean remove(String item) {
-        int bucket = functor_.hash(item);
+        if (item != null) {
+            int index = hashIndex(item);
 
-        if (storage_[bucket] == null) {
-            // nothing to remove
+            if (storage_[index].remove(item)) {
+                size_--;
+                return true;
+            }
             return false;
         }
-
-        LinkedList<String> list = storage_[bucket];
-        LinkedList<String> listCopy = new LinkedList<>();
-        // copy all the elements except for input item to a new list
-        for (String curStr : list) {
-            if (! curStr.equals(item)) {
-                listCopy.add(curStr);
-            }
+        else {
+            throw new NullPointerException();
         }
-        // copy over
-        storage_[bucket] = (listCopy.size() == 0) ? null: new LinkedList<>(listCopy);
-        return true;
     }
-
 
     /**
      * Ensures that this set does not contain any of the items in the specified collection.
@@ -146,7 +175,20 @@ public class ChainingHashTable implements Set<String> {
      */
     @Override
     public boolean removeAll(Collection<? extends String> items) {
-        return false;
+        if (items != null) {
+            int originalSize = size_;
+
+            for (String curStr : items) {
+                if (curStr == null) {
+                    throw new NullPointerException();
+                }
+                this.remove(curStr);
+            }
+            return size_ != originalSize;
+        }
+        else {
+            throw new NullPointerException();
+        }
     }
 
     /**
@@ -157,17 +199,40 @@ public class ChainingHashTable implements Set<String> {
         return size_;
     }
 
-    @SuppressWarnings("unchecked")
+    /**
+     * Allocates new capacity for the hash table
+     * if size divided by capacity hits the resize factor.
+     */
     private void growTable() {
-        if (size_ >= 0.75 * storage_.length) {
-            LinkedList<String>[] newStorage = (LinkedList<String>[]) new LinkedList[storage_.length * 2];
-            for (int curIndex = 0; curIndex < storage_.length; curIndex++) {
-                LinkedList<String> list = storage_[curIndex];
+        if (size_ >= LOAD_FACTOR * capacity_) {
+            capacity_ *= 2;
+            ChainingHashTable newTable = new ChainingHashTable(capacity_, functor_);
 
-                while (list != null) {
-                    int hash = (Math.abs(list.hashCode())) % newStorage.length;
+            for (LinkedList<String> curList : storage_) {
+                for (String curStr : curList) {
+                    newTable.add(curStr);
                 }
             }
+            storage_ = newTable.storage_;
         }
+    }
+
+    /**
+     * Prints each bucket in the hash table with the index numbers.
+     */
+    public void printTable() {
+        for (LinkedList<String> curList : storage_) {
+            for (String curStr : curList) {
+                System.out.println(hashIndex(curStr) + "\t" + curStr);
+            }
+        }
+        System.out.println("");
+    }
+
+    /**
+     * Returns the bucket index after hashing.
+     */
+    private int hashIndex(String item) {
+        return abs(functor_.hash(item) % capacity_);
     }
 }
