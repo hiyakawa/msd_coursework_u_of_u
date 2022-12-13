@@ -1,7 +1,9 @@
-# CS 6010 Labs & Assignments
+# CS 6010: Introduction to Software Development (C++)
 
-#### Fall 2022 @U of Utah
+#### Labs, Assignments & Projects
+
+#### Fall 2022 Master of Software Development @U of Utah
 
 #### Muyuan (Laura) Zhang
 
-u1430770@umail.utah.edu
+muyuan.zhang@utah.edu
